@@ -1,0 +1,32 @@
+.DialogArea{
+	display: flex;
+	flex-direction: column;
+}
+
+.Form{
+	display: flex;
+}
+.TextInput{
+	border: 0;
+	width: 100%;
+}
+.FileInput{
+	
+}
+.Massages{
+flex-grow: 1;
+}
+.MassageWrap{
+	display: flex;
+
+}
+.FlexGrow{
+	flex-grow: 1;
+	min-width:30%;
+}
+.MyMassage{
+	text-align: right;
+}
+.Massage{
+
+}
