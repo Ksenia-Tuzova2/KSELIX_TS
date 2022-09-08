@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { v1 } from 'uuid';
+import React from 'React'
 
 var num = "1234";
 var arr = Array.from(num);
@@ -41,6 +42,7 @@ export type StoreType = {
 	_callSubscriber: (props: StateType) => void,
 	_State: StateType,
 	getState: () => StateType,
+	deletePost:(id:string)=>void,
 	AddPost: (newtext: string) => void,
 	updateNewPostText: (newtext: string) => void,
 	subscribe: (observer:any) => void,
@@ -51,8 +53,14 @@ export type StoreType = {
 }
 
 
+// const NewPosts:React.FC=()=>{
+
+// let [state,setState]=useState()
+
+// }
+
 export let Store: StoreType = {
-	//это метод - убираем лет, равно и стрелку
+
 	_callSubscriber(props) {
 		console.log('state changed ')
 	},
@@ -123,13 +131,18 @@ _State: {
 	// window.State = State
 // let [localState, setLocalState] = useState(this._State.Profile.massageData);
 
+deletePost(id:string){
+	// debugger
+	let filtredTask=this._State.Profile.massageData.filter((t)=>t.id!==id)
+	console.log(filtredTask)
+	this._callSubscriber(this._State)
+},
+
 AddPost(newtext: string) {
 	let newPost={
 		id: v1(),
 		message: newtext,
 	}
-
-
 
 	// this._State.Profile.massageData = [...this._State.Profile.massageData, newPost]
 	this._State.Profile.massageData.unshift(newPost)

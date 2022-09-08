@@ -9,10 +9,12 @@ import UserName from '../../userInfo/userName/userName'
     
 type NewPostsType={
     massage:any,
-    pos:number
+    pos:number,
+    id:string,
+    deletePost:(id:string)=>void
 }
 
-const NewPosts:React.FC<NewPostsType>=({massage,pos})=>{
+const NewPosts:React.FC<NewPostsType>=({massage,pos,deletePost,id})=>{
 
 
     return(
@@ -22,6 +24,7 @@ const NewPosts:React.FC<NewPostsType>=({massage,pos})=>{
                     <div className="box">              
                 <UserName frstName='Tanya' scndName='Tuzova'/>
                 <Time/>
+                <button onClick={()=>deletePost(id)}>x</button>
                 </div> 
                 <div className="Massage">{massage}</div>
                 <div className={s.NewPost__likeDislikeWrapper}>

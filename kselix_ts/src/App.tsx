@@ -8,6 +8,7 @@ import { StateType } from './redux/store';
 
 export type AppPropsType={
   appState: StateType, 
+  deletePost:(id:string)=>void
   addMassage:(message: string) => void, 
   addPost: (newtext: string) => void,
   updateNewPostText:(newtext: string) => void, 
@@ -15,7 +16,7 @@ export type AppPropsType={
 }
 
 
-const App: React.FC<AppPropsType>= ({ appState, addMassage, addPost, updateNewPostText, updateMesText}) => {
+const App: React.FC<AppPropsType>= ({ appState, addMassage, addPost, updateNewPostText, updateMesText,deletePost}) => {
   // debugger
 
   return (
@@ -24,7 +25,7 @@ const App: React.FC<AppPropsType>= ({ appState, addMassage, addPost, updateNewPo
      >
 
       <Header />
-      <Main appState={appState} addMassage={addMassage} addPost={addPost} updateNewPostText={updateNewPostText} updateMesText={updateMesText}/>
+      <Main appState={appState} addMassage={addMassage} addPost={addPost} updateNewPostText={updateNewPostText} updateMesText={updateMesText} deletePost={deletePost}/>
       <Footer />
     </div>
   );

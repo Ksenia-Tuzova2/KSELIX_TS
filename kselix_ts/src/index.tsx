@@ -20,7 +20,7 @@ const root = ReactDOM.createRoot(document.getElementById("root")!);
 		<React.StrictMode>
 			<BrowserRouter>
 
-				<App appState={Store.getState()} addMassage={Store.AddMassage} addPost={Store.AddPost.bind(Store)} updateNewPostText={Store.updateNewPostText} updateMesText={Store.updateMesText} />
+				<App appState={Store.getState()} addMassage={Store.AddMassage} addPost={Store.AddPost.bind(Store)} updateNewPostText={Store.updateNewPostText} updateMesText={Store.updateMesText} deletePost={Store.deletePost.bind(Store)} />
 
 			</BrowserRouter>
 		</React.StrictMode>

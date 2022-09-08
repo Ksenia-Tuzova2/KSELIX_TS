@@ -9,13 +9,14 @@ type ProfileType={
     addPost:any, 
     newPostText:any,
      updateNewPostText:any
+     deletePost:any
 }
-export const Profile:React.FC<ProfileType> = ({ massageData, addPost, newPostText, updateNewPostText}) => {
+export const Profile:React.FC<ProfileType> = ({ massageData, addPost, newPostText, updateNewPostText, deletePost}) => {
     // debugger
     return (
         <div >
             <UserInfo />
-            <Posts massageData={massageData} addPost={addPost} newPostText={newPostText} updateNewPostText={updateNewPostText}/>
+            <Posts massageData={massageData} addPost={addPost} newPostText={newPostText} updateNewPostText={updateNewPostText} deletePost={deletePost}/>
         </div>
     )
 }

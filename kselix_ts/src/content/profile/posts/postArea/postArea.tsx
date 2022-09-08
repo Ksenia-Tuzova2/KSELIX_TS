@@ -10,11 +10,11 @@ type Props = {
     massageData: any[];
      newPostText: string;
     updateNewPostText: () => void;
+    deletePost:(id:string)=> void
 }
-export const PostArea = ({ addPost, massageData, newPostText, updateNewPostText }: Props) => {
+export const PostArea = ({ addPost, massageData, newPostText, updateNewPostText,deletePost }: Props) => {
 
-    var MakeNewPost = () => massageData.reverse().map((m: any, pos: number) => <NewPosts massage={m.message} pos={pos} />)
-    console.log('reversed', massageData.reverse())
+    var MakeNewPost = () => massageData.map((m: any, pos: number,) => <NewPosts massage={m.message} pos={pos} deletePost={deletePost} id={m.id}/>)
 
 
     let [inputValue, setInputValue] = useState('')
