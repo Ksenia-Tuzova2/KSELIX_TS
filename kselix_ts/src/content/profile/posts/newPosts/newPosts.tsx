@@ -16,6 +16,7 @@ type NewPostsType={
 
 const NewPosts:React.FC<NewPostsType>=({massage,pos,deletePost,id})=>{
 
+  
 
     return(
         <div className={s.NewPost} key={pos}>
@@ -28,7 +29,7 @@ const NewPosts:React.FC<NewPostsType>=({massage,pos,deletePost,id})=>{
                 </div> 
                 <div className="Massage">{massage}</div>
                 <div className={s.NewPost__likeDislikeWrapper}>
-                    <Like counter='1' pos={pos} ></Like>
+                    <Like  ></Like>
                 <div className={s.FlexGrow}></div>
                 <Dislike counter=''/>
                 </div>

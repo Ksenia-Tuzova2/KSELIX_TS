@@ -1,54 +1,54 @@
 import { useState } from 'react';
 import { v1 } from 'uuid';
-import React from 'React'
+
 
 var num = "1234";
 var arr = Array.from(num);
 console.log(arr)
 console.log(typeof arr[0])
 
-export type MakeArrType={
+export type MakeArrType = {
 	id: number,
 	name: string,
 	time: string,
 	massage: string,
 }
-export type 	MyMassageType = {
-	massage:string;
+export type MyMassageType = {
+	massage: string;
 }
 
-export type MassageType={
-	newMesText:string;
+export type MassageType = {
+	newMesText: string;
 	makeArr: Array<MakeArrType>,
 	MyMassage: MyMassageType[],
 }
 
-export type MassageData={
+export type MassageData = {
 	id: string,
 	message: string,
 }
-export type ProfileType={
-	newPostText:String,
+export type ProfileType = {
+	newPostText: String,
 	massageData: Array<MassageData>,
 
 }
 export type StateType = {
 
 	Massage: MassageType,
-	Profile:ProfileType,
+	Profile: ProfileType,
 }
 
 export type StoreType = {
 	_callSubscriber: (props: StateType) => void,
 	_State: StateType,
 	getState: () => StateType,
-	deletePost:(id:string)=>void,
+	deletePost: (id: string) => void,
 	AddPost: (newtext: string) => void,
 	updateNewPostText: (newtext: string) => void,
-	subscribe: (observer:any) => void,
+	subscribe: (observer: any) => void,
 	AddMassage: (message: string) => void,
 	updateMesText: (newtext: string) => void,
-	
+
 
 }
 
@@ -65,7 +65,7 @@ export let Store: StoreType = {
 		console.log('state changed ')
 	},
 
-_State: {
+	_State: {
 
 		Massage: {
 			newMesText: 'aaaa',
@@ -126,29 +126,43 @@ _State: {
 		// debugger
 		return this._State;
 	},
+
+
 	//=======================================================
 
 	// window.State = State
-// let [localState, setLocalState] = useState(this._State.Profile.massageData);
+	// let [localState, setLocalState] = useState(this._State.Profile.massageData);
 
-deletePost(id:string){
-	// debugger
-	let filtredTask=this._State.Profile.massageData.filter((t)=>t.id!==id)
-	console.log(filtredTask)
-	this._callSubscriber(this._State)
-},
 
-AddPost(newtext: string) {
-	let newPost={
-		id: v1(),
-		message: newtext,
-	}
+	//как сделать удаление элемента - делаем функцию делит и прокидываем в кнопку при он клике она должна вызыаваться . 
+	// когда мы хотим что-то добавить, удалить, отфильтровать - мы прежде всего должны думать об изменении данных в хранилище. значит функция будет изменять хранилище. здесь в сторе мы не можем использовать юзстейт, поэтому присваиваем старому массиву отфитрованный массив - фильтруем с условием что айди не равна приходящей из кнопки айдишке 
+	//потом прокидываем айди из стейта в кнопку
+	//не забудь про байнд- он скажет функции где именно использовать внутри зис
 
-	// this._State.Profile.massageData = [...this._State.Profile.massageData, newPost]
-	this._State.Profile.massageData.unshift(newPost)
-	this._callSubscriber(this._State)
+	//как сделать обмен данными внутри поля ввода - написать юз стейт с пустой строкой внутри компоненты где лежит инпут , при ончейндже будет вызываться при каждом символе сетстейт функция с параметром каррент таргет валью, а валью будет равно стейту
 
-	//  console.log(setLocalState([newPost, ...localState])) 
+
+	//как сделать добавление элемента
+//делаем функцию аддпост , прокидываем ее в пропсах вызываем в онклике при помощи колбека с параментром стейта _ чтобы записывать новые данные в новый пост , в самой функции создаем переменную, которая будет похожа на объект из массива куда мы его будет записывать, при помощи метода аншифт в этой же функции запуливаем новый пост сверху, НЕ ЗАБЫВАЕМ ПРО БАЙНД, чтобы все обновлялось вовремя
+
+
+
+	deletePost(id: string) {
+//можно присваивать старому массиву новое значение и тогда он будет автоматически перерисовываться
+	this._State.Profile.massageData = this._State.Profile.massageData.filter((t) => t.id !== id)
+	
+		this._callSubscriber(this._State)
+	},
+
+	//
+	AddPost(newtext: string) {
+		let newPost = {
+			id: v1(),
+			message: newtext,
+		}
+
+		this._State.Profile.massageData.unshift(newPost)
+		this._callSubscriber(this._State)
 
 	},
 
@@ -159,12 +173,14 @@ AddPost(newtext: string) {
 	},
 
 	subscribe(observer) {
+
+		
 		this._callSubscriber = observer
 	},
 
 
 	// debugger
-	AddMassage(message:string) {
+	AddMassage(message: string) {
 		let newM = {
 			massage: message,
 		};
@@ -172,7 +188,7 @@ AddPost(newtext: string) {
 		this._callSubscriber(this._State)
 	},
 
-	updateMesText(newtext:string) {
+	updateMesText(newtext: string) {
 		this._State.Massage.newMesText = newtext;
 		this._callSubscriber(this._State)
 	},
