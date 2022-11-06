@@ -1,4 +1,4 @@
-import {Store} from "./redux/store";
+import { Store } from "./redux/store";
 
 
 import React from "react";
@@ -14,20 +14,20 @@ const root = ReactDOM.createRoot(document.getElementById("root")!);
 
 
 
- let renderEntireTree = () => {
+let renderEntireTree = () => {
 	// debugger
 	root.render(
 		<React.StrictMode>
 			<BrowserRouter>
-
-				<App appState={Store.getState()} addMassage={Store.AddMassage} addPost={Store.AddPost.bind(Store)} updateNewPostText={Store.updateNewPostText} updateMesText={Store.updateMesText} deletePost={Store.deletePost.bind(Store)} />
+				{/* bind связывает методы стора именно со стором, это нуно чтобы под капотом все не перепуталось- иногда пропс мжет перепутаться с зис */}
+				<App appState={Store.getState()} addMassage={Store.AddMassage.bind(Store)} addPost={Store.AddPost.bind(Store)} updateNewPostText={Store.updateNewPostText.bind(Store)} updateMesText={Store.updateMesText.bind(Store)} deletePost={Store.deletePost.bind(Store)} />
 
 			</BrowserRouter>
 		</React.StrictMode>
 	);
 	reportWebVitals();
- }
-renderEntireTree() 
+}
+renderEntireTree()
 //НЕ МОГУ ЗДЕСЬ ВЫЗВАТЬ ГЕТСТЕЙТ СО СКОБКАМИ
 
 //это колбек, когда одна функция вызывает другую

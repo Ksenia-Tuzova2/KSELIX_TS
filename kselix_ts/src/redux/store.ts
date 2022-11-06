@@ -33,6 +33,7 @@ export type ProfileType = {
 
 }
 export type StateType = {
+	// bind(Store: StoreType): StateType;
 
 	Massage: MassageType,
 	Profile: ProfileType,
@@ -49,7 +50,7 @@ export type StoreType = {
 	AddMassage: (message: string) => void,
 	updateMesText: (newtext: string) => void,
 
-
+dispatch:(action:any)=>any
 }
 
 
@@ -180,21 +181,33 @@ export let Store: StoreType = {
 
 
 	// debugger
-	AddMassage(message: string) {
-		let newM = {
-			massage: message,
-		};
-		this._State.Massage.MyMassage.push(newM)
-		this._callSubscriber(this._State)
-	},
+	// AddMassage(message: string) {
+	// 	let newM = {
+	// 		massage: message,
+	// 	};
+	// 	this._State.Massage.MyMassage.push(newM)
+	// 	this._callSubscriber(this._State)
+	// },
 
-	updateMesText(newtext: string) {
-		this._State.Massage.newMesText = newtext;
-		this._callSubscriber(this._State)
-	},
+	// updateMesText(newtext: string) {
+	// 	this._State.Massage.newMesText = newtext;
+	// 	this._callSubscriber(this._State)
+	// },
+
+	dispatch(action){
+		if(action.type==='UPDATE-MES-TEXT'){
+			this._State.Massage.newMesText = action.newtext;
+			this._callSubscriber(this._State)
+		}else if(action.type==='ADD-MESSAGE'){
+			let newM = {
+				massage: action.message,
+			};
+			this._State.Massage.MyMassage.push(newM)
+			this._callSubscriber(this._State)
+	}
 
 }
 
 
 //@ts-ignore
-window.Store = Store
+// window.Store = Store

@@ -20,9 +20,7 @@ const App: React.FC<AppPropsType>= ({ appState, addMassage, addPost, updateNewPo
   // debugger
 
   return (
-    <div className={s.App}
-
-     >
+    <div className={s.App}>
 
       <Header />
       <Main appState={appState} addMassage={addMassage} addPost={addPost} updateNewPostText={updateNewPostText} updateMesText={updateMesText} deletePost={deletePost}/>
