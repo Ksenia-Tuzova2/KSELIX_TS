@@ -7,12 +7,13 @@ import { DialogBar } from './DialogBar/DialogBar'
 import s from'./dialogs.module.scss'
 
 type DialogProps={
-    addMassage: (message: string) => void,
+    // addMassage: (message: string) => void,
     Massage: MassageType;
-    updateMesText: (newtext: string) => void,
+    // updateMesText: (newtext: string) => void,
+    dispatch:(action:any)=>any
 }
 
-export const Dialogs :React.FC<DialogProps>= ({ Massage, addMassage, updateMesText }) => {
+export const Dialogs :React.FC<DialogProps>= ({ Massage,dispatch }) => {
     // debugger
     return (
         <div className={s.Massage} >
@@ -21,7 +22,7 @@ export const Dialogs :React.FC<DialogProps>= ({ Massage, addMassage, updateMesTe
             <Routes>
                 <Route path='*' element={<Choose />} />
                 <Route path='/dialogArea/*'
-                    element={<DialogArea addMassage={addMassage} MyMessage={Massage} updateMesText={updateMesText} />}/>
+                    element={<DialogArea dispatch={dispatch} myMessage={Massage} />}/>
             </Routes>
         </div>
     )

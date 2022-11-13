@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { v1 } from 'uuid';
+import { messegeReducer } from './messegeReduser';
+import { profileReducer } from './profileReducer';
 
 
 var num = "1234";
@@ -43,14 +45,33 @@ export type StoreType = {
 	_callSubscriber: (props: StateType) => void,
 	_State: StateType,
 	getState: () => StateType,
-	deletePost: (id: string) => void,
-	AddPost: (newtext: string) => void,
-	updateNewPostText: (newtext: string) => void,
+	// deletePost: (id: string) => void,
+	// AddPost: (newtext: string) => void,
+	// updateNewPostText: (newtext: string) => void,
 	subscribe: (observer: any) => void,
-	AddMassage: (message: string) => void,
-	updateMesText: (newtext: string) => void,
+	// AddMassage: (message: string) => void,
+	// updateMesText: (newtext: string) => void,
 
-dispatch:(action:any)=>any
+	dispatch: (action: any) => any
+}
+export const addPostActionCreator = (newtext: string) => {
+	return { type: ADD_POST, newtext }
+}
+
+export const updateNewPostTextActionCreator = (newtext: string) => {
+	return { type: UPDATE_NEW_POST_TEXT, newtext }
+}
+
+export const deletePostActionCreator = (id: string) => {
+	return { type: DELETE_POST, id }
+}
+
+export const addMessageActionCreator = (message: string) => {
+	return { type: ADD_MESSAGE, message }
+}
+
+export const updateMesTextActionCreator = (newtext: string) => {
+	return { type: UPDATE_MES_TEXT, newtext }
 }
 
 
@@ -59,7 +80,12 @@ dispatch:(action:any)=>any
 // let [state,setState]=useState()
 
 // }
+const ADD_POST = 'ADD-POST'
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+const DELETE_POST = 'DELETE-POST'
 
+const ADD_MESSAGE = 'ADD-MESSAGE'
+const UPDATE_MES_TEXT = 'UPDATE-MES-TEXT'
 export let Store: StoreType = {
 
 	_callSubscriber(props) {
@@ -69,7 +95,7 @@ export let Store: StoreType = {
 	_State: {
 
 		Massage: {
-			newMesText: 'aaaa',
+			newMesText: '',
 			makeArr: [
 				{
 					id: 1,
@@ -93,7 +119,6 @@ export let Store: StoreType = {
 		Profile: {
 			newPostText: '',
 			massageData: [
-
 				{
 					id: "1",
 					message: 'mmmmm',
@@ -144,43 +169,41 @@ export let Store: StoreType = {
 
 
 	//как сделать добавление элемента
-//делаем функцию аддпост , прокидываем ее в пропсах вызываем в онклике при помощи колбека с параментром стейта _ чтобы записывать новые данные в новый пост , в самой функции создаем переменную, которая будет похожа на объект из массива куда мы его будет записывать, при помощи метода аншифт в этой же функции запуливаем новый пост сверху, НЕ ЗАБЫВАЕМ ПРО БАЙНД, чтобы все обновлялось вовремя
+	//делаем функцию аддпост , прокидываем ее в пропсах вызываем в онклике при помощи колбека с параментром стейта _ чтобы записывать новые данные в новый пост , в самой функции создаем переменную, которая будет похожа на объект из массива куда мы его будет записывать, при помощи метода аншифт в этой же функции запуливаем новый пост сверху, НЕ ЗАБЫВАЕМ ПРО БАЙНД, чтобы все обновлялось вовремя
 
 
 
-	deletePost(id: string) {
-//можно присваивать старому массиву новое значение и тогда он будет автоматически перерисовываться
-	this._State.Profile.massageData = this._State.Profile.massageData.filter((t) => t.id !== id)
-	
-		this._callSubscriber(this._State)
-	},
+	// 	deletePost(id: string) {
+	// //можно присваивать старому массиву новое значение и тогда он будет автоматически перерисовываться
+	// 	this._State.Profile.massageData = this._State.Profile.massageData.filter((t) => t.id !== id)
 
-	//
-	AddPost(newtext: string) {
-		let newPost = {
-			id: v1(),
-			message: newtext,
-		}
+	// 		this._callSubscriber(this._State)
+	// 	},
 
-		this._State.Profile.massageData.unshift(newPost)
-		this._callSubscriber(this._State)
+	// AddPost(newtext: string) {
+	// 	let newPost = {
+	// 		id: v1(),
+	// 		message: newtext,
+	// 	}
 
-	},
+	// 	this._State.Profile.massageData.unshift(newPost)
+	// 	this._callSubscriber(this._State)
+
+	// },
 
 
-	updateNewPostText(newtext: string) {
-		this._State.Profile.newPostText = newtext;
-		this._callSubscriber(this._State)
-	},
+	// updateNewPostText(newtext: string) {
+	// 	this._State.Profile.newPostText = newtext;
+	// 	this._callSubscriber(this._State)
+	// },
 
 	subscribe(observer) {
 
-		
+
 		this._callSubscriber = observer
 	},
 
 
-	// debugger
 	// AddMassage(message: string) {
 	// 	let newM = {
 	// 		massage: message,
@@ -194,20 +217,46 @@ export let Store: StoreType = {
 	// 	this._callSubscriber(this._State)
 	// },
 
-	dispatch(action){
-		if(action.type==='UPDATE-MES-TEXT'){
+	dispatch(action) {
+
+		this._State.Massage=messegeReducer(this._State.Profile,action)
+		this._State.Profile=profileReducer(this._State.Profile,action)
+
+
+		if (action.type === UPDATE_MES_TEXT) {
 			this._State.Massage.newMesText = action.newtext;
 			this._callSubscriber(this._State)
-		}else if(action.type==='ADD-MESSAGE'){
+		} 
+		else if (action.type === ADD_MESSAGE) {
 			let newM = {
 				massage: action.message,
 			};
-			this._State.Massage.MyMassage.push(newM)
+			this._State.Massage.MyMassage.unshift(newM)
+			
+			console.log(this._State.Massage.MyMassage);
+			
 			this._callSubscriber(this._State)
+		} 
+		else if (action.type === DELETE_POST) {
+			this._State.Profile.massageData = this._State.Profile.massageData.filter((t) => t.id !== action.id)
+			this._callSubscriber(this._State)
+		} 
+		else if (action.type === UPDATE_NEW_POST_TEXT) {
+			this._State.Profile.newPostText = action.newtext;
+			this._callSubscriber(this._State)
+		} 
+		else if (action.type === ADD_POST) {
+			let newPost = {
+				id: v1(),
+				message: action.newtext,
+			}
+			this._State.Profile.massageData.unshift(newPost)
+			this._callSubscriber(this._State)
+		}
+
+
 	}
-
 }
-
 
 //@ts-ignore
 // window.Store = Store

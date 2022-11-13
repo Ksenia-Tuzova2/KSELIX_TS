@@ -1,4 +1,4 @@
-import { Store } from "./redux/store";
+import { Store,  } from "./redux/store";
 
 
 import React from "react";
@@ -13,14 +13,20 @@ import { StoreType } from "./redux/store";
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 
 
-
+// debugger
 let renderEntireTree = () => {
 	// debugger
 	root.render(
 		<React.StrictMode>
 			<BrowserRouter>
 				{/* bind связывает методы стора именно со стором, это нуно чтобы под капотом все не перепуталось- иногда пропс мжет перепутаться с зис */}
-				<App appState={Store.getState()} addMassage={Store.AddMassage.bind(Store)} addPost={Store.AddPost.bind(Store)} updateNewPostText={Store.updateNewPostText.bind(Store)} updateMesText={Store.updateMesText.bind(Store)} deletePost={Store.deletePost.bind(Store)} />
+				<App appState={Store.getState()} 
+				dispatch={Store.dispatch.bind(Store)}
+				//  addPost={Store.AddPost.bind(Store)} 
+				// updateNewPostText={Store.updateNewPostText.bind(Store)}
+				//  updateMesText={Store.updateMesText.bind(Store)} 
+				//  deletePost={Store.deletePost.bind(Store)} 
+				 />
 
 			</BrowserRouter>
 		</React.StrictMode>

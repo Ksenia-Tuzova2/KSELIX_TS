@@ -9,16 +9,16 @@ import { AppPropsType } from '../App';
 
 
 
-export const Content: React.FC<AppPropsType> = ({ appState, addMassage, addPost, updateNewPostText, updateMesText, deletePost}) => {
+export const Content: React.FC<AppPropsType> = ({ appState, dispatch}) => {
 	// debugger
 	return (
 		<div className={ContentStyle.wrapper}>
 			<MenuBar />
 				<Routes>
-				<Route path='/dialogs/*' element={<Dialogs  Massage={appState.Massage} addMassage={addMassage} updateMesText={updateMesText}/> } />
-				<Route path='/profile/*' element={<Profile massageData={appState.Profile.massageData} newPostText={appState.Profile.newPostText} addPost={addPost} updateNewPostText={updateNewPostText} deletePost={deletePost}/>} />
+				<Route path='/dialogs/*' element={<Dialogs  Massage={appState.Massage} dispatch={dispatch}/> } />
+				<Route path='/profile/*' element={<Profile massageData={appState.Profile.massageData} newPostText={appState.Profile.newPostText}   dispatch={dispatch}/>} />
 					<Route path='/friends/*' element={<Friends />} />
-					<Route path='/news/*' element={<NewsFeed massageData={appState.Profile.massageData}deletePost={deletePost}/>} />
+					<Route path='/news/*' element={<NewsFeed massageData={appState.Profile.massageData} dispatch={dispatch}/>} />
 				</Routes>
 		</div>
 

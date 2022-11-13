@@ -3,21 +3,26 @@ import PostAreaStyle from './postArea.module.scss'
 import Box from '../../../../box.module.scss'
 import BtnStyle from '../../../../btn.module.scss'
 import NewPosts from '../newPosts/newPosts'
+import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../../redux/store'
 
 
 type Props = {
-    addPost: (newPostText: string) => void;
     massageData: any[];
      newPostText: string;
-    updateNewPostText: () => void;
-    deletePost:(id:string)=> void
+    dispatch:(action:any)=>any
 }
-export const PostArea = ({ addPost, massageData, newPostText, updateNewPostText,deletePost }: Props) => {
+export const PostArea = ({ massageData, newPostText, dispatch }: Props) => {
 
-    var MakeNewPost = () => massageData.map((m: any, pos: number,) => <NewPosts massage={m.message} pos={pos} deletePost={deletePost} id={m.id}/>)
+    const makeNewPost = () => massageData.map((m: any, pos: number,) => <NewPosts massage={m.message} pos={pos} dispatch={dispatch} id={m.id}/>)
 
-
-    let [inputValue, setInputValue] = useState('')
+    const addPostHandler=(newtext:string)=>{
+        dispatch(addPostActionCreator(newtext))
+    }
+ 
+    const updateNewPostTextHandler=(newtext:string)=>{
+        dispatch(updateNewPostTextActionCreator(newtext))
+    }
+ 
 
     //  debugger
     return (
@@ -25,17 +30,17 @@ export const PostArea = ({ addPost, massageData, newPostText, updateNewPostText,
             <div className={PostAreaStyle.FormWrapper}>
                 <textarea className={PostAreaStyle.Input + " " + Box.Box}
                     placeholder='What`s news?'
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.currentTarget.value)}
+                    value={newPostText}
+                    onChange={(e) => updateNewPostTextHandler(e.currentTarget.value)}
                 />
 
 
                 <button className={BtnStyle.Btn}
-                    onClick={() => addPost(inputValue)}
+                    onClick={() => addPostHandler(newPostText)}
                 >post</button>
 
             </div>
-            {MakeNewPost()}
+            {makeNewPost()}
 
 
         </div>

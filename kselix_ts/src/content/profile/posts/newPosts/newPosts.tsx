@@ -4,6 +4,8 @@ import Time from './time'
 import Like from './like/like'
 import Dislike from './dislike/dislike'
 import UserName from '../../userInfo/userName/userName'
+import { ReactElement } from 'react'
+import { deletePostActionCreator } from '../../../../redux/store'
 
 
     
@@ -11,12 +13,17 @@ type NewPostsType={
     massage:any,
     pos:number,
     id:string,
-    deletePost:(id:string)=>void
+    dispatch:(action:any)=>ReactElement<any, any> | null
 }
 
-const NewPosts:React.FC<NewPostsType>=({massage,pos,deletePost,id})=>{
+const NewPosts:React.FC<NewPostsType>=({massage,pos,dispatch,id})=>{
 
-  
+    const deletePostHandler=(id:string)=>{
+
+      
+        dispatch(deletePostActionCreator(id))
+    }
+ 
 
     return(
         <div className={s.NewPost} key={pos}>
@@ -25,9 +32,9 @@ const NewPosts:React.FC<NewPostsType>=({massage,pos,deletePost,id})=>{
                     <div className="box">              
                 <UserName frstName='Tanya' scndName='Tuzova'/>
                 <Time/>
-                <button onClick={()=>deletePost(id)}>x</button>
+                <button onClick={()=>deletePostHandler(id)}>x</button>
                 </div> 
-                <div className="Massage">{massage}</div>
+                <div className="Mssage">{massage}</div>
                 <div className={s.NewPost__likeDislikeWrapper}>
                     <Like  ></Like>
                 <div className={s.FlexGrow}></div>

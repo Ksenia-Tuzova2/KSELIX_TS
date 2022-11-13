@@ -4,19 +4,23 @@ import { Posts } from './posts/posts'
 import { UserInfo } from './userInfo/userInfo-list'
 
 
-type ProfileType={
-    massageData:any, 
-    addPost:any, 
-    newPostText:any,
-     updateNewPostText:any
-     deletePost:any
+type ProfileType = {
+    massageData: any,
+    // addPost:any, 
+    newPostText: any,
+    //  updateNewPostText:any
+
+    dispatch: (action: any) => any
 }
-export const Profile:React.FC<ProfileType> = ({ massageData, addPost, newPostText, updateNewPostText, deletePost}) => {
+export const Profile: React.FC<ProfileType> = ({ dispatch, massageData, newPostText, }) => {
     // debugger
     return (
         <div >
             <UserInfo />
-            <Posts massageData={massageData} addPost={addPost} newPostText={newPostText} updateNewPostText={updateNewPostText} deletePost={deletePost}/>
+            <Posts massageData={massageData}
+     
+             newPostText={newPostText}
+                dispatch={dispatch} />
         </div>
     )
 }

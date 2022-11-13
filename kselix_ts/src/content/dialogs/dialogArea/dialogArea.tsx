@@ -2,59 +2,66 @@ import React from 'react'
 import DialogAreaStyle from './dialogArea.module.scss'
 import Box from '../../../box.module.scss'
 import BtnStyle from '../../../btn.module.scss'
-import { MassageType } from '../../../redux/store'
+import { addMessageActionCreator, MassageType, updateMesTextActionCreator } from '../../../redux/store'
+import { v1 } from 'uuid'
+
 
 // отлично, функции работают, но криво . Я хочу чтобы отрисовывались маленькие сообщения, а не пустые плашки в диалогбаре
 
 type DialogProps = {
-    addMassage: (message: string) => void,
-    MyMessage: MassageType;
-    updateMesText: (newtext: string) => void,
+    myMessage: any;
+    
+    dispatch:(action:any)=>any
 }
 
 type MyMassageType={
-    MyMessage: MassageType;
+    myMessage: any;
 }
 
 
-export const DialogArea:React.FC<DialogProps>= ({ addMassage, MyMessage, updateMesText}) => {
+export const DialogArea:React.FC<DialogProps>= ({ myMessage, dispatch}) => {
 // debugger
+console.log(myMessage);
 
-// let mapMyMes=MyMessage.map((el:any)=><MyMasItem MyMessage={el.massage}/>)
 
-//     const CreateRef = React.createRef()
+let mapMyMes=()=> myMessage.MyMassage.map((el:any)=><MyMesItem key={v1()} myMessage={el.massage}/>)
 
-    let MakeMas = () => {
-  
+//сделать страничку диалогов чтобы через диспатч вызывать метод в стейте чтобы функция добавления сообщения отправляла строку в хранилище
+    let addMessageHandler = (message:string) => {
+    dispatch(addMessageActionCreator(message))
+    // console.log('d');
     }
-    let OnMesChange = () => {
+    let upateInputValueChangeHandler = (newtext:string) => {
+        dispatch(updateMesTextActionCreator(newtext))
+        // console.log('d');
         
         
     }
+
     return (
         <div className={DialogAreaStyle.DialogArea}>
             <div className={DialogAreaStyle.Massages}>
-                <YourMasItem />
+                <YourMasItem myMessage={myMessage.MyMassage} />
  
-                <MyMasItem MyMessage={{ newMesText: '', makeArr: [], MyMassage: [] }} />
-                {/* {mapMyMes} */}
-                
+               {mapMyMes()}
             </div>
             <div className={DialogAreaStyle.Form}>
 
-                <textarea className={DialogAreaStyle.TextInput+" "+Box.Box} placeholder='Type your massage...' value={MyMessage.newMesText}></textarea>
+                <textarea className={DialogAreaStyle.TextInput+" "+Box.Box} placeholder='Type your massage...' value={myMessage.newMesText}
+                 onChange={(e) => upateInputValueChangeHandler(e.currentTarget.value)}></textarea>
                 <input type="file" className={DialogAreaStyle.FileInput} />
-                <button onClick={MakeMas} onChange={OnMesChange} className={BtnStyle.Btn}>send</button>
+                <button onClick={()=>addMessageHandler(myMessage.newMesText)}  className={BtnStyle.Btn}>send</button>
             </div>
         </div>
     )
 }
 
-export const MyMasItem:React.FC<MyMassageType> = (props) => {
+export const MyMesItem:React.FC<MyMassageType> = ({myMessage,key}:any) => {
+   
     return (
             <div className={DialogAreaStyle.MassageWrap}>
             <div className={DialogAreaStyle.FlexGrow}></div>
-            <div className={DialogAreaStyle.MyMassage + ' ' + Box.Box}>{props.MyMessage.newMesText}</div>
+            <div className={DialogAreaStyle.MyMassage + ' ' + Box.Box}>{myMessage}</div>
             </div>
 
     )
