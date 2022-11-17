@@ -35,6 +35,7 @@ export type ProfileType = {
 
 }
 export type StateType = {
+	bind(Store: StoreType): StateType;
 	// bind(Store: StoreType): StateType;
 
 	Massage: MassageType,
@@ -45,34 +46,11 @@ export type StoreType = {
 	_callSubscriber: (props: StateType) => void,
 	_State: StateType,
 	getState: () => StateType,
-	// deletePost: (id: string) => void,
-	// AddPost: (newtext: string) => void,
-	// updateNewPostText: (newtext: string) => void,
 	subscribe: (observer: any) => void,
-	// AddMassage: (message: string) => void,
-	// updateMesText: (newtext: string) => void,
 
 	dispatch: (action: any) => any
 }
-export const addPostActionCreator = (newtext: string) => {
-	return { type: ADD_POST, newtext }
-}
 
-export const updateNewPostTextActionCreator = (newtext: string) => {
-	return { type: UPDATE_NEW_POST_TEXT, newtext }
-}
-
-export const deletePostActionCreator = (id: string) => {
-	return { type: DELETE_POST, id }
-}
-
-export const addMessageActionCreator = (message: string) => {
-	return { type: ADD_MESSAGE, message }
-}
-
-export const updateMesTextActionCreator = (newtext: string) => {
-	return { type: UPDATE_MES_TEXT, newtext }
-}
 
 
 // const NewPosts:React.FC=()=>{
@@ -80,12 +58,7 @@ export const updateMesTextActionCreator = (newtext: string) => {
 // let [state,setState]=useState()
 
 // }
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-const DELETE_POST = 'DELETE-POST'
 
-const ADD_MESSAGE = 'ADD-MESSAGE'
-const UPDATE_MES_TEXT = 'UPDATE-MES-TEXT'
 export let Store: StoreType = {
 
 	_callSubscriber(props) {
@@ -198,8 +171,6 @@ export let Store: StoreType = {
 	// },
 
 	subscribe(observer) {
-
-
 		this._callSubscriber = observer
 	},
 
@@ -217,43 +188,13 @@ export let Store: StoreType = {
 	// 	this._callSubscriber(this._State)
 	// },
 
+// мы уменьшили сначала нагрузку на диспатч при помощи свитч кейса и затем разбили их по редьюсерам - уменьшили нагрузку кодом
 	dispatch(action) {
-
+//теперь мы здесь передаем только нужные куски данных 
 		this._State.Massage=messegeReducer(this._State.Profile,action)
 		this._State.Profile=profileReducer(this._State.Profile,action)
 
-
-		if (action.type === UPDATE_MES_TEXT) {
-			this._State.Massage.newMesText = action.newtext;
-			this._callSubscriber(this._State)
-		} 
-		else if (action.type === ADD_MESSAGE) {
-			let newM = {
-				massage: action.message,
-			};
-			this._State.Massage.MyMassage.unshift(newM)
-			
-			console.log(this._State.Massage.MyMassage);
-			
-			this._callSubscriber(this._State)
-		} 
-		else if (action.type === DELETE_POST) {
-			this._State.Profile.massageData = this._State.Profile.massageData.filter((t) => t.id !== action.id)
-			this._callSubscriber(this._State)
-		} 
-		else if (action.type === UPDATE_NEW_POST_TEXT) {
-			this._State.Profile.newPostText = action.newtext;
-			this._callSubscriber(this._State)
-		} 
-		else if (action.type === ADD_POST) {
-			let newPost = {
-				id: v1(),
-				message: action.newtext,
-			}
-			this._State.Profile.massageData.unshift(newPost)
-			this._callSubscriber(this._State)
-		}
-
+		this._callSubscriber(this._State)
 
 	}
 }

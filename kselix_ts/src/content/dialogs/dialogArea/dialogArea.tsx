@@ -2,8 +2,9 @@ import React from 'react'
 import DialogAreaStyle from './dialogArea.module.scss'
 import Box from '../../../box.module.scss'
 import BtnStyle from '../../../btn.module.scss'
-import { addMessageActionCreator, MassageType, updateMesTextActionCreator } from '../../../redux/store'
+
 import { v1 } from 'uuid'
+import { addMessageActionCreator, updateMesTextActionCreator } from '../../../redux/messegeReduser'
 
 
 // отлично, функции работают, но криво . Я хочу чтобы отрисовывались маленькие сообщения, а не пустые плашки в диалогбаре
@@ -34,7 +35,6 @@ let mapMyMes=()=> myMessage.MyMassage.map((el:any)=><MyMesItem key={v1()} myMess
     let upateInputValueChangeHandler = (newtext:string) => {
         dispatch(updateMesTextActionCreator(newtext))
         // console.log('d');
-        
         
     }
 

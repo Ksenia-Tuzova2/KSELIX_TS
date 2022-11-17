@@ -5,7 +5,7 @@ import Like from './like/like'
 import Dislike from './dislike/dislike'
 import UserName from '../../userInfo/userName/userName'
 import { ReactElement } from 'react'
-import { deletePostActionCreator } from '../../../../redux/store'
+import { deletePostActionCreator } from '../../../../redux/profileReducer'
 
 
     

@@ -1,4 +1,4 @@
-import { Store,  } from "./redux/store";
+import { Store } from "./redux/store";
 
 
 import React from "react";
@@ -8,6 +8,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { StoreType } from "./redux/store";
+import { StoreContecst } from "./storeContecst";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
@@ -19,14 +20,12 @@ let renderEntireTree = () => {
 	root.render(
 		<React.StrictMode>
 			<BrowserRouter>
+			{/* <StoreContecst.Provider value={}> */}
 				{/* bind связывает методы стора именно со стором, это нуно чтобы под капотом все не перепуталось- иногда пропс мжет перепутаться с зис */}
-				<App appState={Store.getState()} 
-				dispatch={Store.dispatch.bind(Store)}
-				//  addPost={Store.AddPost.bind(Store)} 
-				// updateNewPostText={Store.updateNewPostText.bind(Store)}
-				//  updateMesText={Store.updateMesText.bind(Store)} 
-				//  deletePost={Store.deletePost.bind(Store)} 
+				<App appState={Store.getState().bind(Store)} 
+				dispatch={Store.dispatch}
 				 />
+				 {/* </StoreContecst.Provider> */}
 
 			</BrowserRouter>
 		</React.StrictMode>

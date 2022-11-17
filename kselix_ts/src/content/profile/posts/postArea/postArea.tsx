@@ -3,7 +3,8 @@ import PostAreaStyle from './postArea.module.scss'
 import Box from '../../../../box.module.scss'
 import BtnStyle from '../../../../btn.module.scss'
 import NewPosts from '../newPosts/newPosts'
-import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../../redux/store'
+import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../../redux/profileReducer'
+
 
 
 type Props = {
