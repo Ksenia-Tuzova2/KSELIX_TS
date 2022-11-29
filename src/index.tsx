@@ -18,17 +18,17 @@ const root = ReactDOM.createRoot(document.getElementById("root")!);
 let renderEntireTree = () => {
 	// debugger
 	root.render(
-		<React.StrictMode>
+		// <React.StrictMode>
 			<BrowserRouter>
 			{/* <StoreContecst.Provider value={}> */}
 				{/* bind связывает методы стора именно со стором, это нуно чтобы под капотом все не перепуталось- иногда пропс мжет перепутаться с зис */}
-				<App appState={Store.getState().bind(Store)} 
-				dispatch={Store.dispatch}
+				<App appState={Store.getState()} 
+				dispatch={Store.dispatch.bind(Store)}
 				 />
 				 {/* </StoreContecst.Provider> */}
 
 			</BrowserRouter>
-		</React.StrictMode>
+		// </React.StrictMode>
 	);
 	reportWebVitals();
 }

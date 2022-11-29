@@ -23,7 +23,10 @@ export const PostArea = ({ massageData, newPostText, dispatch }: Props) => {
     const updateNewPostTextHandler=(newtext:string)=>{
         dispatch(updateNewPostTextActionCreator(newtext))
     }
- 
+  const createA=React.createRef()
+  const showRef=()=>{
+    alert(createA)
+  }
 
     //  debugger
     return (
@@ -39,6 +42,7 @@ export const PostArea = ({ massageData, newPostText, dispatch }: Props) => {
                 <button className={BtnStyle.Btn}
                     onClick={() => addPostHandler(newPostText)}
                 >post</button>
+                <button onClick={showRef}>a</button>
 
             </div>
             {makeNewPost()}
@@ -58,7 +62,8 @@ export const PostArea = ({ massageData, newPostText, dispatch }: Props) => {
 
     //потом создаем функцию addpost, которая будет считывать то, что мы написали в поле ввода
 
-    //в ней пишем переменную, которая будет слушать значение поля createref.current.value
+    //в ней пишем переменную, которая будет слушать значение поля createref.current?.value
+    //где знак вопроса потом в компиляторе преобразовывается в условие - если карент валью существует, то идем дальше. Это нужно для тогочтобы тайп скрипт не ругался
     //привязываем addpost к кнопке , к событию онклик
     //назначем алерт внутри add post чтобы удостоверится что все работает
 

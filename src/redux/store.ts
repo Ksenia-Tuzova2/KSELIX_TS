@@ -35,9 +35,6 @@ export type ProfileType = {
 
 }
 export type StateType = {
-	bind(Store: StoreType): StateType;
-	// bind(Store: StoreType): StateType;
-
 	Massage: MassageType,
 	Profile: ProfileType,
 }
@@ -49,6 +46,7 @@ export type StoreType = {
 	subscribe: (observer: any) => void,
 
 	dispatch: (action: any) => any
+
 }
 
 
