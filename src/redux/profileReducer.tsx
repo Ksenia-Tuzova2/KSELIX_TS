@@ -49,8 +49,14 @@ const profileInitialState: ProfileInitStateType={
   ]
 }
 
-export const profileReducer = (state: ProfileInitStateType=profileInitialState, action: any): ProfileInitStateType => {
+type ActionType={
+  type:string,
+  newtext:string,
+  id:string
+}
 
+export const profileReducer = (state: ProfileInitStateType=profileInitialState, action: ActionType): ProfileInitStateType => {
+  // debugger
   switch (action.type) {
     case DELETE_POST: {
       state.massageData = state.massageData.filter((t) => t.id !== action.id);
@@ -58,6 +64,7 @@ export const profileReducer = (state: ProfileInitStateType=profileInitialState, 
     }
      
     case UPDATE_NEW_POST_TEXT: {
+
       state.newPostText = action.newtext
       return {...state};
     }

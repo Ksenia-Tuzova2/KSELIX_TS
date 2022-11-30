@@ -1,9 +1,17 @@
 import NewPosts from './newPosts/newPosts'
 import {PostArea} from './postArea/postArea'
 import React from 'react'
+type MType = {
+    id: string,
+    message: string,
+  }
+type PropsType={
+    massageData:Array<MType>,
+     newPostText:string, 
+     dispatch: (action: any) => any
+}
 
-
-export const Posts = ({ massageData, addPost, newPostText, updateNewPostText, dispatch}:any) => {
+export const Posts = ({ massageData, newPostText,  dispatch}:PropsType) => {
 // debugger
 
 

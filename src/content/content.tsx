@@ -19,11 +19,10 @@ export const Content: React.FC<ContentPropsType> = ({ appState, dispatch}) => {
 			<MenuBar />
 				<Routes>
 				<Route path='/dialogs/*' element={<Dialogs  Massage={appState.messegeReducer} dispatch={dispatch}/> } />
-				<Route path='/profile/*' element={<Profile massageData={appState.profileReducer} newPostText={appState.profileReducer.newPostText}   dispatch={dispatch}/>} />
+				<Route path='/profile/*' element={<Profile massageData={appState.profileReducer.massageData} newPostText={appState.profileReducer.newPostText}   dispatch={dispatch}/>} />
 					<Route path='/friends/*' element={<Friends />} />
 					<Route path='/news/*' element={<NewsFeed massageData={appState.profileReducer.massageData} dispatch={dispatch}/>} />
 				</Routes>
-				mmm
 		</div>
 
 	);

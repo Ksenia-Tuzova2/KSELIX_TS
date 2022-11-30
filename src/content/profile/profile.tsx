@@ -3,10 +3,14 @@ import React from 'react'
 import { Posts } from './posts/posts'
 import { UserInfo } from './userInfo/userInfo-list'
 
+type MType = {
+    id: string,
+    message: string,
+  }
 
 type ProfileType = {
-    massageData: any,
-    newPostText: any,
+    massageData: Array<MType>,
+    newPostText: string,
     dispatch: (action: any) => any
 }
 export const Profile: React.FC<ProfileType> = ({ dispatch, massageData, newPostText, }) => {
