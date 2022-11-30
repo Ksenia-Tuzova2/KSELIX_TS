@@ -6,27 +6,31 @@ import NewPosts from '../newPosts/newPosts'
 import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../../redux/profileReducer'
 
 
-
+type MType = {
+    id: string,
+    message: string,
+}
 type Props = {
-    massageData: any[];
-     newPostText: string;
-    dispatch:(action:any)=>any
+    massageData: Array<MType>;
+    newPostText: string;
+    dispatch: (action: any) => any
 }
 export const PostArea = ({ massageData, newPostText, dispatch }: Props) => {
+debugger
+    const makeNewPost = () => massageData.map((m: MType, pos: number,) => <NewPosts message={m.message} pos={pos} dispatch={dispatch} id={m.id} />)
 
-    const makeNewPost = () => massageData.map((m: any, pos: number,) => <NewPosts massage={m.message} pos={pos} dispatch={dispatch} id={m.id}/>)
-
-    const addPostHandler=(newtext:string)=>{
+    const addPostHandler = (newtext: string) => {
         dispatch(addPostActionCreator(newtext))
     }
- 
-    const updateNewPostTextHandler=(newtext:string)=>{
+
+    const updateNewPostTextHandler = (newtext: string) => {
         dispatch(updateNewPostTextActionCreator(newtext))
     }
-  const createA=React.createRef()
-  const showRef=()=>{
-    alert(createA)
-  }
+
+    //   const createA=React.createRef()
+    //   const showRef=()=>{
+    //     alert(createA)
+    //   }
 
     //  debugger
     return (
@@ -42,7 +46,7 @@ export const PostArea = ({ massageData, newPostText, dispatch }: Props) => {
                 <button className={BtnStyle.Btn}
                     onClick={() => addPostHandler(newPostText)}
                 >post</button>
-                <button onClick={showRef}>a</button>
+                {/* <button onClick={showRef}>a</button> */}
 
             </div>
             {makeNewPost()}

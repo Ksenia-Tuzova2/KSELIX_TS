@@ -1,15 +1,28 @@
 import React from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
-import { MassageType } from '../../redux/store'
 import { Choose } from './dialogArea/choose'
 import { DialogArea } from './dialogArea/dialogArea'
 import { DialogBar } from './DialogBar/DialogBar'
 import s from'./dialogs.module.scss'
 
+export type MyMassageType = {
+	massage: string;
+}
+export type MakeArrType = {
+	id: number,
+	name: string,
+	time: string,
+	massage: string,
+}
+
+type MessageInitStateType={
+  newMesText:string,
+  makeArr: MakeArrType[],
+  MyMassage:MyMassageType[],
+}
+
 type DialogProps={
-    // addMassage: (message: string) => void,
-    Massage: MassageType;
-    // updateMesText: (newtext: string) => void,
+    Massage: MessageInitStateType;
     dispatch:(action:any)=>any
 }
 

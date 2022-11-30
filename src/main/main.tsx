@@ -3,16 +3,11 @@ import MainStyle from './main.module.scss'
 import { Content } from '../content/content'; 
 import { Login} from '../login/login'
   import React from 'react';
-import { StateType } from '../redux/store';
+import { RootState } from '../redux/store-redux';
 
 
 export type MainType={
-  appState:StateType, 
-  // addMassage:any,
-  //  addPost:any, 
-  //  updateNewPostText:any, 
-  //  updateMesText:any,
-  //  deletePost:any
+  appState:RootState, 
    dispatch:(action:any)=>any
 }
 

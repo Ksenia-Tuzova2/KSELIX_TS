@@ -1,8 +1,17 @@
 import NewPosts from '../profile/posts/newPosts/newPosts'
 
-export const NewsFeed = (props: any) => {
+type MType = {
+  id: string,
+  message: string,
+}
+type PropsType = {
+  massageData: Array<MType>,
+  dispatch: (action: any) => any
+}
 
-    let MakeNewPost = props.massageData.map((m: any, pos: number) => <NewPosts dispatch={props.dispatch}massage={m.massage} key={m.id} pos={pos} id={m.id} />)
+export const NewsFeed = ({massageData, dispatch}:PropsType) => {
+
+    let MakeNewPost = massageData.map((m:MType, pos: number) => <NewPosts dispatch={dispatch} message={m.message} key={m.id} pos={pos} id={m.id} />)
     return (
         <div>
           {MakeNewPost}

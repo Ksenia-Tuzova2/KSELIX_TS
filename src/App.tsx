@@ -4,15 +4,12 @@ import React from 'react';
 import { Header } from './header/header'
 import Footer from './footer/footer';
 import { Main } from './main/main';
-import { StateType } from './redux/store';
+// import { useDispatch } from 'react-redux';
+// import { useSelector } from 'react-redux';
+import { RootState } from './redux/store-redux';
 
 export type AppPropsType={
-  appState: StateType, 
-  // deletePost:(id:string)=>void
-  // addMassage:(message: string) => void, 
-  // addPost: (newtext: string) => void,
-  // updateNewPostText:(newtext: string) => void, 
-  // updateMesText: (newtext: string) => void,
+  appState: RootState, 
   dispatch:(action:any)=>any
 }
 
@@ -21,6 +18,8 @@ const App: React.FC<AppPropsType>= ({ appState,  dispatch,
   }) => {
   // debugger
 
+//const Dispatch=useDispatch()
+//const cash=useSelector(State=>State.cash)
   return (
     <div className={s.App}>
 

@@ -1,5 +1,5 @@
 import React from 'react'
-const Time=(props:any)=>{
+const Time=()=>{
     return(
                 <div className="Time">14:58</div>
     )

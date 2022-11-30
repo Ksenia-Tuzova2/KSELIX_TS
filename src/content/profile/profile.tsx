@@ -6,10 +6,7 @@ import { UserInfo } from './userInfo/userInfo-list'
 
 type ProfileType = {
     massageData: any,
-    // addPost:any, 
     newPostText: any,
-    //  updateNewPostText:any
-
     dispatch: (action: any) => any
 }
 export const Profile: React.FC<ProfileType> = ({ dispatch, massageData, newPostText, }) => {
@@ -18,8 +15,7 @@ export const Profile: React.FC<ProfileType> = ({ dispatch, massageData, newPostT
         <div >
             <UserInfo />
             <Posts massageData={massageData}
-     
-             newPostText={newPostText}
+                newPostText={newPostText}
                 dispatch={dispatch} />
         </div>
     )

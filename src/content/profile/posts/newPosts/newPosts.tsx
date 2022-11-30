@@ -10,13 +10,13 @@ import { deletePostActionCreator } from '../../../../redux/profileReducer'
 
     
 type NewPostsType={
-    massage:any,
+    message:string,
     pos:number,
     id:string,
     dispatch:(action:any)=>ReactElement<any, any> | null
 }
 
-const NewPosts:React.FC<NewPostsType>=({massage,pos,dispatch,id})=>{
+const NewPosts:React.FC<NewPostsType>=({message,pos,dispatch,id})=>{
 
     const deletePostHandler=(id:string)=>{
 
@@ -34,7 +34,7 @@ const NewPosts:React.FC<NewPostsType>=({massage,pos,dispatch,id})=>{
                 <Time/>
                 <button onClick={()=>deletePostHandler(id)}>x</button>
                 </div> 
-                <div className="Mssage">{massage}</div>
+                <div className="Mssage">{message}</div>
                 <div className={s.NewPost__likeDislikeWrapper}>
                     <Like  ></Like>
                 <div className={s.FlexGrow}></div>

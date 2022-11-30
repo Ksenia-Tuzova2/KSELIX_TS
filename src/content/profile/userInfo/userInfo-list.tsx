@@ -8,7 +8,7 @@ import UserStatus from "./userStatus/userStatus"
 import Box from '../../../box.module.scss'
 
 
-export const UserInfo=(props:any)=>{
+export const UserInfo=()=>{
     return(
       
       <div>
