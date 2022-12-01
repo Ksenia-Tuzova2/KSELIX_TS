@@ -55,11 +55,13 @@ export const messegeReducer = (state: MessageInitStateType = messageInitState, a
         return {...state}; 
       }
       case ADD_MESSAGE:{
+        let stateCopy={...state}
+        stateCopy.MyMassage=[...state.MyMassage]
         let newM = {
           massage: action.message,
         };
-          state.MyMassage.unshift(newM);
-          return {...state};
+          stateCopy.MyMassage.unshift(newM);
+          return stateCopy;
       }
   
       default: {

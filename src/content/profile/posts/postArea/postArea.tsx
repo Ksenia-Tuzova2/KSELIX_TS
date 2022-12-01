@@ -16,15 +16,16 @@ type Props = {
     dispatch: (action: any) => any
 }
 export const PostArea = ({ massageData, newPostText, dispatch }: Props) => {
-// debugger
+    // debugger
     const makeNewPost = () => massageData.map((m: MType, pos: number,) => <NewPosts message={m.message} pos={pos} dispatch={dispatch} id={m.id} />)
-
+    let newPostElement: any = React.createRef()
     const addPostHandler = (newtext: string) => {
         dispatch(addPostActionCreator(newtext))
     }
 
     const updateNewPostTextHandler = (newtext: string) => {
-        dispatch(updateNewPostTextActionCreator(newtext))
+        let text = newPostElement.current.value
+        dispatch(updateNewPostTextActionCreator(text))
     }
 
     //   const createA=React.createRef()
@@ -39,6 +40,7 @@ export const PostArea = ({ massageData, newPostText, dispatch }: Props) => {
                 <textarea className={PostAreaStyle.Input + " " + Box.Box}
                     placeholder='What`s news?'
                     value={newPostText}
+                    ref={newPostElement}
                     onChange={(e) => updateNewPostTextHandler(e.currentTarget.value)}
                 />
 

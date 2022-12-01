@@ -19,8 +19,6 @@ type NewPostsType={
 const NewPosts:React.FC<NewPostsType>=({message,pos,dispatch,id})=>{
 
     const deletePostHandler=(id:string)=>{
-
-      
         dispatch(deletePostActionCreator(id))
     }
  

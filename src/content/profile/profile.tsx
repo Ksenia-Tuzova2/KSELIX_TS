@@ -14,6 +14,7 @@ type ProfileType = {
     dispatch: (action: any) => any
 }
 export const Profile: React.FC<ProfileType> = ({ dispatch, massageData, newPostText, }) => {
+    console.log('rerender')
     // debugger
     return (
         <div >

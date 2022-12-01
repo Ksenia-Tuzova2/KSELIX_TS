@@ -6,18 +6,19 @@ import Footer from './footer/footer';
 import { Main } from './main/main';
 // import { useDispatch } from 'react-redux';
 // import { useSelector } from 'react-redux';
-import { RootState } from './redux/store-redux';
+import { RootState, store } from './redux/store-redux';
 
 export type AppPropsType={
-  appState: RootState, 
+  _appState: RootState, 
   dispatch:(action:any)=>any
 }
 
 
-const App: React.FC<AppPropsType>= ({ appState,  dispatch,
+const App: React.FC<AppPropsType>= ({ _appState,  dispatch,
   }) => {
   // debugger
-
+const appState = store.getState()
+console.log('rerender')
 //const Dispatch=useDispatch()
 //const cash=useSelector(State=>State.cash)
   return (

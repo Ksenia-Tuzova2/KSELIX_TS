@@ -55,37 +55,6 @@ type ActionType={
   id:string
 }
 
-export const profileReducer = (state: ProfileInitStateType=profileInitialState, action: ActionType): ProfileInitStateType => {
-  // debugger
-  switch (action.type) {
-    case DELETE_POST: {
-      state.massageData = state.massageData.filter((t) => t.id !== action.id);
-      return {...state};
-    }
-     
-    case UPDATE_NEW_POST_TEXT: {
-
-      state.newPostText = action.newtext
-      return {...state};
-    }
-     
-    case ADD_POST:{
-      let newPost = {
-        id: v1(),
-        message: action.newtext,
-      }
-        state.massageData.unshift(newPost)
-        return {...state};
-    } 
-    default:{
-       return state
-      }
-  }
-
-
-
-}
-
 //креаторы для того, чтобы разбить респонсобилити, как и константы с типами
 export const addPostActionCreator = (newtext: string) => {
   return { type: ADD_POST, newtext }
@@ -98,3 +67,38 @@ export const updateNewPostTextActionCreator = (newtext: string) => {
 export const deletePostActionCreator = (id: string) => {
   return { type: DELETE_POST, id }
 }
+
+
+export const profileReducer = (state: ProfileInitStateType=profileInitialState, action: ActionType): ProfileInitStateType => {
+  // debugger
+  switch (action.type) {
+    case DELETE_POST: {
+      let stateCopy={...state}
+      state.massageData=state.massageData.filter((t) =>{ return t.id !== action.id})
+      
+      return state;
+    }
+     
+    case UPDATE_NEW_POST_TEXT: {
+console.log("update")
+      state.newPostText = action.newtext
+      return  state;
+    }
+     
+    case ADD_POST:{
+      let newPost = {
+        id: v1(),
+        message: action.newtext,
+      }
+        state.massageData.unshift(newPost)
+        return state;
+    } 
+    default:{
+       return state
+      }
+  }
+
+
+
+}
+
