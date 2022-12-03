@@ -18,9 +18,12 @@ type Props = {
 export const PostArea = ({ massageData, newPostText, dispatch }: Props) => {
     // debugger
     const makeNewPost = () => massageData.map((m: MType, pos: number,) => <NewPosts message={m.message} pos={pos} dispatch={dispatch} id={m.id} />)
+
     let newPostElement: any = React.createRef()
+
     const addPostHandler = (newtext: string) => {
-        dispatch(addPostActionCreator(newtext))
+        // dispatch(addPostActionCreator(newtext))
+        addPost ()
     }
 
     const updateNewPostTextHandler = (newtext: string) => {
