@@ -1,6 +1,7 @@
 import NewPosts from './newPosts/newPosts'
 import {PostArea} from './postArea/postArea'
 import React from 'react'
+import { PostAreaContainer } from './postArea/postAreaContainer'
 type MType = {
     id: string,
     message: string,
@@ -17,7 +18,7 @@ export const Posts = ({ massageData, newPostText,  dispatch}:PropsType) => {
 
     return (
         <div className="content__post">
-            <PostArea 
+            <PostAreaContainer 
            
             massageData={massageData} newPostText={newPostText} 
             dispatch={dispatch}/>

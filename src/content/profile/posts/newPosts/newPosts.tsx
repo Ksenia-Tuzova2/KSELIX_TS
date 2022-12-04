@@ -13,13 +13,14 @@ type NewPostsType={
     message:string,
     pos:number,
     id:string,
-    dispatch:(action:any)=>ReactElement<any, any> | null
+    deletePost:(id:string)=>void
+    // dispatch:(action:any)=>ReactElement<any, any> | null
 }
 
-const NewPosts:React.FC<NewPostsType>=({message,pos,dispatch,id})=>{
+const NewPosts:React.FC<NewPostsType>=({message,pos,id,deletePost})=>{
 
     const deletePostHandler=(id:string)=>{
-        dispatch(deletePostActionCreator(id))
+        deletePost(id)
     }
  
 

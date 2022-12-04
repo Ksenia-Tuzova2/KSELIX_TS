@@ -1,4 +1,4 @@
-import NewPosts from '../profile/posts/newPosts/newPosts'
+import {NewPostsContainer}  from '../profile/posts/newPosts/newPostsContainer'
 
 type MType = {
   id: string,
@@ -11,7 +11,7 @@ type PropsType = {
 
 export const NewsFeed = ({massageData, dispatch}:PropsType) => {
 
-    let MakeNewPost = massageData.map((m:MType, pos: number) => <NewPosts dispatch={dispatch} message={m.message} key={m.id} pos={pos} id={m.id} />)
+    let MakeNewPost = massageData.map((m:MType, pos: number) => <NewPostsContainer dispatch={dispatch} message={m.message} key={m.id} pos={pos} id={m.id} />)
     return (
         <div>
           {MakeNewPost}

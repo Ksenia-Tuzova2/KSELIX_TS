@@ -11,30 +11,27 @@ type MType = {
     message: string,
 }
 type Props = {
-    massageData: Array<MType>;
+ 
     newPostText: string;
-    dispatch: (action: any) => any
+    addPost:(newtext:string)=>void
+    updateNewPostText:(newtext:string)=>void
+    makeNewPost:()=>any
+    // dispatch: (action: any) => any
 }
-export const PostArea = ({ massageData, newPostText, dispatch }: Props) => {
+export const PostArea = ({makeNewPost,  newPostText,addPost ,updateNewPostText }: Props) => {
     // debugger
-    const makeNewPost = () => massageData.map((m: MType, pos: number,) => <NewPosts message={m.message} pos={pos} dispatch={dispatch} id={m.id} />)
+    // const makeNewPost = () => massageData.map((m: MType, pos: number,) => <NewPosts message={m.message} pos={pos} dispatch={dispatch} id={m.id} />)
 
     let newPostElement: any = React.createRef()
 
     const addPostHandler = (newtext: string) => {
-        // dispatch(addPostActionCreator(newtext))
-        addPost ()
+
+        addPost (newtext)
     }
 
-    const updateNewPostTextHandler = (newtext: string) => {
-        let text = newPostElement.current.value
-        dispatch(updateNewPostTextActionCreator(text))
+    const updateNewPostTextHandler = (text: string) => {
+        updateNewPostText(text)
     }
-
-    //   const createA=React.createRef()
-    //   const showRef=()=>{
-    //     alert(createA)
-    //   }
 
     //  debugger
     return (
@@ -54,12 +51,8 @@ export const PostArea = ({ massageData, newPostText, dispatch }: Props) => {
                 {/* <button onClick={showRef}>a</button> */}
 
             </div>
-            {makeNewPost()}
-
-
+          {makeNewPost()}
         </div>
-
-
     )
 
 }
