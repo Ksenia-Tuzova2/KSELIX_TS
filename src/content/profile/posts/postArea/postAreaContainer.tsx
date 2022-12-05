@@ -6,6 +6,7 @@ import NewPosts from '../newPosts/newPosts'
 import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../../redux/profileReducer'
 import {PostArea} from './postArea'
 import { NewPostsContainer } from '../newPosts/newPostsContainer'
+import { StoreContext } from '../../../../redux/createContext'
 
 type MType = {
     id: string,
@@ -16,25 +17,22 @@ type Props = {
     newPostText: string;
     dispatch: (action: any) => any
 }
-export const PostAreaContainer = ({ massageData, newPostText, dispatch }: Props) => {
-
-    const makeNewPost = () => massageData.map((m: MType, pos: number,) => <NewPostsContainer message={m.message} pos={pos} dispatch={dispatch} id={m.id} />)
-
-    const addPostHandler = (newtext: string) => {
-        dispatch(addPostActionCreator(newtext))
-      
-    }
-
-    const updateNewPostTextHandler = (text: string) => {
-        dispatch(updateNewPostTextActionCreator(text))
-    }
-
+export const PostAreaContainer = (
+    // { 
+    // massageData, newPostText, dispatch }: Props
+    ) => {
     return (
-
-       < PostArea  newPostText={newPostText} addPost={addPostHandler} updateNewPostText={updateNewPostTextHandler} makeNewPost={makeNewPost} />
-
-
+        <StoreContext.Consumer>
+            
+            {(store)=>{
+                const makeNewPost = () => store?.massageData.map((m: MType, pos: number,) => <NewPostsContainer message={m.message} pos={pos} dispatch={store.dispatch} id={m.id} />)
+                const addPostHandler = (newtext: string) => {store.dispatch(addPostActionCreator(newtext))}
+                const updateNewPostTextHandler = (text: string) => { store.dispatch(updateNewPostTextActionCreator(text))}
+                return (
+                <PostArea newPostText={store?.newPostText} addPost={addPostHandler} updateNewPostText={updateNewPostTextHandler} makeNewPost={makeNewPost} />
+                )
+            }
+       <StoreContext.Consumer/>
     )
 
 }
-      

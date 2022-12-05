@@ -12,7 +12,7 @@ type MType = {
 }
 type Props = {
  
-    newPostText: string;
+    newPostText: string | null;
     addPost:(newtext:string)=>void
     updateNewPostText:(newtext:string)=>void
     makeNewPost:()=>any

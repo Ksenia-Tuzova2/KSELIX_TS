@@ -6,15 +6,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 // import { StoreType } from "./redux/store";
-import { StoreContecst } from "./storeContecst";
 import { Provider } from "react-redux";
+import { StoreContext } from "./redux/createContext";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 
 
 // debugger
- let renderEntireTree = () => {
+ let renderEntireTree = (store:any) => {
 
 	root.render(
 		<Provider store={store}>
@@ -34,12 +34,12 @@ const root = ReactDOM.createRoot(document.getElementById("root")!);
 	reportWebVitals();
  }
 
- renderEntireTree()
+ renderEntireTree(store)
 
 //это колбек, когда одна функция вызывает другую
 //при помощи этого мы обошли циклическую зависимость - стору нужна функция из индекса, а индексу нужен стор, но если бы мы сделали это импортами, то случился бы цикл , а так, при помощи колбека- мы спасли ситуацию
-store.subscribe(
-renderEntireTree)
+// store.subscribe(
+// renderEntireTree(store))
 
 
 //пишем скобки рядом с функцией, когда ходим ее вызвать прямо здесь, А ЕСЛИ ХОТИМ ПЕРЕДАТЬ - НЕ ВЫЗЫВАЕМ
