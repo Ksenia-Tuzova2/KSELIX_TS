@@ -8,22 +8,23 @@ import { ReactElement } from 'react'
 import { deletePostActionCreator } from '../../../../redux/profileReducer'
 import NewPosts from './newPosts'
 
-
-type NewPostsType={
+type NewPostsType = {
     message:string,
     pos:number,
     id:string,
     dispatch:(action:any)=>ReactElement<any, any> | null
 }
 
-export const NewPostsContainer:React.FC<NewPostsType>=({message,pos,dispatch,id})=>{
+export const NewPostsContainer: React.FC<NewPostsType> = ({message,pos,id, dispatch}) => {
+  
+           
 
-    const deletePostHandler=(id:string)=>{
-        dispatch(deletePostActionCreator(id))
-    }
- 
+            const deletePostHandler = (id: string) => {
+                dispatch(deletePostActionCreator(id))
+            }
 
-    return(
-    <NewPosts message={message} pos={pos} id={id} deletePost={deletePostHandler}/>
-    )
-}
+
+            return (
+                <NewPosts message={message} pos={pos} id={id} deletePost={deletePostHandler} />
+            )
+        }

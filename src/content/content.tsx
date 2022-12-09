@@ -8,20 +8,30 @@ import { NewsFeed } from './newsfeed/newsfeed'
 import { RootState } from '../redux/store-redux';
 
 type ContentPropsType={
-  appState: RootState, 
-  dispatch:(action:any)=>any
+  // appState: RootState, 
+  // dispatch:(action:any)=>any
 }
 
-export const Content: React.FC<ContentPropsType> = ({ appState, dispatch}) => {
+export const Content: React.FC<ContentPropsType> = ({
+	//  appState, dispatch
+	}) => {
 	// debugger
 	return (
 		<div className={ContentStyle.wrapper}>
 			<MenuBar />
 				<Routes>
-				<Route path='/dialogs/*' element={<Dialogs  Massage={appState.messegeReducer} dispatch={dispatch}/> } />
-				<Route path='/profile/*' element={<Profile massageData={appState.profileReducer.massageData} newPostText={appState.profileReducer.newPostText}   dispatch={dispatch}/>} />
+				<Route path='/dialogs/*' element={<Dialogs 
+				//  Massage={appState.messegeReducer} dispatch={dispatch}
+				 /> } />
+				<Route path='/profile/*' element={<Profile 
+				// massageData={appState.profileReducer.massageData} newPostText={appState.profileReducer.newPostText}   dispatch={dispatch}
+				/>} />
 					<Route path='/friends/*' element={<Friends />} />
-					<Route path='/news/*' element={<NewsFeed massageData={appState.profileReducer.massageData} dispatch={dispatch}/>} />
+					<Route path='/news/*' 
+					 element={<NewsFeed 
+					// massageData={appState.profileReducer.massageData} dispatch={dispatch}
+					/>}
+					 />
 				</Routes>
 		</div>
 

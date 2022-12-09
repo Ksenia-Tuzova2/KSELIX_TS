@@ -5,9 +5,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-// import { StoreType } from "./redux/store";
 import { Provider } from "react-redux";
-import { StoreContext } from "./redux/createContext";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
@@ -23,8 +21,8 @@ const root = ReactDOM.createRoot(document.getElementById("root")!);
 	
 				{/* bind связывает методы стора именно со стором, это нуно чтобы под капотом все не перепуталось- иногда пропс мжет перепутаться с зис */}
 				<App 
-				_appState={store.getState()}
-				dispatch={store.dispatch.bind(store)}
+				// _appState={store.getState()}
+				// dispatch={store.dispatch.bind(store)}
 				 />
 
 			</BrowserRouter>

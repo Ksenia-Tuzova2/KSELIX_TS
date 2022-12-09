@@ -15,7 +15,6 @@ import { messegeReducer } from './messegeReduser'
 export type RootState = ReturnType<typeof redusersPack>
 
 export let store: Store<RootState> = createStore(redusersPack, applyMiddleware(thunk))
-console.log(store);
 
 //@ts-ignore
 window.store = store

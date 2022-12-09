@@ -10,19 +10,19 @@ import { addMessageActionCreator, updateMesTextActionCreator } from '../../../re
 // отлично, функции работают, но криво . Я хочу чтобы отрисовывались маленькие сообщения, а не пустые плашки в диалогбаре
 
 type DialogProps = {
-    myMessage: any;
+    // myMessage: any;
     
-    dispatch:(action:any)=>any
+    // dispatch:(action:any)=>any
 }
 
 type MyMassageType={
-    myMessage: any;
+    // myMessage: any;
 }
 
 
-export const DialogArea:React.FC<DialogProps>= ({ myMessage, dispatch}) => {
-// debugger
-console.log(myMessage);
+export const DialogArea:React.FC<DialogProps>= ({
+    //  myMessage, dispatch
+    }) => {
 
 
 let mapMyMes=()=> myMessage.MyMassage.map((el:any)=><MyMesItem key={v1()} myMessage={el.massage}/>)

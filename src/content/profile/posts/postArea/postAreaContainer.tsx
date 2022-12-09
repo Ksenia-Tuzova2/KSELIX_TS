@@ -13,9 +13,9 @@ type MType = {
     message: string,
 }
 type Props = {
-    massageData: Array<MType>;
-    newPostText: string;
-    dispatch: (action: any) => any
+    // massageData: Array<MType>;
+    // newPostText: string;
+    // dispatch: (action: any) => any
 }
 export const PostAreaContainer = (
     // { 
@@ -23,8 +23,8 @@ export const PostAreaContainer = (
     ) => {
     return (
         <StoreContext.Consumer>
-            
             {(store)=>{
+                let state=store.getState()
                 const makeNewPost = () => store?.massageData.map((m: MType, pos: number,) => <NewPostsContainer message={m.message} pos={pos} dispatch={store.dispatch} id={m.id} />)
                 const addPostHandler = (newtext: string) => {store.dispatch(addPostActionCreator(newtext))}
                 const updateNewPostTextHandler = (text: string) => { store.dispatch(updateNewPostTextActionCreator(text))}
@@ -32,6 +32,7 @@ export const PostAreaContainer = (
                 <PostArea newPostText={store?.newPostText} addPost={addPostHandler} updateNewPostText={updateNewPostTextHandler} makeNewPost={makeNewPost} />
                 )
             }
+        }
        <StoreContext.Consumer/>
     )
 

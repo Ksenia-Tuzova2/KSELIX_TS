@@ -2,7 +2,7 @@ import React from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import { Choose } from './dialogArea/choose'
 import { DialogArea } from './dialogArea/dialogArea'
-import { DialogBar } from './DialogBar/DialogBar'
+import { DialogBarContainer } from './DialogBar/DialogBarContainer'
 import s from'./dialogs.module.scss'
 
 export type MyMassageType = {
@@ -22,20 +22,26 @@ type MessageInitStateType={
 }
 
 type DialogProps={
-    Massage: MessageInitStateType;
-    dispatch:(action:any)=>any
+    // Massage: MessageInitStateType;
+    // dispatch:(action:any)=>any
 }
 
-export const Dialogs :React.FC<DialogProps>= ({ Massage,dispatch }) => {
+export const Dialogs :React.FC<DialogProps>= ({ 
+    // Massage,dispatch 
+}) => {
     // debugger
     return (
         <div className={s.Massage} >
-            <DialogBar MakeArr={Massage.makeArr} />
+            <DialogBarContainer 
+            // MakeArr={Massage.makeArr} 
+            />
 
             <Routes>
                 <Route path='*' element={<Choose />} />
                 <Route path='/dialogArea/*'
-                    element={<DialogArea dispatch={dispatch} myMessage={Massage} />}/>
+                    element={<DialogArea
+                    //  dispatch={dispatch} myMessage={Massage} 
+                     />}/>
             </Routes>
         </div>
     )

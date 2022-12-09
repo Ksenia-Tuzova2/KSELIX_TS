@@ -9,12 +9,13 @@ import { Main } from './main/main';
 import { RootState, store } from './redux/store-redux';
 
 export type AppPropsType={
-  _appState: RootState, 
-  dispatch:(action:any)=>any
+  // _appState: RootState, 
+  // dispatch:(action:any)=>any
 }
 
 
-const App: React.FC<AppPropsType>= ({ _appState,  dispatch,
+const App: React.FC<AppPropsType>= ({ 
+  // _appState,  dispatch,
   }) => {
   // debugger
 const appState = store.getState()
@@ -27,7 +28,7 @@ console.log('rerender')
       <Header />
       <Main appState={appState}
       //  addMassage={addMassage} 
-      dispatch={dispatch}
+      // dispatch={dispatch}
       //  updateMesText={updateMesText} 
      
       />

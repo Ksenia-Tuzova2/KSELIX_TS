@@ -7,11 +7,12 @@ import { RootState } from '../redux/store-redux';
 
 
 export type MainType={
-  appState:RootState, 
-   dispatch:(action:any)=>any
+  // appState:RootState, 
+  //  dispatch:(action:any)=>any
 }
 
-export const Main:React.FC<MainType>= ({ appState, dispatch,
+export const Main:React.FC<MainType>= ({ 
+  // appState, dispatch,
   }) => {
 // debugger
   return (
@@ -20,15 +21,17 @@ export const Main:React.FC<MainType>= ({ appState, dispatch,
           <div className={MainStyle.Margin}></div>
 				<Routes>
          
-          <Route path='/content/*' element={<Content appState={appState} 
+          <Route path='/content/*' element={<Content 
+          // appState={appState} 
           // addMassage={addMassage}
-          dispatch={dispatch}
+          // dispatch={dispatch}
           //  updateNewPostText={updateNewPostText} 
           // updateMesText={updateMesText} 
           
           />}/>
-          <Route path='/exit' element={<Login appState={appState} 
-          dispatch={dispatch}
+          <Route path='/exit' element={<Login 
+          // appState={appState} 
+          // dispatch={dispatch}
             />}/>
 
 			
