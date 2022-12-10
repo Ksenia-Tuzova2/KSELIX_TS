@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
-import PostAreaStyle from './postArea.module.scss'
-import Box from '../../../../box.module.scss'
-import BtnStyle from '../../../../btn.module.scss'
-import NewPosts from '../newPosts/newPosts'
 import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../../redux/profileReducer'
 import {PostArea} from './postArea'
 import { NewPostsContainer } from '../newPosts/newPostsContainer'
 import { StoreContext } from '../../../../redux/createContext'
+import { v1 } from 'uuid'
 
 type MType = {
     id: string,
@@ -17,23 +14,20 @@ type Props = {
     // newPostText: string;
     // dispatch: (action: any) => any
 }
-export const PostAreaContainer = (
-    // { 
-    // massageData, newPostText, dispatch }: Props
-    ) => {
-    return (
-        <StoreContext.Consumer>
+export const PostAreaContainer = ( ) => {
+    return ( <StoreContext.Consumer>
             {(store)=>{
                 let state=store.getState()
-                const makeNewPost = () => store?.massageData.map((m: MType, pos: number,) => <NewPostsContainer message={m.message} pos={pos} dispatch={store.dispatch} id={m.id} />)
+
+                const makeNewPost = () => state.profileReducer.massageData.map((m: MType, pos: number,) => <NewPostsContainer key={v1()} message={m.message} pos={pos} dispatch={store.dispatch} id={m.id} />)
                 const addPostHandler = (newtext: string) => {store.dispatch(addPostActionCreator(newtext))}
                 const updateNewPostTextHandler = (text: string) => { store.dispatch(updateNewPostTextActionCreator(text))}
                 return (
-                <PostArea newPostText={store?.newPostText} addPost={addPostHandler} updateNewPostText={updateNewPostTextHandler} makeNewPost={makeNewPost} />
+                <PostArea newPostText={state.profileReducer.newPostText} addPost={addPostHandler} updateNewPostText={updateNewPostTextHandler} makeNewPost={makeNewPost} />
                 )
             }
         }
-       <StoreContext.Consumer/>
+       </StoreContext.Consumer>
     )
-
+ 
 }

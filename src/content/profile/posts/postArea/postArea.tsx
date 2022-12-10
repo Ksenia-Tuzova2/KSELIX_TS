@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
+import React, { LegacyRef, RefObject, useState } from 'react'
 import PostAreaStyle from './postArea.module.scss'
 import Box from '../../../../box.module.scss'
 import BtnStyle from '../../../../btn.module.scss'
-import NewPosts from '../newPosts/newPosts'
-import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../../redux/profileReducer'
 
 
 type MType = {
@@ -12,7 +10,7 @@ type MType = {
 }
 type Props = {
  
-    newPostText: string | null;
+    newPostText: string ;
     addPost:(newtext:string)=>void
     updateNewPostText:(newtext:string)=>void
     makeNewPost:()=>any
@@ -22,10 +20,9 @@ export const PostArea = ({makeNewPost,  newPostText,addPost ,updateNewPostText }
     // debugger
     // const makeNewPost = () => massageData.map((m: MType, pos: number,) => <NewPosts message={m.message} pos={pos} dispatch={dispatch} id={m.id} />)
 
-    let newPostElement: any = React.createRef()
+    let newPostElement:LegacyRef<HTMLTextAreaElement> | undefined = React.createRef()
 
     const addPostHandler = (newtext: string) => {
-
         addPost (newtext)
     }
 

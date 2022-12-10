@@ -5,64 +5,70 @@ import BtnStyle from '../../../btn.module.scss'
 
 import { v1 } from 'uuid'
 import { addMessageActionCreator, updateMesTextActionCreator } from '../../../redux/messegeReduser'
+import { StoreContext } from '../../../redux/createContext'
 
 
 // отлично, функции работают, но криво . Я хочу чтобы отрисовывались маленькие сообщения, а не пустые плашки в диалогбаре
 
 type DialogProps = {
     // myMessage: any;
-    
+
     // dispatch:(action:any)=>any
 }
 
-type MyMassageType={
-    // myMessage: any;
+type MyMassageType = {
+    massage: string;
 }
 
 
-export const DialogArea:React.FC<DialogProps>= ({
-    //  myMessage, dispatch
-    }) => {
+export const DialogArea: React.FC<DialogProps> = () => {
+    return (<StoreContext.Consumer>
+        {(store) => {
+            let state = store.getState()
 
+            let mapMyMes = () => state.messegeReducer.MyMassage.map((el: MyMassageType) => <MyMesItem key={v1()}
+                massage={el.massage}
+            />)
 
-let mapMyMes=()=> myMessage.MyMassage.map((el:any)=><MyMesItem key={v1()} myMessage={el.massage}/>)
+            //сделать страничку диалогов чтобы через диспатч вызывать метод в стейте чтобы функция добавления сообщения отправляла строку в хранилище
+            let addMessageHandler = (message: string) => {
+                store.dispatch(addMessageActionCreator(message))
+            }
+            let upateInputValueChangeHandler = (newtext: string) => {
+                store.dispatch(updateMesTextActionCreator(newtext))
+            }
 
-//сделать страничку диалогов чтобы через диспатч вызывать метод в стейте чтобы функция добавления сообщения отправляла строку в хранилище
-    let addMessageHandler = (message:string) => {
-    dispatch(addMessageActionCreator(message))
-    // console.log('d');
-    }
-    let upateInputValueChangeHandler = (newtext:string) => {
-        dispatch(updateMesTextActionCreator(newtext))
-        // console.log('d');
-        
-    }
+            return (
+                <div className={DialogAreaStyle.DialogArea}>
+                    <div className={DialogAreaStyle.Massages}>
+                        <YourMasItem myMessage={state.messegeReducer.MyMassage} />
 
-    return (
-        <div className={DialogAreaStyle.DialogArea}>
-            <div className={DialogAreaStyle.Massages}>
-                <YourMasItem myMessage={myMessage.MyMassage} />
- 
-               {mapMyMes()}
-            </div>
-            <div className={DialogAreaStyle.Form}>
+                        {mapMyMes()}
+                    </div>
+                    <div className={DialogAreaStyle.Form}>
 
-                <textarea className={DialogAreaStyle.TextInput+" "+Box.Box} placeholder='Type your massage...' value={myMessage.newMesText}
-                 onChange={(e) => upateInputValueChangeHandler(e.currentTarget.value)}></textarea>
-                <input type="file" className={DialogAreaStyle.FileInput} />
-                <button onClick={()=>addMessageHandler(myMessage.newMesText)}  className={BtnStyle.Btn}>send</button>
-            </div>
-        </div>
+                        <textarea className={DialogAreaStyle.TextInput + " " + Box.Box} placeholder='Type your massage...' value={state.messegeReducer.newMesText}
+                            onChange={(e) => upateInputValueChangeHandler(e.currentTarget.value)}></textarea>
+                        <input type="file" className={DialogAreaStyle.FileInput} />
+                        <button onClick={() => addMessageHandler(state.messegeReducer.newMesText)} className={BtnStyle.Btn}>send</button>
+                    </div>
+                </div>
+            )
+        }
+
+        }
+    </StoreContext.Consumer>
+
     )
 }
 
-export const MyMesItem:React.FC<MyMassageType> = ({myMessage,key}:any) => {
-   
+export const MyMesItem: React.FC<MyMassageType> = ({ massage, key }: any) => {
+
     return (
-            <div className={DialogAreaStyle.MassageWrap}>
+        <div className={DialogAreaStyle.MassageWrap}>
             <div className={DialogAreaStyle.FlexGrow}></div>
-            <div className={DialogAreaStyle.MyMassage + ' ' + Box.Box}>{myMessage}</div>
-            </div>
+            <div className={DialogAreaStyle.MyMassage + ' ' + Box.Box}>{massage}</div>
+        </div>
 
     )
 }

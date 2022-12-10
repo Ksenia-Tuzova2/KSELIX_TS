@@ -26,7 +26,8 @@ console.log('rerender')
     <div className={s.App}>
 
       <Header />
-      <Main appState={appState}
+      <Main
+      //  appState={appState}
       //  addMassage={addMassage} 
       // dispatch={dispatch}
       //  updateMesText={updateMesText} 
