@@ -1,10 +1,8 @@
-import { profileReducer} from './profileReducer'
-
 import { legacy_createStore as createStore, combineReducers, Store} from 'redux'
 import { applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
 import { messegeReducer } from './messegeReduser'
-
+import { profileReducer} from './profileReducer'
 
 
  const redusersPack=combineReducers({

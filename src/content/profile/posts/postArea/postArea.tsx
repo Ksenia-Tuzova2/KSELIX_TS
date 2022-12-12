@@ -2,6 +2,7 @@ import React, { LegacyRef, RefObject, useState } from 'react'
 import PostAreaStyle from './postArea.module.scss'
 import Box from '../../../../box.module.scss'
 import BtnStyle from '../../../../btn.module.scss'
+import { postAreaContainerType } from './postAreaContainer'
 
 
 type MType = {
@@ -10,13 +11,13 @@ type MType = {
 }
 type Props = {
  
-    newPostText: string ;
-    addPost:(newtext:string)=>void
-    updateNewPostText:(newtext:string)=>void
-    makeNewPost:()=>any
+    // newPostText: string ;
+    // addPost:(newtext:string)=>void
+    // updateNewPostText:(newtext:string)=>void
+    // makeNewPost:()=>any
     // dispatch: (action: any) => any
 }
-export const PostArea = ({makeNewPost,  newPostText,addPost ,updateNewPostText }: Props) => {
+export const PostArea = ({makeNewPost,  newPostText,addPost ,updateNewPostText }: postAreaContainerType) => {
     // debugger
     // const makeNewPost = () => massageData.map((m: MType, pos: number,) => <NewPosts message={m.message} pos={pos} dispatch={dispatch} id={m.id} />)
 

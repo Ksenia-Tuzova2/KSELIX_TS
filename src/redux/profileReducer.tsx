@@ -8,19 +8,25 @@ const DELETE_POST = 'DELETE-POST'
 
 //редьюс значит уменьшить- мы уменьшаем нагрузку на диспатч, не громоздя условное ветвление
 
-export type MassageData = {
+export type MessageDataType = {
   id: string,
   message: string,
 }
 
-type ProfileInitStateType = {
-  massageData: MassageData[],
-  newPostText: string,
+export type NewPostTextType=string
+
+export type ProfileInitStateType = {
+  newPostText: NewPostTextType,
+  massageData: MessageDataType[],
+
 
 }
 
-const profileInitialState: ProfileInitStateType={
-  newPostText: '',
+
+
+
+export const profileInitialState: ProfileInitStateType={
+  newPostText: '' as string,
   massageData: [
     {
       id: "1",
@@ -46,7 +52,7 @@ const profileInitialState: ProfileInitStateType={
       id: '6',
       message: ' Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed illo blanditiis accusamus eius, laborum aliquam deserunt atque fuga tempore ad nemo quibusdam perspiciatis recusandae quas illum maxime laudantium aspernatur. Deleniti?',
     },
-  ]
+  ] as Array<MessageDataType>
 }
 
 type ActionType={

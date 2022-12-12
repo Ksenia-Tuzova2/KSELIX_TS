@@ -1,6 +1,5 @@
-import { Routes, Route, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import React from 'react'
-import { DialogArea } from '../dialogArea/dialogArea'
 import { DialogItem } from '../dialogItem/DialogItem'
 
 //мап используй без ретурна, просто говори чего нужно возвращать
@@ -8,8 +7,10 @@ import { DialogItem } from '../dialogItem/DialogItem'
 
 
 
-export const DialogBar:React.FC<any> = ({RenderDialogItem}) => {
+export const DialogBar:React.FC<any> = ({makeArr}:Array<any>) => {
 
+   let RenderDialogItem = makeArr.map((el: any) => (<Link to='dialogArea'>
+                <DialogItem name={el.name} key={el.id} time={el.time} massage={el.massage} /></Link>))
    return (
       <div className='dialogBar'>
          {RenderDialogItem}

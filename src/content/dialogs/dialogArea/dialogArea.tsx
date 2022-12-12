@@ -5,7 +5,7 @@ import BtnStyle from '../../../btn.module.scss'
 
 import { v1 } from 'uuid'
 import { addMessageActionCreator, updateMesTextActionCreator } from '../../../redux/messegeReduser'
-import { StoreContext } from '../../../redux/createContext'
+
 
 
 // отлично, функции работают, но криво . Я хочу чтобы отрисовывались маленькие сообщения, а не пустые плашки в диалогбаре
