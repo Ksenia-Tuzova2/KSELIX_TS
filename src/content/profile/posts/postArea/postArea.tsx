@@ -19,7 +19,7 @@ type Props = {
 }
 export const PostArea = ({makeNewPost,  newPostText,addPost ,updateNewPostText }: postAreaContainerType) => {
     // debugger
-    // const makeNewPost = () => massageData.map((m: MType, pos: number,) => <NewPosts message={m.message} pos={pos} dispatch={dispatch} id={m.id} />)
+    // const makeNewPost = () => messageData.map((m: MType, pos: number,) => <NewPosts message={m.message} pos={pos} dispatch={dispatch} id={m.id} />)
 
     let newPostElement:LegacyRef<HTMLTextAreaElement> | undefined = React.createRef()
 

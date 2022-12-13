@@ -2,23 +2,23 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { Choose } from './dialogArea/choose'
 import { DialogAreaContainer } from './dialogArea/dialogAreaContainer'
-import { DialogBarContainer } from './DialogBar/DialogBarContainer'
 import s from './dialogs.module.scss'
+import {DialogBarContainer} from "./DialogBar/DialogBarContainer";
 
-// export type MyMassageType = {
-//     massage: string;
+// export type MyMessageType = {
+//     message: string;
 // }
 // export type MakeArrType = {
 //     id: number,
 //     name: string,
 //     time: string,
-//     massage: string,
+//     message: string,
 // }
 
 // type MessageInitStateType = {
 //     newMesText: string,
 //     makeArr: MakeArrType[],
-//     MyMassage: MyMassageType[],
+//     MyMessage: MyMessageType[],
 // }
 
 // type DialogProps = {
@@ -27,19 +27,19 @@ import s from './dialogs.module.scss'
 // }
 
 export const Dialogs: React.FC = ({
-    // Massage,dispatch 
+    // Massage,dispatch
 }) => {
     return (
         <div className={s.Massage} >
             <DialogBarContainer
             // MakeArr={Massage.makeArr} 
             />
-
-            <Routes>
-                <Route path='*' element={<Choose />} />
-                <Route path='/dialogArea/*'
-                    element={<DialogAreaContainer/>} />
-            </Routes>
+                <Routes>
+                    <Route path='*' element={<Choose/>}/>
+                    <Route path='/dialogArea/*'
+                           element={<DialogAreaContainer/>}/>
+                </Routes>
         </div>
     )
 }
+

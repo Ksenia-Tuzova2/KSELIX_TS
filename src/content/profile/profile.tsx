@@ -9,12 +9,12 @@ type MType = {
 }
 
 type ProfileType = {
-    // massageData: Array<MType>,
+    // messageData: Array<MType>,
     // newPostText: string,
     // dispatch: (action: any) => any
 }
 export const Profile: React.FC<ProfileType> = ({
-    //  dispatch, massageData, newPostText
+    //  dispatch, messageData, newPostText
 }) => {
     console.log('rerender')
     // debugger
@@ -22,7 +22,7 @@ export const Profile: React.FC<ProfileType> = ({
         <div >
             <UserInfo />
             <Posts
-            // massageData={massageData}
+            // messageData={messageData}
             //     newPostText={newPostText}
             //     dispatch={dispatch}
             />

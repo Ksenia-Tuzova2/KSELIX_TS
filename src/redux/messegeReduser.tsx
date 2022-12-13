@@ -4,20 +4,20 @@ const ADD_MESSAGE = 'ADD-MESSAGE'
 const UPDATE_MES_TEXT = 'UPDATE-MES-TEXT'
 
 
-export type MyMassageType = {
+export type MyMessageType = {
 	message: string;
 }
 export type MakeArrType = {
 	id: number,
 	name: string,
 	time: string,
-	massage: string,
+	message: string,
 }
 
 type MessageInitStateType={
   newMesText:string,
   makeArr: MakeArrType[],
-  MyMessage:MyMassageType[],
+  MyMessage:MyMessageType[],
 }
 const messageInitState: MessageInitStateType = {
   newMesText: '',
@@ -26,13 +26,13 @@ const messageInitState: MessageInitStateType = {
       id: 1,
       name: 'Katya',
       time: '12:20',
-      massage: 'YO',
+      message: 'YO',
     },
     {
       id: 2,
       name: 'TASHA',
       time: '12:23',
-      massage: 'ьц',
+      message: 'ьц',
     },
   ],
   MyMessage: [
@@ -57,10 +57,11 @@ export const messegeReducer = (state: MessageInitStateType = messageInitState, a
         let stateCopy={...state}
         stateCopy.MyMessage=[...state.MyMessage]
         let newM = {
-          massage: action.message,
+          message: action.message,
         };
           stateCopy.MyMessage.unshift(newM);
           return stateCopy;
+          
       }
   
       default: {

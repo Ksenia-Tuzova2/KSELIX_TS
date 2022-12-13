@@ -10,7 +10,7 @@ import { DialogItem } from '../dialogItem/DialogItem'
 export const DialogBar:React.FC<any> = ({makeArr}:Array<any>) => {
 
    let RenderDialogItem = makeArr.map((el: any) => (<Link to='dialogArea'>
-                <DialogItem name={el.name} key={el.id} time={el.time} massage={el.massage} /></Link>))
+                <DialogItem name={el.name} key={el.id} time={el.time} message={el.message} /></Link>))
    return (
       <div className='dialogBar'>
          {RenderDialogItem}

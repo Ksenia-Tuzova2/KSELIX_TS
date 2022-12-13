@@ -12,7 +12,7 @@ MakeArr: MakeArrType
 	id: number,
 	name: string,
 	time: string,
-	massage: string,
+	message: string,
 }
 
 let mapStateToProps=(state:RootState):MapStateToPropsType=>{

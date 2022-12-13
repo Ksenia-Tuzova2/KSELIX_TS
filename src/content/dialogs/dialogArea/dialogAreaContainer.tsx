@@ -22,8 +22,8 @@ type DialogProps = {
     // dispatch:(action:any)=>any
 }
 
-type MyMassageType = {
-    massage: string;
+type MyMessageType = {
+    message: string;
 }
 
 
@@ -32,8 +32,8 @@ type MyMassageType = {
 //         {(store) => {
 //             let state = store.getState()
 
-//             let mapMyMes = () => state.messegeReducer.MyMassage.map((el: MyMassageType) => <MyMesItem key={v1()}
-//                 massage={el.massage}
+//             let mapMyMes = () => state.messegeReducer.MyMessage.map((el: MyMessageType) => <MyMesItem key={v1()}
+//                 message={el.message}
 //             />)
 
 //             //сделать страничку диалогов чтобы через диспатч вызывать метод в стейте чтобы функция добавления сообщения отправляла строку в хранилище
@@ -62,7 +62,8 @@ type MyMassageType = {
  }
 
  type MapDispatchToPropsType={
-    
+     addPost:()=>void,
+     updateNewPostText:()=>void
  }
 
 let mapDispatchToProps=(dispatch:Dispatch):MapDispatchToPropsType=>{
@@ -80,12 +81,12 @@ let mapStateToProps=(state:RootState):MapStateToPropsType=>{
 
 export const DialogAreaContainer=connect(mapStateToProps,mapDispatchToProps)(DialogArea)
 
-export const MyMesItem: React.FC<MyMassageType> = ({ massage, key }: any) => {
+export const MyMesItem: React.FC<MyMessageType> = ({ message, key }: any) => {
 
     return (
         <div className={DialogAreaStyle.MassageWrap}>
             <div className={DialogAreaStyle.FlexGrow}></div>
-            <div className={DialogAreaStyle.MyMassage + ' ' + Box.Box}>{massage}</div>
+            <div className={DialogAreaStyle.MyMessage + ' ' + Box.Box}>{message}</div>
         </div>
 
     )

@@ -7,13 +7,13 @@ type MType = {
     message: string,
   }
 type PropsType={
-    // massageData:Array<MType>,
+    // messageData:Array<MType>,
     //  newPostText:string, 
     //  dispatch: (action: any) => any
 }
 
 export const Posts = ({ 
-    // massageData, newPostText,  dispatch
+    // messageData, newPostText,  dispatch
 }:PropsType) => {
 // debugger
 
@@ -21,7 +21,7 @@ export const Posts = ({
     return (
         <div className="content__post">
             <PostAreaContainer 
-            // massageData={massageData} newPostText={newPostText} 
+            // messageData={messageData} newPostText={newPostText} 
             // dispatch={dispatch}
             />
         

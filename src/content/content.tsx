@@ -24,12 +24,12 @@ export const Content: React.FC<ContentPropsType> = ({
 				//  Massage={appState.messegeReducer} dispatch={dispatch}
 				 /> } />
 				<Route path='/profile/*' element={<Profile 
-				// massageData={appState.profileReducer.massageData} newPostText={appState.profileReducer.newPostText}   dispatch={dispatch}
+				// messageData={appState.profileReducer.messageData} newPostText={appState.profileReducer.newPostText}   dispatch={dispatch}
 				/>} />
 					<Route path='/friends/*' element={<Friends />} />
 					<Route path='/news/*' 
 					 element={<NewsFeed 
-					// massageData={appState.profileReducer.massageData} dispatch={dispatch}
+					// messageData={appState.profileReducer.messageData} dispatch={dispatch}
 					/>}
 					 />
 				</Routes>

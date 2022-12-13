@@ -14,7 +14,7 @@ export const DialogItem=(props: any)=>{
                 <div className={s.FriendName}>{props.name}</div>
                 <div className={s.Time}>{props.time}</div>
                 </div>
-                     <div className={s.FriendMassage}>{props.massage}</div>
+                     <div className={s.FriendMassage}>{props.message}</div>
                 </div>
 
             </div>

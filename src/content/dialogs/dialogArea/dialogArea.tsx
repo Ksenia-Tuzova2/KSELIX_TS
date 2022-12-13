@@ -16,38 +16,38 @@ type DialogProps = {
     // dispatch:(action:any)=>any
 }
 
-type MyMassageType = {
-    massage: string;
+type MyMessageType = {
+    message: string;
 }
 
 
 export const DialogArea: React.FC<DialogProps> = () => {
-    return (<StoreContext.Consumer>
-        {(store) => {
-            let state = store.getState()
-
-            let mapMyMes = () => state.messegeReducer.MyMassage.map((el: MyMassageType) => <MyMesItem key={v1()}
-                massage={el.massage}
-            />)
-
-            //сделать страничку диалогов чтобы через диспатч вызывать метод в стейте чтобы функция добавления сообщения отправляла строку в хранилище
-            let addMessageHandler = (message: string) => {
-                store.dispatch(addMessageActionCreator(message))
-            }
-            let upateInputValueChangeHandler = (newtext: string) => {
-                store.dispatch(updateMesTextActionCreator(newtext))
-            }
+    // return (<StoreContext.Consumer>
+    //     {(store) => {
+    //         let state = store.getState()
+    //
+    //         let mapMyMes = () => state.messegeReducer.MyMessage.map((el: MyMessageType) => <MyMesItem key={v1()}
+    //             message={el.message}
+    //         />)
+    //
+    //         //сделать страничку диалогов чтобы через диспатч вызывать метод в стейте чтобы функция добавления сообщения отправляла строку в хранилище
+    //         let addMessageHandler = (message: string) => {
+    //             store.dispatch(addMessageActionCreator(message))
+    //         }
+    //         let upateInputValueChangeHandler = (newtext: string) => {
+    //             store.dispatch(updateMesTextActionCreator(newtext))
+    //         }
 
             return (
                 <div className={DialogAreaStyle.DialogArea}>
                     <div className={DialogAreaStyle.Massages}>
-                        <YourMasItem myMessage={state.messegeReducer.MyMassage} />
+                        <YourMasItem myMessage={state.messegeReducer.MyMessage} />
 
                         {mapMyMes()}
                     </div>
                     <div className={DialogAreaStyle.Form}>
 
-                        <textarea className={DialogAreaStyle.TextInput + " " + Box.Box} placeholder='Type your massage...' value={state.messegeReducer.newMesText}
+                        <textarea className={DialogAreaStyle.TextInput + " " + Box.Box} placeholder='Type your message...' value={state.messegeReducer.newMesText}
                             onChange={(e) => upateInputValueChangeHandler(e.currentTarget.value)}></textarea>
                         <input type="file" className={DialogAreaStyle.FileInput} />
                         <button onClick={() => addMessageHandler(state.messegeReducer.newMesText)} className={BtnStyle.Btn}>send</button>
@@ -56,18 +56,16 @@ export const DialogArea: React.FC<DialogProps> = () => {
             )
         }
 
-        }
-    </StoreContext.Consumer>
+    //     }
+    // </StoreContext.Consumer>
 
-    )
-}
 
-export const MyMesItem: React.FC<MyMassageType> = ({ massage, key }: any) => {
+export const MyMesItem: React.FC<MyMessageType> = ({ message, key }: any) => {
 
     return (
         <div className={DialogAreaStyle.MassageWrap}>
             <div className={DialogAreaStyle.FlexGrow}></div>
-            <div className={DialogAreaStyle.MyMassage + ' ' + Box.Box}>{massage}</div>
+            <div className={DialogAreaStyle.MyMessage + ' ' + Box.Box}>{message}</div>
         </div>
 
     )

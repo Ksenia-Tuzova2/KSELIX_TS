@@ -14,7 +14,7 @@ type MType = {
     message: string,
 }
 type Props = {
-    // massageData: Array<MType>;
+    // messageData: Array<MType>;
     // newPostText: string;
     // dispatch: (action: any) => any
 }
@@ -23,7 +23,7 @@ type Props = {
 //             {(store:Store<RootState>)=>{
 //                 let state=store.getState()
 
-//                 const makeNewPost = () => state.profileReducer.massageData.map((m: MType, pos: number,) => <NewPostsContainer key={v1()} message={m.message} pos={pos} dispatch={store.dispatch} id={m.id} />)
+//                 const makeNewPost = () => state.profileReducer.messageData.map((m: MType, pos: number,) => <NewPostsContainer key={v1()} message={m.message} pos={pos} dispatch={store.dispatch} id={m.id} />)
 //                 const addPostHandler = (newtext: string) => {store.dispatch(addPostActionCreator(newtext))}
 //                 const updateNewPostTextHandler = (text: string) => { store.dispatch(updateNewPostTextActionCreator(text))}
 //                 return (

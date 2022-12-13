@@ -13,16 +13,16 @@ export const num = "1234";
 // 	id: number,
 // 	name: string,
 // 	time: string,
-// 	massage: string,
+// 	message: string,
 // }
-// export type MyMassageType = {
-// 	massage: string;
+// export type MyMessageType = {
+// 	message: string;
 // }
 
 // export type MassageType = {
 // 	newMesText: string;
 // 	makeArr: Array<MakeArrType>,
-// 	MyMassage: MyMassageType[],
+// 	MyMessage: MyMessageType[],
 // }
 
 // export type MassageData = {
@@ -31,7 +31,7 @@ export const num = "1234";
 // }
 // export type ProfileType = {
 // 	newPostText: String,
-// 	massageData: Array<MassageData>,
+// 	messageData: Array<MassageData>,
 
 // }
 // export type StateType = {
@@ -72,24 +72,24 @@ export const num = "1234";
 // 					id: 1,
 // 					name: 'Katya',
 // 					time: '12:20',
-// 					massage: 'YO',
+// 					message: 'YO',
 // 				},
 // 				{
 // 					id: 2,
 // 					name: 'TASHA',
 // 					time: '12:23',
-// 					massage: 'ьц',
+// 					message: 'ьц',
 // 				},
 // 			],
-// 			MyMassage: [
+// 			MyMessage: [
 
-// 				{ massage: 'hahhaha' },
-// 				{ massage: 'yoyo' },
+// 				{ message: 'hahhaha' },
+// 				{ message: 'yoyo' },
 // 			]
 // 		},
 // 		Profile: {
 // 			newPostText: '',
-// 			massageData: [
+// 			messageData: [
 // 				{
 // 					id: "1",
 // 					message: 'mmmmm',
@@ -128,7 +128,7 @@ export const num = "1234";
 // 	//=======================================================
 
 // 	// window.State = State
-// 	// let [localState, setLocalState] = useState(this._State.Profile.massageData);
+// 	// let [localState, setLocalState] = useState(this._State.Profile.messageData);
 
 
 // 	//как сделать удаление элемента - делаем функцию делит и прокидываем в кнопку при он клике она должна вызыаваться . 
@@ -146,7 +146,7 @@ export const num = "1234";
 
 // 	// 	deletePost(id: string) {
 // 	// //можно присваивать старому массиву новое значение и тогда он будет автоматически перерисовываться
-// 	// 	this._State.Profile.massageData = this._State.Profile.massageData.filter((t) => t.id !== id)
+// 	// 	this._State.Profile.messageData = this._State.Profile.messageData.filter((t) => t.id !== id)
 
 // 	// 		this._callSubscriber(this._State)
 // 	// 	},
@@ -157,7 +157,7 @@ export const num = "1234";
 // 	// 		message: newtext,
 // 	// 	}
 
-// 	// 	this._State.Profile.massageData.unshift(newPost)
+// 	// 	this._State.Profile.messageData.unshift(newPost)
 // 	// 	this._callSubscriber(this._State)
 
 // 	// },
@@ -175,9 +175,9 @@ export const num = "1234";
 
 // 	// AddMassage(message: string) {
 // 	// 	let newM = {
-// 	// 		massage: message,
+// 	// 		message: message,
 // 	// 	};
-// 	// 	this._State.Massage.MyMassage.push(newM)
+// 	// 	this._State.Massage.MyMessage.push(newM)
 // 	// 	this._callSubscriber(this._State)
 // 	// },
 

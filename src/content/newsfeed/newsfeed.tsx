@@ -6,18 +6,18 @@ type MType = {
   message: string,
 }
 type PropsType = {
-  // massageData: Array<MType>,
+  // messageData: Array<MType>,
   // dispatch: (action: any) => any
 }
 
 export const NewsFeed = ({
-  // massageData, dispatch
+  // messageData, dispatch
 }: PropsType) => {
   return (<StoreContext.Consumer>
     {(store) => {
       let state = store.getState()
 
-      let MakeNewPost = state.profileReducer.massageData.map((m: MType, pos: number) => <NewPostsContainer dispatch={store.dispatch} message={m.message} key={m.id} pos={pos} id={m.id} />)
+      let MakeNewPost = state.profileReducer.messageData.map((m: MType, pos: number) => <NewPostsContainer dispatch={store.dispatch} message={m.message} key={m.id} pos={pos} id={m.id} />)
       return (
         <div>
           {MakeNewPost}
