@@ -20,3 +20,5 @@
 //     </StoreContext.Provider>
 //   )
 // }
+
+export let a=1

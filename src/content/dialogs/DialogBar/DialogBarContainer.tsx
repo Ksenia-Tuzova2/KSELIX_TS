@@ -2,7 +2,6 @@ import { DialogBar } from './DialogBar'
 import { connect } from 'react-redux'
 import { RootState } from '../../../redux/store-redux'
 
-
 type MapStateToPropsType={
 MakeArr: MakeArrType[]
 }
