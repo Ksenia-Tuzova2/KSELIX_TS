@@ -3,6 +3,7 @@ import PostAreaStyle from './postArea.module.scss'
 import Box from '../../../../box.module.scss'
 import BtnStyle from '../../../../btn.module.scss'
 import { postAreaContainerType } from './postAreaContainer'
+import NewPosts from '../newPosts/newPosts'
 
 
 type MType = {
@@ -17,9 +18,12 @@ type Props = {
     // makeNewPost:()=>any
     // dispatch: (action: any) => any
 }
-export const PostArea = ({makeNewPost,  newPostText,addPost ,updateNewPostText }: postAreaContainerType) => {
+export const PostArea = ({newPostText, messageData,addPost ,updateNewPostText ,deletePost}: postAreaContainerType) => {
     // debugger
-    // const makeNewPost = () => messageData.map((m: MType, pos: number,) => <NewPosts message={m.message} pos={pos} dispatch={dispatch} id={m.id} />)
+    const makeNewPost = () => messageData.map((m: MType, pos: number,) => <NewPosts 
+    deletePost={deletePost}
+    message={m.message} pos={pos}id={m.id} />)
+    
 
     let newPostElement:LegacyRef<HTMLTextAreaElement> | undefined = React.createRef()
 
@@ -31,7 +35,7 @@ export const PostArea = ({makeNewPost,  newPostText,addPost ,updateNewPostText }
         updateNewPostText(text)
     }
 
-    //  debugger
+  
     return (
         <div>
             <div className={PostAreaStyle.FormWrapper}>

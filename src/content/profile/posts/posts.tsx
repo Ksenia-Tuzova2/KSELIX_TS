@@ -1,11 +1,5 @@
-import NewPosts from './newPosts/newPosts'
-import {PostArea} from './postArea/postArea'
-import React from 'react'
 import { PostAreaContainer } from './postArea/postAreaContainer'
-type MType = {
-    id: string,
-    message: string,
-  }
+
 type PropsType={
     // messageData:Array<MType>,
     //  newPostText:string, 

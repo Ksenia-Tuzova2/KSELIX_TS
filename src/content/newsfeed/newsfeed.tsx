@@ -1,29 +1,18 @@
-import { StoreContext } from '../../redux/createContext'
-import { NewPostsContainer } from '../profile/posts/newPosts/newPostsContainer'
+
+import NewPosts from '../profile/posts/newPosts/newPosts'
+import { NewsFeedContainerType } from './newsfeedContainer'
 
 type MType = {
   id: string,
   message: string,
 }
-type PropsType = {
-  // messageData: Array<MType>,
-  // dispatch: (action: any) => any
-}
 
-export const NewsFeed = ({
-  // messageData, dispatch
-}: PropsType) => {
-  return (<StoreContext.Consumer>
-    {(store) => {
-      let state = store.getState()
+export const NewsFeed = ({ messageData,deletePost}: NewsFeedContainerType) => {
 
-      let MakeNewPost = state.profileReducer.messageData.map((m: MType, pos: number) => <NewPostsContainer dispatch={store.dispatch} message={m.message} key={m.id} pos={pos} id={m.id} />)
+      let MakeNewPost = messageData.map((m: MType, pos: number) => <NewPosts message={m.message} key={m.id} pos={pos} id={m.id} deletePost={deletePost} />)
       return (
         <div>
           {MakeNewPost}
         </div>
       )
-    }}
-  </StoreContext.Consumer >)
-
-}
+    }

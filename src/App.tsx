@@ -14,14 +14,10 @@ export type AppPropsType={
 }
 
 
-const App: React.FC<AppPropsType>= ({ 
-  // _appState,  dispatch,
-  }) => {
+const App: React.FC<AppPropsType>= () => {
   // debugger
 const appState = store.getState()
 console.log('rerender')
-//const Dispatch=useDispatch()
-//const cash=useSelector(State=>State.cash)
   return (
     <div className={s.App}>
 
@@ -39,6 +35,3 @@ console.log('rerender')
 }
 
 export default App;
-
-//так, я хочу круговорот флакса на каждый символ 
-//открытие- важна последовательность когда прокидываешь пропсы

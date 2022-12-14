@@ -1,31 +1,8 @@
-import React from 'react'
 import  { Dispatch } from 'redux'
-import DialogAreaStyle from './dialogArea.module.scss'
-import Box from '../../../box.module.scss'
-import BtnStyle from '../../../btn.module.scss'
-
-import { v1 } from 'uuid'
-import { addMessageActionCreator, updateMesTextActionCreator } from '../../../redux/messegeReduser'
-import { PostArea } from '../../profile/posts/postArea/postArea'
-import { updateNew } from 'typescript'
+import { addMessageActionCreator, MyMessageType, updateMesTextActionCreator } from '../../../redux/messegeReduser'
 import { RootState } from '../../../redux/store-redux'
-import { MapStateToProps } from 'react-redux'
 import { connect } from 'react-redux'
 import { DialogArea } from './dialogArea'
-
-
-// отлично, функции работают, но криво . Я хочу чтобы отрисовывались маленькие сообщения, а не пустые плашки в диалогбаре
-
-type DialogProps = {
-    // myMessage: any;
-
-    // dispatch:(action:any)=>any
-}
-
-type MyMessageType = {
-    message: string;
-}
-
 
 // export const DialogAreaContainer: React.FC<DialogProps> = () => {
 //     return (<StoreContext.Consumer>
@@ -58,47 +35,29 @@ type MyMessageType = {
 // }
 
  type MapStateToPropsType={
-
+    newMesText: string
+    MyMessage: MyMessageType[]
  }
 
  type MapDispatchToPropsType={
-     addPost:()=>void,
-     updateNewPostText:()=>void
+    updateMesText:( newtext: string)=>void,
+    addMessage:(message: string)=>void,
  }
+
+ export type DialogAreaContainerPropsType=MapDispatchToPropsType|MapStateToPropsType
 
 let mapDispatchToProps=(dispatch:Dispatch):MapDispatchToPropsType=>{
     return{
-        addPost:()=>void,
-         updateNewPostText:()=>void
+        updateMesText:( newtext: string)=>dispatch(updateMesTextActionCreator(newtext)),
+        addMessage:(message: string)=>dispatch(addMessageActionCreator(message)),
     }
 }
 
 let mapStateToProps=(state:RootState):MapStateToPropsType=>{
     return{
-        newPostText:
+        newMesText:state.messegeReducer.newMesText, 
+        MyMessage:state.messegeReducer.MyMessage
     }
 }
 
 export const DialogAreaContainer=connect(mapStateToProps,mapDispatchToProps)(DialogArea)
-
-export const MyMesItem: React.FC<MyMessageType> = ({ message, key }: any) => {
-
-    return (
-        <div className={DialogAreaStyle.MassageWrap}>
-            <div className={DialogAreaStyle.FlexGrow}></div>
-            <div className={DialogAreaStyle.MyMessage + ' ' + Box.Box}>{message}</div>
-        </div>
-
-    )
-}
-
-export const YourMasItem = (props: any) => {
-    return (
-        <div className={DialogAreaStyle.MassageWrap}>
-            <div className={DialogAreaStyle.Massage + ' ' + Box.Box}>hi</div>
-            <div className={DialogAreaStyle.FlexGrow}></div>
-        </div>
-
-    )
-}
-

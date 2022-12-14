@@ -3,10 +3,6 @@ import React from 'react'
 import { Posts } from './posts/posts'
 import { UserInfo } from './userInfo/userInfo-list'
 
-type MType = {
-    // id: string,
-    // message: string,
-}
 
 type ProfileType = {
     // messageData: Array<MType>,

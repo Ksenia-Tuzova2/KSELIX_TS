@@ -1,23 +1,18 @@
-import { Store} from 'redux'
-import React, {  useState } from 'react'
-import  { Dispatch } from 'redux'
-import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../../redux/profileReducer'
-import {PostArea} from './postArea'
-import { NewPostsContainer } from '../newPosts/newPostsContainer'
-// import { StoreContext } from '../../../../redux/createContext'
-import { v1 } from 'uuid'
+import { Dispatch } from 'redux'
+import { addPostActionCreator, deletePostActionCreator, MessageDataType, updateNewPostTextActionCreator } from '../../../../redux/profileReducer'
+import { PostArea } from './postArea'
 import { connect } from 'react-redux'
 import { RootState } from '../../../../redux/store-redux'
 
-type MType = {
-    id: string,
-    message: string,
-}
-type Props = {
-    // messageData: Array<MType>;
-    // newPostText: string;
-    // dispatch: (action: any) => any
-}
+// type MType = {
+//     id: string,
+//     message: string,
+// }
+// type Props = {
+//     // messageData: Array<MType>;
+//     // newPostText: string;
+//     // dispatch: (action: any) => any
+// }
 // export const PostAreaContainer = ( ) => {
 //     return ( <StoreContext.Consumer>
 //             {(store:Store<RootState>)=>{
@@ -33,33 +28,45 @@ type Props = {
 //         }
 //        </StoreContext.Consumer>
 //     )
- 
+
 // }
 
 //повторить создание коннекта в других контейнерных компонентах,
-export type NewPostTextType={
-    newPostText:string
+export type NewPostTextType = {
+    newPostText: string
+    messageData: MessageDataType[]
 }
-type MapStateToPropsType=NewPostTextType
-
-export type postAreaContainerType=MapDispatchToPropsType & MapStateToPropsType
-
-type MapDispatchToPropsType={
-    addPost:(newtext: string)=>void,
-    updateNewPostText:(text: string)=>void,
+type MapStateToPropsType = {
+    newPostText: string,
+    messageData: MessageDataType[]
 }
-let mapDisatchToProps=(dispatch:Dispatch):MapDispatchToPropsType=>{
+
+
+type MapDispatchToPropsType = {
+    addPost: (newtext: string) => void,
+    updateNewPostText: (text: string) => void,
+    deletePost: (id: string) => void
+}
+
+export type postAreaContainerType = MapDispatchToPropsType & MapStateToPropsType
+
+let mapStateToProps = (state: RootState): MapStateToPropsType => {
     return {
-         addPost:(newtext: string)=>dispatch(addPostActionCreator(newtext)),
-          updateNewPostText:(text: string)=>dispatch(updateNewPostTextActionCreator(text)),
+        newPostText: state.profileReducer.newPostText,
+        messageData: state.profileReducer.messageData
     }
 }
 
-let mapStateToProps=(state:RootState):MapStateToPropsType=>{
+let mapDisatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
-        newPostText: state.profileReducer.newPostText
+        addPost: (newtext: string) => dispatch(addPostActionCreator(newtext)),
+        updateNewPostText: (text: string) => dispatch(updateNewPostTextActionCreator(text)),
+        deletePost: (id: string) => dispatch(deletePostActionCreator(id))
+
     }
 }
 
 
-export const PostAreaContainer=connect(mapStateToProps, mapDisatchToProps)(PostArea)
+
+
+export const PostAreaContainer = connect(mapStateToProps, mapDisatchToProps)(PostArea)

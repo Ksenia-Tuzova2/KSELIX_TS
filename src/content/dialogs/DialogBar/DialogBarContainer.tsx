@@ -1,11 +1,10 @@
-import React from 'react'
 import { DialogBar } from './DialogBar'
 import { connect } from 'react-redux'
 import { RootState } from '../../../redux/store-redux'
 
 
 type MapStateToPropsType={
-MakeArr: MakeArrType
+MakeArr: MakeArrType[]
 }
 
  type MakeArrType = {
@@ -14,6 +13,8 @@ MakeArr: MakeArrType
 	time: string,
 	message: string,
 }
+
+export type DialogBarContainerPropsType=MapStateToPropsType
 
 let mapStateToProps=(state:RootState):MapStateToPropsType=>{
 return{
