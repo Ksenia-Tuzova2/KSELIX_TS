@@ -12,8 +12,7 @@ type ProfileType = {
 export const Profile: React.FC<ProfileType> = ({
     //  dispatch, messageData, newPostText
 }) => {
-    console.log('rerender')
-    // debugger
+
     return (
         <div >
             <UserInfo />

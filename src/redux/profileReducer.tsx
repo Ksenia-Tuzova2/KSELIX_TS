@@ -1,5 +1,5 @@
 import React from "react"
-import {v1} from "uuid"
+import { v1 } from "uuid"
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
@@ -60,43 +60,45 @@ type ActionType = {
 
 //креаторы для того, чтобы разбить респонсобилити, как и константы с типами
 export const addPostActionCreator = (newtext: string) => {
-    return {type: ADD_POST, newtext}
+    return { type: ADD_POST, newtext }
 }
 
 export const updateNewPostTextActionCreator = (newtext: string) => {
-    return {type: UPDATE_NEW_POST_TEXT, newtext}
+    return { type: UPDATE_NEW_POST_TEXT, newtext }
 }
 
 export const deletePostActionCreator = (id: string) => {
-    return {type: DELETE_POST, id}
+    return { type: DELETE_POST, id }
 }
 
 
 export const profileReducer = (state: ProfileInitStateType = profileInitialState, action: ActionType): ProfileInitStateType => {
     // debugger
+    // let stateCopy = { ...state, messageData: [...state.messageData] }
+
+
     switch (action.type) {
         case DELETE_POST: {
-            let stateCopy = {...state}
-            state.messageData = state.messageData.filter((t) => {
-                return t.id !== action.id
-            })
+            // stateCopy.messageData.filter((t) => {
+            //     return t.id !== action.id
+            // })
 
-            return state;
+            return { ...state, messageData: [...state.messageData.filter((t) => {
+                    return t.id !== action.id
+             })] };
         }
 
         case UPDATE_NEW_POST_TEXT: {
-            console.log("update")
-            state.newPostText = action.newtext
-            return state;
+            return {...state, newPostText:action.newtext};
         }
 
         case ADD_POST: {
-            let newPost = {
-                id: v1(),
-                message: action.newtext,
-            }
-            state.messageData.unshift(newPost)
-            return state;
+            // let newPost = {
+            //     id: v1(),
+            //     message: action.newtext,
+            // }
+            // stateCopy.messageData.unshift(newPost)
+            return {...state,newPostText:'', messageData:[ {id:v1(), message:action.newtext},...state.messageData]};
         }
         default: {
             return state

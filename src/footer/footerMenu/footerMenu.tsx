@@ -1,15 +1,18 @@
+import { Link } from 'react-router-dom'
 import FooterMenuStyle from './footerMenu.module.css'
-import React from 'react'
-const Footer__menu=()=>{
-    return(
-      
-          <div className={FooterMenuStyle.Footer__menu}>
-      <a href='#'>Menu</a>
-      <a href='#'>Exit</a>
-      <a href='#'>Kselix</a>
-      <a href='#'>Help</a>
-      </div>
-    
+
+const Footer__menu = () => {
+    return (
+
+        <div className={FooterMenuStyle.Footer__menu}>
+
+            <Link to='/menu'>Menu</Link>
+            <Link to='/exit'>Exit</Link>
+            <Link to='/'>Kselix</Link>
+            <Link to='/help'>Help</Link>
+
+        </div>
+
     )
 }
 

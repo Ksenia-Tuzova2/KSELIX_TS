@@ -1,5 +1,8 @@
 import React from "react"
 
+
+//не использовать расширение жсх для редьюсеров - могут быть баги
+
 const ADD_MESSAGE = 'ADD-MESSAGE'
 const UPDATE_MES_TEXT = 'UPDATE-MES-TEXT'
 
@@ -48,20 +51,15 @@ type ActionType={
 }
 
 export const messegeReducer = (state: MessageInitStateType = messageInitState, action: ActionType):MessageInitStateType => {
-    switch (action.type) {
+  
+  // не надо здесь делать переменные, потому что при каждом действии диспач в тандеме с экшн креэйтером залезает в редьюсер и использует лишнюю помять для создания переменных
+  
+  switch (action.type) {
       case UPDATE_MES_TEXT:{
-        state.newMesText = action.newtext;
-        return {...state}; 
+        return {...state, newMesText:action.newtext}; 
       }
       case ADD_MESSAGE:{
-        let stateCopy={...state}
-        stateCopy.MyMessage=[...state.MyMessage]
-        let newM = {
-          message: action.message,
-        };
-          stateCopy.MyMessage.unshift(newM);
-          return stateCopy;
-          
+          return {...state,newMesText:'', MyMessage:[...state.MyMessage,{message:action.message}]}
       }
   
       default: {
