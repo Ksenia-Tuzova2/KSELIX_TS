@@ -1,11 +1,31 @@
+import  axios from "axios"
 import { v1 } from "uuid"
-import { UserType } from "../../redux/searchUserReduser"
 import { SearchUser } from "./searchUser"
 import { searchUserMapWindowContainerType } from "./searchUserMapWindowContainer"
 
+export type SearchUsertype={
+  "name": string,
+  "id": number,
+  "photos": {
+    "small": null,
+    "large": null
+  },
+  "status": null,
+  "followed": boolean
 
+}
 export const searchUserMapWindow = ({ users, followUser,unfollowUser,setUser }: searchUserMapWindowContainerType) => {
-  const mapUsersForList = users.map((u: UserType) => { return <div key={v1()}><SearchUser userId={u.userId} name={u.name} followed={u.followed} followUser={followUser} unfollowUser={unfollowUser} setUser={setUser}/></div> })
+
+
+
+  if(users.length===0){
+    axios.get('https://social-network.samuraijs.com/api/1.0/users').then (Response=>{
+      // debugger
+      setUser(Response.data.items)
+    })
+ 
+  }
+  const mapUsersForList = users.map((u) => { return <div key={v1()}><SearchUser userId={u.userId} name={u.name} followed={u.followed} followUser={followUser} unfollowUser={unfollowUser}/></div> })
 
 
 
@@ -16,4 +36,22 @@ export const searchUserMapWindow = ({ users, followUser,unfollowUser,setUser }: 
   )
 }
 
-
+// [
+//    {
+//   userId: v1(),
+//   name: "Ksenia Tuzova",
+//   location: 'Saint-Peterburg',
+//   followed: false
+// },
+// {
+//   userId: v1(),
+//   name: "Ksenia Tuzova",
+//   location: 'Saint-Peterburg',
+//   followed: false
+// },
+// {
+//   userId: v1(),
+//   name: "Ksenia Tuzova",
+//   location: 'Saint-Peterburg',
+//   followed: false
+// }]

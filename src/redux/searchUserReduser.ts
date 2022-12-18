@@ -1,5 +1,4 @@
 import React from "react"
-import { v1 } from "uuid"
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -19,24 +18,7 @@ users:Array<UserType>
 }
 const SearchUserInitState: SearchUserInitStateType = {
   users: [
-    {
-      userId: v1(),
-      name: "Ksenia Tuzova",
-      location: 'Saint-Peterburg',
-      followed: false
-    },
-    {
-      userId: v1(),
-      name: "Ksenia Tuzova",
-      location: 'Saint-Peterburg',
-      followed: false
-    },
-    {
-      userId: v1(),
-      name: "Ksenia Tuzova",
-      location: 'Saint-Peterburg',
-      followed: false
-    }
+  
   ]
 }
 
