@@ -8,10 +8,11 @@ const SET_USER='SET_USER'
 //не использовать расширение жсх для редьюсеров - могут быть баги
 
 export type UserType=  {
-  userId: string,
+  userId: number,
   name: string,
   location: string,
   followed: boolean
+
 }
 type SearchUserInitStateType = {
 users:Array<UserType>
@@ -24,7 +25,7 @@ const SearchUserInitState: SearchUserInitStateType = {
 
 type ActionType = {
   type: string,
-  userId: string
+  userId: number
   users:any 
 }
 
@@ -64,14 +65,14 @@ export const searchUserReduser = (state: SearchUserInitStateType = SearchUserIni
 
 }
 
-export const followUserActionCreator = (userId: string) => {
+export const followUserActionCreator = (userId: number) => {
   return { type: FOLLOW, userId }
 }
 
-export const unfollowUserActionCreator = (userId: string) => {
+export const unfollowUserActionCreator = (userId: number) => {
   return { type: UNFOLLOW, userId }
 }
-export const searchUserActionCreator = (userId: string) => {
+export const searchUserActionCreator = (userId: number) => {
   return { type: UNFOLLOW, userId }
 }
 export const setUserActionCreator = (users:Array<UserType>) => {

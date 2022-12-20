@@ -4,7 +4,6 @@ import { SearchUser } from "./searchUser"
 import { searchUserMapWindowContainerType } from "./searchUserMapWindowContainer"
 
 export type SearchUsertype={
-  "name": string,
   "id": number,
   "photos": {
     "small": null,
@@ -25,7 +24,7 @@ export const searchUserMapWindow = ({ users, followUser,unfollowUser,setUser }: 
     })
  
   }
-  const mapUsersForList = users.map((u) => { return <div key={v1()}><SearchUser userId={u.userId} name={u.name} followed={u.followed} followUser={followUser} unfollowUser={unfollowUser}/></div> })
+  const mapUsersForList = users.map((u) => { return <div key={v1()}><SearchUser userId={u.userId} name={u.name} followed={u.followed} followUser={followUser} unfollowUser={unfollowUser} status={null}/></div> })
 
 
 

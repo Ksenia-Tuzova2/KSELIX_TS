@@ -5,14 +5,15 @@ import { followUserActionCreator, setUserActionCreator, unfollowUserActionCreato
 import { RootState } from '../../redux/store-redux'
 import { SearchUser } from './searchUser'
 
+
 type MapStateToPropsType={
   users:Array<UserType>
 }
 
 
 type MapDispatchToPropsType={
-  followUser:(userId:string)=>void,
-  unfollowUser:(userId:string)=>void,
+  followUser:(userId:number)=>void,
+  unfollowUser:(userId:number)=>void,
   setUser:(users:Array<UserType>)=>void
 }
 
@@ -28,8 +29,8 @@ let mapStateToProps=(state:RootState):MapStateToPropsType=>{
 
 let mapDispatchToProps=(dispatch:Dispatch):MapDispatchToPropsType=>{
   return{
-    followUser:(userId:string)=>dispatch(followUserActionCreator(userId)),
-    unfollowUser:(userId:string)=>dispatch(unfollowUserActionCreator(userId)),
+    followUser:(userId:number)=>dispatch(followUserActionCreator(userId)),
+    unfollowUser:(userId:number)=>dispatch(unfollowUserActionCreator(userId)),
     setUser:(users:Array<UserType>)=>dispatch(setUserActionCreator(users))
   }
   }
