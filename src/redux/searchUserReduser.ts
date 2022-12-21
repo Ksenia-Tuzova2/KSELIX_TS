@@ -6,12 +6,19 @@ const SEARCH_USER = 'SEARCH_USER'
 const SET_USER='SET_USER'
 
 //не использовать расширение жсх для редьюсеров - могут быть баги
-
+export type PhotosType={
+  small:string|null
+  large:string|null
+}
 export type UserType=  {
-  userId: number,
+  
   name: string,
-  location: string,
-  followed: boolean
+    id: number,
+    uniqueUrlName: null|string,
+    photos:PhotosType
+    status: null,
+    followed: boolean
+,
 
 }
 type SearchUserInitStateType = {
@@ -25,8 +32,8 @@ const SearchUserInitState: SearchUserInitStateType = {
 
 type ActionType = {
   type: string,
-  userId: number
-  users:any 
+  id: number
+  users:Array<UserType> 
 }
 
 export const searchUserReduser = (state: SearchUserInitStateType = SearchUserInitState, action: ActionType): SearchUserInitStateType => {
@@ -34,7 +41,7 @@ export const searchUserReduser = (state: SearchUserInitStateType = SearchUserIni
     case FOLLOW: {
       let followUser=state.users.map((u)=>{
     
-        if(u.userId===action.userId){
+        if(u.id===action.id){
                   // здесь даже не делаем копию, так как мап выплевывает новый массив
           return {...u, followed:true}
        }else {return {...u}}
@@ -45,7 +52,7 @@ export const searchUserReduser = (state: SearchUserInitStateType = SearchUserIni
     }
     case UNFOLLOW: {
       const unfollowUser=state.users.map((u)=>{
-        if(u.userId===action.userId){
+        if(u.id===action.id){
           return {...u, followed:false}
         }else{return{...u}}})
       return { ...state ,
@@ -65,15 +72,15 @@ export const searchUserReduser = (state: SearchUserInitStateType = SearchUserIni
 
 }
 
-export const followUserActionCreator = (userId: number) => {
-  return { type: FOLLOW, userId }
+export const followUserActionCreator = (id: number) => {
+  return { type: FOLLOW, id }
 }
 
-export const unfollowUserActionCreator = (userId: number) => {
-  return { type: UNFOLLOW, userId }
+export const unfollowUserActionCreator = (id: number) => {
+  return { type: UNFOLLOW, id }
 }
-export const searchUserActionCreator = (userId: number) => {
-  return { type: UNFOLLOW, userId }
+export const searchUserActionCreator = (id: number) => {
+  return { type: UNFOLLOW, id }
 }
 export const setUserActionCreator = (users:Array<UserType>) => {
   return { type: SET_USER, users}

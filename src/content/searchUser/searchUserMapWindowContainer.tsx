@@ -1,9 +1,13 @@
-import { searchUserMapWindow } from "./searchUserMapWindow"
-import { connect } from 'react-redux'
-import { Dispatch } from 'redux'
-import { followUserActionCreator, setUserActionCreator, unfollowUserActionCreator, UserType } from '../../redux/searchUserReduser'
-import { RootState } from '../../redux/store-redux'
-import { SearchUser } from './searchUser'
+import {searchUserMapWindowC} from "./searchUserMapWindowC"
+import {connect} from 'react-redux'
+import {Dispatch} from 'redux'
+import {
+  followUserActionCreator,
+  setUserActionCreator,
+  unfollowUserActionCreator,
+  UserType
+} from '../../redux/searchUserReduser'
+import {RootState} from '../../redux/store-redux'
 
 
 type MapStateToPropsType={
@@ -12,8 +16,8 @@ type MapStateToPropsType={
 
 
 type MapDispatchToPropsType={
-  followUser:(userId:number)=>void,
-  unfollowUser:(userId:number)=>void,
+  followUser:(id:number)=>void,
+  unfollowUser:(id:number)=>void,
   setUser:(users:Array<UserType>)=>void
 }
 
@@ -29,12 +33,12 @@ let mapStateToProps=(state:RootState):MapStateToPropsType=>{
 
 let mapDispatchToProps=(dispatch:Dispatch):MapDispatchToPropsType=>{
   return{
-    followUser:(userId:number)=>dispatch(followUserActionCreator(userId)),
-    unfollowUser:(userId:number)=>dispatch(unfollowUserActionCreator(userId)),
+    followUser:(id:number)=>dispatch(followUserActionCreator(id)),
+    unfollowUser:(id:number)=>dispatch(unfollowUserActionCreator(id)),
     setUser:(users:Array<UserType>)=>dispatch(setUserActionCreator(users))
   }
   }
 
 
-export const SearchUserMapWindowContainer=connect(mapStateToProps,mapDispatchToProps)(searchUserMapWindow)
+export const SearchUserMapWindowContainer=connect(mapStateToProps,mapDispatchToProps)(searchUserMapWindowC)
 

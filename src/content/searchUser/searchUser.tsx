@@ -1,10 +1,16 @@
+import Box from '../../box.module.scss'
+import Style from './searchUser.module.scss'
+import { PhotosType } from '../../redux/searchUserReduser'
+import defaultPhoto from '../menu-bar/icons-menu-bar/codicon_account.svg'
+
 type SearchUserType={
-  followUser:(userId:number)=>void,
-  unfollowUser:(userId:number)=>void,
-  userId:number,
+  followUser:(id:number)=>void,
+  unfollowUser:(id:number)=>void,
+  id:number,
   name: string,
   status: null,
   followed: boolean
+  photos:PhotosType
 }
 
 export const SearchUser: React.FC<SearchUserType> = ({
@@ -12,23 +18,29 @@ export const SearchUser: React.FC<SearchUserType> = ({
   unfollowUser,
   name,
   followed,
-  userId
+  id,
+  photos
 }) => {
 
-  const onClickFollowHandler = (userId: number) => {
-    followUser(userId)
+  const onClickFollowHandler = (id: number) => {
+    followUser(id)
   }
 
-  const onClickUnFollowHandler = (userId: number) => {
-    unfollowUser(userId)
+  const onClickUnFollowHandler = (id: number) => {
+    unfollowUser(id)
   }
 
   return (
-    <div>
+    <div className={Box.Box}>
+      <div className={Style.flex}>
+      {photos.large==null&&photos.small==null?<img src={defaultPhoto} alt=''></img>:<img src='' alt=''></img>}
+      <div className={''}>
       {name}
       {followed ?
-        <button onClick={() => onClickUnFollowHandler(userId)}>unfollow</button> :
-        <button onClick={() => onClickFollowHandler(userId)}>follow</button>}
+        <button onClick={() => onClickUnFollowHandler(id)}>unfollow</button> :
+        <button onClick={() => onClickFollowHandler(id)}>follow</button>}
+    </div>
+    </div>
     </div>
   )
 }
