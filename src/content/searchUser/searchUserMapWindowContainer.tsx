@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Dispatch} from 'redux'
 import {
   followUserActionCreator,
+  SearchUserInitStateType,
   setUserActionCreator,
   unfollowUserActionCreator,
   UserType
@@ -12,13 +13,15 @@ import {RootState} from '../../redux/store-redux'
 
 type MapStateToPropsType={
   users:Array<UserType>
+  pageSize:number,
+  totalCount:number
 }
 
 
 type MapDispatchToPropsType={
   followUser:(id:number)=>void,
   unfollowUser:(id:number)=>void,
-  setUser:(users:Array<UserType>)=>void
+  setUser:(users:Array<UserType>)=>void,
 }
 
 
@@ -26,7 +29,10 @@ export type searchUserMapWindowContainerType=MapDispatchToPropsType&MapStateToPr
 
 
 let mapStateToProps=(state:RootState):MapStateToPropsType=>{
-  return({users:state.searchUserReduser.users})
+  return({users:state.searchUserReduser.users,
+    pageSize:state.searchUserReduser.pageSize,
+    totalCount:state.searchUserReduser.totalCount}
+    )
 
 }
 

@@ -1,31 +1,55 @@
-import  axios from "axios"
-import React, {Component} from "react"
-import { v1 } from "uuid"
+import axios from "axios"
+import React, { Component, useState } from "react"
 import { SearchUserC } from "./searchUserC"
 import { searchUserMapWindowContainerType } from "./searchUserMapWindowContainer"
-
+import style from './searchUser.module.scss'
 
 export class searchUserMapWindowC extends React.Component<searchUserMapWindowContainerType>{
 
 
-componentDidMount(): void {
+
+
+  buttonsNumber: number = this.props.totalCount / this.props.pageSize
+
+
+
+  mapUsersForList = this.props.users.map((u) => {
+    
+    if(this.props.users.length===0){
+
+      axios.get('https://social-network.samuraijs.com/api/1.0/users').then(Response => {
+        this.props.setUser(Response.data)
   
-  axios.get('https://social-network.samuraijs.com/api/1.0/users').then (Response=>{
-    this.props.setUser(Response.data.items)
+        console.log(Response.data);
+        
+      })
+  
+  
+    }
+  
+
+    return <div key={u.id}><SearchUserC
+      id={u.id}
+      name={u.name}
+      followed={u.followed}
+      followUser={this.props.followUser}
+      unfollowUser={this.props.unfollowUser}
+      status={null}
+      photos={u.photos} /></div>
   })
 
-}
-
-  mapUsersForList = this.props.users.map((u) => { return <div key={v1()}><SearchUserC id={u.id} name={u.name} followed={u.followed} followUser={this.props.followUser} unfollowUser={this.props.unfollowUser} status={null} photos={u.photos}/></div> })
 
 
-render(){
-  return (
-    <div className='flex'>
-      {this.mapUsersForList}
-    </div>
-  )
-}
+  render() {
+
+
+    return (
+      <div className='flex'>
+        {this.mapUsersForList}
+        j
+      </div>
+    )
+  }
 
 }
 

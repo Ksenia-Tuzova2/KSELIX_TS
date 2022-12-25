@@ -1,4 +1,4 @@
-import React from "react"
+
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -6,6 +6,7 @@ const SEARCH_USER = 'SEARCH_USER'
 const SET_USER='SET_USER'
 
 //не использовать расширение жсх для редьюсеров - могут быть баги
+
 export type PhotosType={
   small:string|null
   large:string|null
@@ -21,13 +22,20 @@ export type UserType=  {
 ,
 
 }
-type SearchUserInitStateType = {
+
+
+
+export type SearchUserInitStateType = {
 users:Array<UserType>
+totalCount:number
+pageSize:number,
+
+
 }
 const SearchUserInitState: SearchUserInitStateType = {
-  users: [
-  
-  ]
+  users: [],
+ pageSize:5,
+ totalCount:0
 }
 
 type ActionType = {
