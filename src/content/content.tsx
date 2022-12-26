@@ -5,7 +5,7 @@ import { Dialogs } from './dialogs/dialogs'
 import { Profile } from './profile/profile'
 import { Friends } from './friends/friends'
 import { NewsFeedContainer } from './newsfeed/newsfeedContainer';
-import { SearchUserMapWindowContainer } from './searchUser/searchUserMapWindowContainer';
+import { SearchUserContainer } from './searchUser/searchUserContainer';
 
 
 
@@ -34,8 +34,8 @@ export const Content: React.FC<ContentPropsType> = ({
 					// messageData={appState.profileReducer.messageData} dispatch={dispatch}
 					/>}
 				/>
-				<Route path='/searchUserMapWindowContainer/*'
-					element={<SearchUserMapWindowContainer/>	}
+				<Route path='/SearchUserContainer/*'
+					element={<SearchUserContainer/>	}
 				/>
 			</Routes>
 			

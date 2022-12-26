@@ -24,7 +24,7 @@ const MenuBar:React.FC= () => {
                     <li><Link to='friends'><img src={FriendsIcon} alt='s'></img><p>Friends</p></Link></li>
                     <li><Link to='news'><img src={NewsIcon} alt='r'></img><p>News</p></Link></li>
                     <li><Link to='music'><img src={MusicIcon} alt='f'></img><p>Music</p></Link></li>
-                    <li><Link to='searchUserMapWindowContainer'><img src='*' alt='r'></img><p>Search</p></Link></li>
+                    <li><Link to='SearchUserContainer'><img src='*' alt='r'></img><p>Search</p></Link></li>
                     <li className={style.lastchild}><a href='#'><img src={SettingIcon} alt='e'></img><p>Settings</p></a></li>
                 </ul>
             </nav>

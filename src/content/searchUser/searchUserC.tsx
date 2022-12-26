@@ -28,7 +28,9 @@ export class SearchUserC extends React.Component<SearchUserType>{
     return (
       <div className={Box.Box}>
         <div className={Style.flex}>
-          {this.props.photos.large == null && this.props.photos.small == null ? <img src={defaultPhoto} alt=''></img> : <img src='' alt=''></img>}
+          {this.props.photos.large == null && this.props.photos.small == null ? 
+          <img src={defaultPhoto} alt=''></img> :
+           <img src='' alt=''></img>}
           <div className={''}>
             {this.props.name}
             {this.props.followed ?

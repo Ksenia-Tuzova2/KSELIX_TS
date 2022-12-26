@@ -3,74 +3,79 @@
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SEARCH_USER = 'SEARCH_USER'
-const SET_USER='SET_USER'
+const SET_USER = 'SET_USER'
 
 //не использовать расширение жсх для редьюсеров - могут быть баги
 
-export type PhotosType={
-  small:string|null
-  large:string|null
+export type PhotosType = {
+  small: string | null
+  large: string | null
 }
-export type UserType=  {
-  
+export type UserType = {
+
   name: string,
-    id: number,
-    uniqueUrlName: null|string,
-    photos:PhotosType
-    status: null,
-    followed: boolean
-,
+  id: number,
+  uniqueUrlName: null | string,
+  photos: PhotosType
+  status: null,
+  followed: boolean
+  ,
 
 }
 
 
 
 export type SearchUserInitStateType = {
-users:Array<UserType>
-totalCount:number
-pageSize:number,
-
+  items: Array<UserType>
+  totalCount: number
+  pageSize: number,
+  currentPage:number
 
 }
 const SearchUserInitState: SearchUserInitStateType = {
-  users: [],
- pageSize:5,
- totalCount:0
+  items: [],
+  pageSize: 5,
+  totalCount: 0,
+  currentPage:1,
 }
 
 type ActionType = {
   type: string,
   id: number
-  users:Array<UserType> 
+  items:SearchUserInitStateType
 }
 
 export const searchUserReduser = (state: SearchUserInitStateType = SearchUserInitState, action: ActionType): SearchUserInitStateType => {
   switch (action.type) {
     case FOLLOW: {
-      let followUser=state.users.map((u)=>{
-    
-        if(u.id===action.id){
-                  // здесь даже не делаем копию, так как мап выплевывает новый массив
-          return {...u, followed:true}
-       }else {return {...u}}
+      let followUser = state.items.map((u) => {
+
+        if (u.id === action.id) {
+          // здесь даже не делаем копию, так как мап выплевывает новый массив
+          return { ...u, followed: true }
+        } else { return { ...u } }
       })
       console.log('followed');
-      
-      return { ...state, users: followUser  };
+
+      return { ...state, items: followUser };
     }
     case UNFOLLOW: {
-      const unfollowUser=state.users.map((u)=>{
-        if(u.id===action.id){
-          return {...u, followed:false}
-        }else{return{...u}}})
-      return { ...state ,
-         users: unfollowUser
-    }}
+      const unfollowUser = state.items.map((u) => {
+        if (u.id === action.id) {
+          return { ...u, followed: false }
+        } else { return { ...u } }
+      })
+      return {
+        ...state,
+        items: unfollowUser
+      }
+    }
     case SEARCH_USER: {
       return { ...state };
     }
-    case  SET_USER: {
-      return { ...state, users:[...state.users, ...action.users] };
+    case SET_USER: {
+      // debugger
+      return { ...state, items: [...state.items, ...action.items.items] ,totalCount: action.items.totalCount };
     }
     default: {
       return state
@@ -90,6 +95,6 @@ export const unfollowUserActionCreator = (id: number) => {
 export const searchUserActionCreator = (id: number) => {
   return { type: UNFOLLOW, id }
 }
-export const setUserActionCreator = (users:Array<UserType>) => {
-  return { type: SET_USER, users}
+export const setUserActionCreator = (items: SearchUserInitStateType) => {
+  return { type: SET_USER, items }
 }

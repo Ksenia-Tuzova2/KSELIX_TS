@@ -1,4 +1,4 @@
-import {searchUserMapWindowC} from "./searchUserMapWindowC"
+
 import {connect} from 'react-redux'
 import {Dispatch} from 'redux'
 import {
@@ -9,19 +9,23 @@ import {
   UserType
 } from '../../redux/searchUserReduser'
 import {RootState} from '../../redux/store-redux'
+import { SearchUserMapWindowC } from './searchUserCMap'
 
 
-type MapStateToPropsType={
-  users:Array<UserType>
-  pageSize:number,
-  totalCount:number
-}
+type MapStateToPropsType=SearchUserInitStateType
+
+
+// {
+//   items:Array<UserType>
+//   pageSize:number,
+//   totalCount:number
+// }
 
 
 type MapDispatchToPropsType={
   followUser:(id:number)=>void,
   unfollowUser:(id:number)=>void,
-  setUser:(users:Array<UserType>)=>void,
+  setUser:(items:SearchUserInitStateType)=>void,
 }
 
 
@@ -29,9 +33,12 @@ export type searchUserMapWindowContainerType=MapDispatchToPropsType&MapStateToPr
 
 
 let mapStateToProps=(state:RootState):MapStateToPropsType=>{
-  return({users:state.searchUserReduser.users,
+  // console.log(state.searchUserReduser.totalCount);
+  
+  return({items:state.searchUserReduser.items,
     pageSize:state.searchUserReduser.pageSize,
-    totalCount:state.searchUserReduser.totalCount}
+    totalCount:state.searchUserReduser.totalCount,
+    currentPage:state.searchUserReduser.currentPage}
     )
 
 }
@@ -41,10 +48,10 @@ let mapDispatchToProps=(dispatch:Dispatch):MapDispatchToPropsType=>{
   return{
     followUser:(id:number)=>dispatch(followUserActionCreator(id)),
     unfollowUser:(id:number)=>dispatch(unfollowUserActionCreator(id)),
-    setUser:(users:Array<UserType>)=>dispatch(setUserActionCreator(users))
+    setUser:(items:SearchUserInitStateType)=>dispatch(setUserActionCreator(items))
   }
   }
 
 
-export const SearchUserMapWindowContainer=connect(mapStateToProps,mapDispatchToProps)(searchUserMapWindowC)
+export const SearchUserContainer=connect(mapStateToProps,mapDispatchToProps)(SearchUserMapWindowC)
 
