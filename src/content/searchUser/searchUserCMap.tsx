@@ -7,7 +7,7 @@ import { searchUserMapWindowContainerType } from "./searchUserContainer"
 export class SearchUserMapWindowC extends React.Component<searchUserMapWindowContainerType>{
 
   componentDidMount(): void {
-    axios.get('https://social-network.samuraijs.com/api/1.0/users').then( (Response:any) => {
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then( (Response:any) => {
       // debugger
       this.props.setUser(Response.data)
       
@@ -43,35 +43,40 @@ export class SearchUserMapWindowC extends React.Component<searchUserMapWindowCon
 
 
 
-  buttonsNumber: number = this.props.totalCount / this.props.pageSize
-
-  makeButtonsArr:any=()=>{
-    let buttonNumberArr: number[]
-    buttonNumberArr=[]
-    let i:number
-    for( i=0;i<=this.buttonsNumber;i++){
-     buttonNumberArr.push(i)
-    }
-    return buttonNumberArr
-  }
 
 
 
-  mapPageButtons:any
-  
   // =this.makeButtonsArr.map(b=>{return(
   // <button onClick={this.pageButtonOnClickHandler}>{b}</button>)})
 
   render() {
+
+    let buttonsNumber: number = Math.ceil(this.props.totalCount / this.props.pageSize
+)
+    let buttonNumberArr: number[]=[]
+
+   let  makeButtonsArr:any=()=>{
+   
+      let i:number
+      for( i=0;i<=buttonsNumber;i++){
+       buttonNumberArr.push(i)
+      }
+      return buttonNumberArr
+  
+
+    }
+
+    let mapPageButtons=makeButtonsArr().map((el:any)=>{ return<span > {el} </span>})
+   
+    console.log(mapPageButtons);
+    
 
     return (
       <div className='flex'>
        
         {this.mapUsersForList}
         <button onClick={this.showMoreButtonOnClickHandler}>показать еще</button>
-        {this.mapPageButtons}
-        {this.makeButtonsArr}
-
+        {mapPageButtons}
       </div>
     )
   }

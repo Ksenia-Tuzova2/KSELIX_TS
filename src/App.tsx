@@ -6,7 +6,7 @@ import Footer from './footer/footer';
 import { Main } from './main/main';
 // import { useDispatch } from 'react-redux';
 // import { useSelector } from 'react-redux';
-import { RootState, store } from './redux/store-redux';
+
 
 export type AppPropsType={
   // _appState: RootState, 
@@ -16,7 +16,7 @@ export type AppPropsType={
 
 const App: React.FC<AppPropsType>= () => {
   // debugger
-const appState = store.getState()
+
 console.log('rerender')
   return (
     <div className={s.App}>
