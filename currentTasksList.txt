@@ -1,0 +1,5 @@
+ filter- игорь пишет снаружи хэндлеров условия с фильтрациейй массива- но будет ли оно работать в случае не снаружи
+catch right new data from server
+github pages
+make pagination
+make counter with redux

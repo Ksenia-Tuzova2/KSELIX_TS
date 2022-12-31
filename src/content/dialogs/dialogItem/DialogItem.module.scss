@@ -1,0 +1,21 @@
+.dialogBar__friendMassage{
+    display: flex;
+}
+.NameTimeMassageWrapper{
+
+}
+.FriendAvatar{
+    display: block;
+    margin: 7px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+background-color: aqua;
+}
+.NameTimeWrapper{
+display: flex;
+
+}
+.FriendName{
+    flex-grow: 1;
+}

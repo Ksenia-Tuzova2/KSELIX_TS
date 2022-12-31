@@ -1,0 +1,16 @@
+.NewPost{
+        display: flex;
+        background-color: white;
+        border-radius: 10px;
+        padding: 5px;
+        margin: 0 0 5px 0;
+      }
+
+.NewPost__likeDislikeWrapper{
+  display: flex;
+}      
+
+.FlexGrow{
+ flex-grow: 1;
+ max-width: 10px;
+}
