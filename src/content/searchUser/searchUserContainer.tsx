@@ -4,6 +4,8 @@ import {Dispatch} from 'redux'
 import {
   followUserActionCreator,
   SearchUserInitStateType,
+  setCurrentPageActionCreator,
+  setTotalCountActionCreator,
   setUserActionCreator,
   unfollowUserActionCreator,
   UserType
@@ -15,17 +17,12 @@ import { SearchUserMapWindowC } from './searchUserCMap'
 type MapStateToPropsType=SearchUserInitStateType
 
 
-// {
-//   items:Array<UserType>
-//   pageSize:number,
-//   totalCount:number
-// }
-
-
 type MapDispatchToPropsType={
   followUser:(id:number)=>void,
   unfollowUser:(id:number)=>void,
   setUser:(items:SearchUserInitStateType)=>void,
+  setCurrentPage:(currentPage:number)=>void
+  setTotalCount:(totalCount:number)=>void
 }
 
 
@@ -48,8 +45,14 @@ let mapDispatchToProps=(dispatch:Dispatch):MapDispatchToPropsType=>{
   return{
     followUser:(id:number)=>dispatch(followUserActionCreator(id)),
     unfollowUser:(id:number)=>dispatch(unfollowUserActionCreator(id)),
-    setUser:(items:SearchUserInitStateType)=>dispatch(setUserActionCreator(items))
-  }
+
+
+    setUser:(items:SearchUserInitStateType)=>dispatch(setUserActionCreator(items)),
+
+    setCurrentPage:(currentPage:number)=>dispatch(setCurrentPageActionCreator(currentPage)),
+    
+  setTotalCount:(totalCount:number)=>dispatch(setTotalCountActionCreator(totalCount))
+}
   }
 
 

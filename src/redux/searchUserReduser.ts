@@ -1,9 +1,9 @@
-
-
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SEARCH_USER = 'SEARCH_USER'
 const SET_USER = 'SET_USER'
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
+const SET_TOTAL_COUNT='SET_TOTAL_COUNT'
 
 //не использовать расширение жсх для редьюсеров - могут быть баги
 
@@ -29,20 +29,22 @@ export type SearchUserInitStateType = {
   items: Array<UserType>
   totalCount: number
   pageSize: number,
-  currentPage:number
+  currentPage: number
 
 }
 const SearchUserInitState: SearchUserInitStateType = {
   items: [],
   pageSize: 5,
   totalCount: 0,
-  currentPage:1,
+  currentPage: 3,
 }
 
 type ActionType = {
   type: string,
-  id: number
-  items:SearchUserInitStateType
+  id: number,
+  items: SearchUserInitStateType,
+  currentPage: number
+  totalCount:number
 }
 
 export const searchUserReduser = (state: SearchUserInitStateType = SearchUserInitState, action: ActionType): SearchUserInitStateType => {
@@ -75,7 +77,13 @@ export const searchUserReduser = (state: SearchUserInitStateType = SearchUserIni
     }
     case SET_USER: {
       // debugger
-      return { ...state, items: [...state.items, ...action.items.items] ,totalCount: action.items.totalCount };
+      return { ...state, items: [ ...action.items.items], totalCount: action.items.totalCount };
+    }
+    case SET_CURRENT_PAGE: {
+      return { ...state, currentPage: action.currentPage }
+    }
+    case SET_TOTAL_COUNT: {
+      return { ...state, totalCount:action.totalCount}
     }
     default: {
       return state
@@ -95,6 +103,15 @@ export const unfollowUserActionCreator = (id: number) => {
 export const searchUserActionCreator = (id: number) => {
   return { type: UNFOLLOW, id }
 }
+
 export const setUserActionCreator = (items: SearchUserInitStateType) => {
   return { type: SET_USER, items }
+}
+
+export const setCurrentPageActionCreator = (currentPage: number) => {
+  return { type: SET_CURRENT_PAGE, currentPage }
+}
+
+export const setTotalCountActionCreator = (totalCount: number) => {
+  return { type: SET_TOTAL_COUNT, totalCount }
 }
