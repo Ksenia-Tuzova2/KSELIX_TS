@@ -1,6 +1,6 @@
 import React from 'react'
 import Box from '../../box.module.scss'
-import BtnStyle from '../../btn.module.scss'
+import btnStyle from '../../btn.module.scss'
 // import RegistrationForm from './registration/registrationForm'
 import { Link, Routes, Route } from 'react-router-dom'
 
@@ -17,7 +17,7 @@ export const Authorization = () => {
 
             </form>
             <div>or</div>
-            <Link className={BtnStyle.Btn} to='/registrationForm'>registration</Link>
+            <Link className={btnStyle.Btn} to='/registrationForm'>registration</Link>
 
         </div>
     )

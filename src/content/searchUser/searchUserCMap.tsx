@@ -74,7 +74,7 @@ export class SearchUserMapWindowC extends React.Component<searchUserMapWindowCon
 
     let mapPageButtons=makeButtonsArr().map((el:any)=>{ 
 
-      return<span onClick={(e)=>pageButtonOnClickHandler(el)} className={this.props.currentPage===el?style.Selected:''}> {el} </span>}
+      return<span onClick={(e)=>pageButtonOnClickHandler(el)} className={this.props.currentPage===el?style.selected:''}> {el} </span>}
       
       )
    

@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import { RegistrationForm } from '../content/autorization/registration/registrationForm'
 import { Authorization } from '../content/autorization/autorization';
-import { Main } from '../main/main';
+import { main } from '../main/main';
 import { MainType } from '../main/main';
 import React from 'react';
 

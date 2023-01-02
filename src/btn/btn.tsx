@@ -1,5 +1,5 @@
 import React from 'react'
-import BtnStyle from './btn.module.scss'
+import btnStyle from './btn.module.scss'
 
 
 type PropsType={
@@ -8,7 +8,7 @@ type PropsType={
 const Btn=(props: PropsType)=>{
     return(
         <div >
-        <a className={BtnStyle.Btn} href="#">{props.name}
+        <a className={btnStyle.Btn} href="#">{props.name}
         </a>
         </div>
     )

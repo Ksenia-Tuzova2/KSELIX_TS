@@ -1,7 +1,7 @@
 import React from 'react'
 import DialogAreaStyle from './dialogArea.module.scss'
 import Box from '../../../box.module.scss'
-import BtnStyle from '../../../btn.module.scss'
+import btnStyle from '../../../btn.module.scss'
 import {v1} from 'uuid'
 import { DialogAreaContainerPropsType } from './dialogAreaContainer'
 
@@ -37,7 +37,7 @@ export const DialogArea  = ({updateMesText,addMessage,newMesText, MyMessage}:Dia
                                   onChange={(e) => upateInputValueChangeHandler(e.currentTarget.value)}></textarea>
                 <input type="file" className={DialogAreaStyle.FileInput}/>
                 <button onClick={() => addMessageHandler(newMesText)}
-                        className={BtnStyle.Btn}>send
+                        className={btnStyle.Btn}>send
                 </button>
             </div>
         </div>
