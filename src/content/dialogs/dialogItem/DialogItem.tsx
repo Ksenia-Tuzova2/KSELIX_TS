@@ -1,20 +1,25 @@
 import dialogItemStyle from './dialogItem.module.scss'
 import box from '../../../box.module.scss'
 
+type DialogItemPropsType={
+    name:string,
+    time:string,
+    message:string,
+}
 
-export const DialogItem=(props: any)=>{
+export const DialogItem=({name,time,message}: DialogItemPropsType)=>{
     return(
 
-        <div className={dialogItemStyle.dialogBar__friendMassage+' '+box.box}>
+        <div className={dialogItemStyle.dialogBar__friendMessage+' '+box.box}>
            
             <a  className={dialogItemStyle.FriendAvatar }href="#"> </a>
                 <div>
-                    <div className={dialogItemStyle.NameTimeMassageWrapper}>
-                <div className={dialogItemStyle.NameTimeWrapper}>
-                <div className={dialogItemStyle.FriendName}>{props.name}</div>
-                <div className={dialogItemStyle.Time}>{props.time}</div>
+                    <div className={dialogItemStyle.nameTimeMessageWrapper}>
+                <div className={dialogItemStyle.nameTimeWrapper}>
+                <div className={dialogItemStyle.friendName}>{name}</div>
+                <div className={dialogItemStyle.time}>{time}</div>
                 </div>
-                     <div className={dialogItemStyle.FriendMassage}>{props.message}</div>
+                     <div className={dialogItemStyle.friendMessage}>{message}</div>
                 </div>
 
             </div>

@@ -46,13 +46,6 @@ import { DialogArea } from './dialogArea'
 
  export type DialogAreaContainerPropsType=MapDispatchToPropsType& MapStateToPropsType
  
-//  {
-//     newMesText: string
-//     MyMessage: MyMessageType[]
-//     updateMesText:( newtext: string)=>void,
-//     addMessage:(message: string)=>void,
-//  }
-
 let mapDispatchToProps=(dispatch:Dispatch):MapDispatchToPropsType=>{
     return{
         updateMesText:( newtext: string)=>dispatch(updateMesTextActionCreator(newtext)),

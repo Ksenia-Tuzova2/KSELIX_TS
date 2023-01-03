@@ -1,10 +1,10 @@
-.dialogBar__friendMassage{
+.dialogBar__friendMessage{
     display: flex;
 }
-.NameTimeMassageWrapper{
+.nameTimeMessageWrapper{
 
 }
-.FriendAvatar{
+.friendAvatar{
     display: block;
     margin: 7px;
     height: 40px;
@@ -12,10 +12,10 @@
     border-radius: 50%;
 background-color: aqua;
 }
-.NameTimeWrapper{
+.nameTimeWrapper{
 display: flex;
 
 }
-.FriendName{
+.friendName{
     flex-grow: 1;
 }
