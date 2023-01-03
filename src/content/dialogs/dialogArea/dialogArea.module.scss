@@ -1,32 +1,30 @@
-.DialogArea{
+.dialogArea{
 	display: flex;
 	flex-direction: column;
 }
 
-.Form{
+.form{
 	display: flex;
 }
-.TextInput{
+
+.textInput{
 	border: 0;
 	width: 100%;
 }
-.FileInput{
-	
-}
-.Massages{
+
+.messages{
 flex-grow: 1;
 }
-.MassageWrap{
-	display: flex;
 
+.messageWrap{
+	display: flex;
 }
-.FlexGrow{
+
+.flexGrow{
 	flex-grow: 1;
 	min-width:30%;
 }
-.MyMessage{
-	text-align: right;
-}
-.Massage{
 
+.myMessage{
+	text-align: right;
 }

@@ -14,7 +14,7 @@ export const Header:React.FC = () => {
       <Logo />
       <div className={HeaderStyle.Flexgrow}></div>
       <Avatar />
-      <Link className={btnStyle.Btn} to='/content' >come in</Link>
+      <Link className={btnStyle.btn} to='/content' >come in</Link>
 
     
     </header>

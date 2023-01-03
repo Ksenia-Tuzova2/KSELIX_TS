@@ -1,6 +1,6 @@
 import React from 'react'
-import style from './menu-bar.module.scss'
-import Box from '../../box.module.scss'
+import styleMenuBar from './menu-bar.module.scss'
+import box from '../../box.module.scss'
 
 import ProfileIcon from './icons-menu-bar/cil_hamburger-menu.svg'
 
@@ -15,17 +15,16 @@ import {  Link } from 'react-router-dom'
 
 
 const MenuBar:React.FC= () => {
-    // debugger
     return (
-            <nav className={style.menubar__wrapper+' '+Box.Box}>
-                <ul className={style.menuBar__list}>
-                    <li className={style.firstchild}><Link to='profile'><img src={ProfileIcon} alt='a'></img><p>Profile</p></Link></li>
+            <nav className={styleMenuBar.menubar__wrapper+' '+box.box}>
+                <ul className={styleMenuBar.menuBar__list}>
+                    <li className={styleMenuBar.firstchild}><Link to='profile'><img src={ProfileIcon} alt='a'></img><p>Profile</p></Link></li>
                     <li><Link to='dialogs'><img src={MassageIcon} alt=''></img><p>Dialogs</p></Link></li>
-                    <li><Link to='friends'><img src={FriendsIcon} alt='s'></img><p>Friends</p></Link></li>
+                    <li><Link to='friends'><img src={FriendsIcon} alt=''></img><p>Friends</p></Link></li>
                     <li><Link to='news'><img src={NewsIcon} alt='r'></img><p>News</p></Link></li>
                     <li><Link to='music'><img src={MusicIcon} alt='f'></img><p>Music</p></Link></li>
                     <li><Link to='SearchUserContainer'><img src='*' alt='r'></img><p>Search</p></Link></li>
-                    <li className={style.lastchild}><a href='#'><img src={SettingIcon} alt='e'></img><p>Settings</p></a></li>
+                    <li className={styleMenuBar.lastchild}><a href='#'><img src={SettingIcon} alt='e'></img><p>Settings</p></a></li>
                 </ul>
             </nav>
     )

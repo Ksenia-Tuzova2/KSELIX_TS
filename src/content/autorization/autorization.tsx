@@ -1,5 +1,5 @@
 import React from 'react'
-import Box from '../../box.module.scss'
+import box from '../../box.module.scss'
 import btnStyle from '../../btn.module.scss'
 // import RegistrationForm from './registration/registrationForm'
 import { Link, Routes, Route } from 'react-router-dom'
@@ -9,7 +9,7 @@ import { Link, Routes, Route } from 'react-router-dom'
 
 export const Authorization = () => {
     return (
-        <div className={Box.Box}>
+        <div className={box.box}>
             <form action="get">
                 <input type='text' placeholder='login' />
                 <input type='password' placeholder='password' />
@@ -17,7 +17,7 @@ export const Authorization = () => {
 
             </form>
             <div>or</div>
-            <Link className={btnStyle.Btn} to='/registrationForm'>registration</Link>
+            <Link className={btnStyle.btn} to='/registrationForm'>registration</Link>
 
         </div>
     )

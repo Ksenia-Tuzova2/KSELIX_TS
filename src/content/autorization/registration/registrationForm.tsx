@@ -1,8 +1,8 @@
-import Box from '../../../box.module.scss'
+import box from '../../../box.module.scss'
 
 export const RegistrationForm=()=>{
     return(
-           <div className={"registration__wrapper"+' '+Box.Box}>
+           <div className={"registration__wrapper"+' '+box.box}>
                {/* <form action="#" method="get" enctype="multipart/form-data">
                          <input type="text" tabindex="1" placeholder="First Name"/>
               <input type="text" tabindex="2"  placeholder="Second Name"/>

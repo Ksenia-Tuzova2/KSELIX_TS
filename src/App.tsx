@@ -1,5 +1,5 @@
 import './null.css'
-import s from './App.module.scss';
+import style from './App.module.scss';
 import React from 'react';
 import { Header } from './header/header'
 import Footer from './footer/footer';
@@ -19,7 +19,7 @@ const App: React.FC<AppPropsType>= () => {
 
 console.log('rerender')
   return (
-    <div className={s.App}>
+    <div className={style.App}>
 
       <Header />
       <Main

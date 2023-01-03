@@ -1,10 +1,8 @@
 import { useState } from "react"
 
-
 export const MusicList = ({ }) => {
   const [PlayPauseBtn, SetPlayPauseBtn] = useState(true)
   const onClickHandler = (boolean: boolean) => {
-
   }
 
   return (

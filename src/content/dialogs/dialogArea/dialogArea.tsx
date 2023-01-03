@@ -1,8 +1,8 @@
 import React from 'react'
-import DialogAreaStyle from './dialogArea.module.scss'
-import Box from '../../../box.module.scss'
+import dialogAreaStyle from './dialogArea.module.scss'
+import box from '../../../box.module.scss'
 import btnStyle from '../../../btn.module.scss'
-import {v1} from 'uuid'
+import { v1 } from 'uuid'
 import { DialogAreaContainerPropsType } from './dialogAreaContainer'
 
 
@@ -11,55 +11,56 @@ type MyMessageType = {
 }
 
 
-export const DialogArea  = ({updateMesText,addMessage,newMesText, MyMessage}:DialogAreaContainerPropsType) => {
-  
-    let mapMyMes = () => MyMessage.map((el: MyMessageType) => <MyMesItem key={v1()}    message={el.message}
+export const DialogArea = ({ updateMesText, addMessage, newMesText, MyMessage }: DialogAreaContainerPropsType) => {
+
+    let mapMyMes = () => MyMessage.map((el: MyMessageType) => <MyMesItem key={v1()} message={el.message}
     />)
 
     //         //сделать страничку диалогов чтобы через диспатч вызывать метод в стейте чтобы функция добавления сообщения отправляла строку в хранилище
-            let addMessageHandler = (message: string) => {
-                addMessage(message)
-            }
-            let upateInputValueChangeHandler = (newtext: string) => {
-                updateMesText(newtext)
-            }
+    let addMessageHandler = (message: string) => {
+        addMessage(message)
+    }
+    let upateInputValueChangeHandler = (newtext: string) => {
+        updateMesText(newtext)
+    }
 
     return (
-        <div className={DialogAreaStyle.DialogArea}>
-            <div className={DialogAreaStyle.Massages}>
-                <YourMasItem message={'hi'}/>
-
+        <div className={dialogAreaStyle.dialogArea}>
+            <div className={dialogAreaStyle.messages}>
+                <YourMasItem message={'hi'} />
                 {mapMyMes()}
             </div>
-            <div className={DialogAreaStyle.Form}>
-                        <textarea className={DialogAreaStyle.TextInput + " " + Box.Box}
-                                  placeholder='Type your message...' value={newMesText}
-                                  onChange={(e) => upateInputValueChangeHandler(e.currentTarget.value)}></textarea>
-                <input type="file" className={DialogAreaStyle.FileInput}/>
+            <div className={dialogAreaStyle.form}>
+                <textarea className={dialogAreaStyle.textInput + " " + box.box}
+                    placeholder='Type your message...' value={newMesText}
+                    onChange={(e) => upateInputValueChangeHandler(e.currentTarget.value)}>
+                </textarea>
+                <input type="file"
+                 className={dialogAreaStyle.fileInput} />
                 <button onClick={() => addMessageHandler(newMesText)}
-                        className={btnStyle.Btn}>send
+                    className={btnStyle.btn}>send
                 </button>
             </div>
         </div>
     )
 }
 
-export const MyMesItem: React.FC<MyMessageType> = ({message}:MyMessageType) => {
+export const MyMesItem: React.FC<MyMessageType> = ({ message }: MyMessageType) => {
 
     return (
-        <div className={DialogAreaStyle.MassageWrap}>
-            <div className={DialogAreaStyle.FlexGrow}></div>
-            <div className={DialogAreaStyle.MyMessage + ' ' + Box.Box}>{message}</div>
+        <div className={dialogAreaStyle.messageWrap}>
+            <div className={dialogAreaStyle.flexGrow}></div>
+            <div className={dialogAreaStyle.myMessage + ' ' + box.box}>{message}</div>
         </div>
 
     )
 }
 
-export const YourMasItem:React.FC<MyMessageType> = ({message}:MyMessageType)=> {
+export const YourMasItem: React.FC<MyMessageType> = ({ message }: MyMessageType) => {
     return (
-        <div className={DialogAreaStyle.MassageWrap}>
-            <div className={DialogAreaStyle.Massage + ' ' + Box.Box}>{message}</div>
-            <div className={DialogAreaStyle.FlexGrow}></div>
+        <div className={dialogAreaStyle.MassageWrap}>
+            <div className={dialogAreaStyle.Massage + ' ' + box.box}>{message}</div>
+            <div className={dialogAreaStyle.FlexGrow}></div>
         </div>
 
     )

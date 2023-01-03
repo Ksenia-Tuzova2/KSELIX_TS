@@ -1,4 +1,4 @@
-.NewPost{
+.newPost{
         display: flex;
         background-color: white;
         border-radius: 10px;
@@ -6,11 +6,11 @@
         margin: 0 0 5px 0;
       }
 
-.NewPost__likeDislikeWrapper{
+.newPost__likeDislikeWrapper{
   display: flex;
 }      
 
-.FlexGrow{
+.flexGrow{
  flex-grow: 1;
  max-width: 10px;
 }

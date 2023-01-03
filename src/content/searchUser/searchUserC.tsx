@@ -1,4 +1,4 @@
-import Box from '../../box.module.scss'
+import box from '../../box.module.scss'
 import style from './searchUser.module.scss'
 import { PhotosType } from '../../redux/searchUserReduser'
 import defaultPhoto from '../menu-bar/icons-menu-bar/codicon_account.svg'
@@ -26,7 +26,7 @@ export class SearchUserC extends React.Component<SearchUserType>{
 
   render() {
     return (
-      <div className={Box.Box}>
+      <div className={box.box}>
         <div className={style.flex}>
           {this.props.photos.large == null && this.props.photos.small == null ? 
           <img src={defaultPhoto} alt=''></img> :

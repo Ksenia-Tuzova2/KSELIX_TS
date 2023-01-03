@@ -1,6 +1,6 @@
 import React, { LegacyRef, RefObject, useState } from 'react'
 import PostAreaStyle from './postArea.module.scss'
-import Box from '../../../../box.module.scss'
+import box from '../../../../box.module.scss'
 import btnStyle from '../../../../btn.module.scss'
 import { postAreaContainerType } from './postAreaContainer'
 import NewPosts from '../newPosts/newPosts'
@@ -39,7 +39,7 @@ export const PostArea = ({newPostText, messageData,addPost ,updateNewPostText ,d
     return (
         <div>
             <div className={PostAreaStyle.FormWrapper}>
-                <textarea className={PostAreaStyle.Input + " " + Box.Box}
+                <textarea className={PostAreaStyle.Input + " " + box.box}
                     placeholder='What`s news?'
                     value={newPostText}
                     ref={newPostElement}
@@ -47,7 +47,7 @@ export const PostArea = ({newPostText, messageData,addPost ,updateNewPostText ,d
                 />
 
 
-                <button className={btnStyle.Btn}
+                <button className={btnStyle.btn}
                     onClick={() => addPostHandler(newPostText)}
                 >post</button>
                 {/* <button onClick={showRef}>a</button> */}
