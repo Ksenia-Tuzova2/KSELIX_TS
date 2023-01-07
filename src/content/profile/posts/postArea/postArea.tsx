@@ -4,6 +4,7 @@ import box from '../../../../box.module.scss'
 import btnStyle from '../../../../btn.module.scss'
 import { postAreaContainerType } from './postAreaContainer'
 import NewPosts from '../newPosts/newPosts'
+import { v1 } from 'uuid'
 
 
 type MType = {
@@ -20,7 +21,7 @@ type Props = {
 }
 export const PostArea = ({newPostText, messageData,addPost ,updateNewPostText ,deletePost}: postAreaContainerType) => {
     // debugger
-    const makeNewPost = () => messageData.map((m: MType, pos: number,) => <NewPosts 
+    const makeNewPost = () => messageData.map((m: MType, pos: number,) => <NewPosts  key={v1()}
     deletePost={deletePost}
     message={m.message} pos={pos}id={m.id} />)
     

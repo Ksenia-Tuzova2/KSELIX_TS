@@ -7,12 +7,19 @@ type MType = {
   message: string,
 }
 
-export const NewsFeed = ({ messageData,deletePost}: NewsFeedContainerType) => {
+export const NewsFeed = ({ messageData, deletePost }: NewsFeedContainerType) => {
 
-      let MakeNewPost = messageData.map((m: MType, pos: number) => <NewPosts message={m.message} key={m.id} pos={pos} id={m.id} deletePost={deletePost} />)
-      return (
-        <div>
-          {MakeNewPost}
-        </div>
-      )
-    }
+  let MakeNewPost = messageData.map((m: MType, pos: number) => {
+    return <NewPosts
+      message={m.message}
+      key={m.id}
+      pos={pos}
+      id={m.id}
+      deletePost={deletePost} />
+  })
+  return (
+    <div>
+      {MakeNewPost}
+    </div>
+  )
+}

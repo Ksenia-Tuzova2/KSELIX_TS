@@ -76,8 +76,7 @@ export const searchUserReduser = (state: SearchUserInitStateType = SearchUserIni
       return { ...state };
     }
     case SET_USER: {
-      // debugger
-      return { ...state, items: [ ...action.items.items], totalCount: action.items.totalCount };
+      return { ...state, items: action.items.items, totalCount: action.items.totalCount };
     }
     case SET_CURRENT_PAGE: {
       return { ...state, currentPage: action.currentPage }
