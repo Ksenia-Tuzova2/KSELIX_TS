@@ -4,6 +4,7 @@ const SEARCH_USER = 'SEARCH_USER'
 const SET_USER = 'SET_USER'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_TOTAL_COUNT='SET_TOTAL_COUNT'
+const SET_FETCH='SET_FETCH'
 
 //не использовать расширение жсх для редьюсеров - могут быть баги
 
@@ -12,39 +13,42 @@ export type PhotosType = {
   large: string | null
 }
 export type UserType = {
-
   name: string,
   id: number,
   uniqueUrlName: null | string,
   photos: PhotosType
   status: null,
-  followed: boolean
-  ,
+  followed: boolean,
 
 }
 
 
 
 export type SearchUserInitStateType = {
-  items: Array<UserType>
-  totalCount: number
+  items: Array<UserType>,
+  totalCount: number,
   pageSize: number,
-  currentPage: number
+  currentPage: number,
+  isFetching:boolean,
 
 }
+
 const SearchUserInitState: SearchUserInitStateType = {
   items: [],
   pageSize: 5,
   totalCount: 0,
   currentPage: 3,
+  isFetching:false,
+
 }
 
 type ActionType = {
   type: string,
   id: number,
   items: SearchUserInitStateType,
-  currentPage: number
-  totalCount:number
+  currentPage: number,
+  totalCount:number,
+  isFetching:boolean,
 }
 
 export const searchUserReduser = (state: SearchUserInitStateType = SearchUserInitState, action: ActionType): SearchUserInitStateType => {
@@ -84,6 +88,9 @@ export const searchUserReduser = (state: SearchUserInitStateType = SearchUserIni
     case SET_TOTAL_COUNT: {
       return { ...state, totalCount:action.totalCount}
     }
+    case SET_FETCH: {
+      return { ...state, isFetching:action.isFetching };
+    }
     default: {
       return state
     }
@@ -92,25 +99,29 @@ export const searchUserReduser = (state: SearchUserInitStateType = SearchUserIni
 
 }
 
-export const followUserActionCreator = (id: number) => {
+export const setFetch = (isFetching: boolean) => {
+  return { type: SET_FETCH, isFetching }
+}
+
+export const followUser = (id: number) => {
   return { type: FOLLOW, id }
 }
 
-export const unfollowUserActionCreator = (id: number) => {
+export const unfollowUser = (id: number) => {
   return { type: UNFOLLOW, id }
 }
-export const searchUserActionCreator = (id: number) => {
+export const searchUser = (id: number) => {
   return { type: UNFOLLOW, id }
 }
 
-export const setUserActionCreator = (items: SearchUserInitStateType) => {
+export const setUser = (items: SearchUserInitStateType) => {
   return { type: SET_USER, items }
 }
 
-export const setCurrentPageActionCreator = (currentPage: number) => {
+export const setCurrentPage = (currentPage: number) => {
   return { type: SET_CURRENT_PAGE, currentPage }
 }
 
-export const setTotalCountActionCreator = (totalCount: number) => {
+export const setTotalCount = (totalCount: number) => {
   return { type: SET_TOTAL_COUNT, totalCount }
 }

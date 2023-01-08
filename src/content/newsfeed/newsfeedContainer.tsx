@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 import { RootState } from '../../redux/store-redux'
 import { NewsFeed } from './newsfeed'
-import { deletePostActionCreator, MessageDataType } from '../../redux/profileReducer'
-import { Dispatch } from 'redux'
+import { deletePost, MessageDataType } from '../../redux/profileReducer'
+
 
 type MapStateToPropsType = {
   messageData: MessageDataType[]
@@ -22,11 +22,11 @@ let mapStateToProps = (state: RootState): MapStateToPropsType => {
   }
 }
 
-let MapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
-  return {
-    deletePost: (id: string) => dispatch(deletePostActionCreator(id))
-  }
-}
+// let MapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+//   return {
+//     deletePost: (id: string) => dispatch(deletePost(id))
+//   }
+// }
 
 
-export const NewsFeedContainer = connect(mapStateToProps, MapDispatchToProps)(NewsFeed)
+export const NewsFeedContainer = connect(mapStateToProps, {deletePost:deletePost})(NewsFeed)

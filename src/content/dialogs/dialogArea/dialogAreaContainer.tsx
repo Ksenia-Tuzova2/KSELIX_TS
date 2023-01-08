@@ -1,5 +1,5 @@
 import  { Dispatch } from 'redux'
-import { addMessageActionCreator, MyMessageType, updateMesTextActionCreator } from '../../../redux/messegeReduser'
+import { addMessage, MyMessageType, updateMesText } from '../../../redux/messegeReduser'
 import { RootState } from '../../../redux/store-redux'
 import { connect } from 'react-redux'
 import { DialogArea } from './dialogArea'
@@ -15,10 +15,10 @@ import { DialogArea } from './dialogArea'
 
 //             //сделать страничку диалогов чтобы через диспатч вызывать метод в стейте чтобы функция добавления сообщения отправляла строку в хранилище
 //             let addMessageHandler = (message: string) => {
-//                 store.dispatch(addMessageActionCreator(message))
+//                 store.dispatch(addMessage(message))
 //             }
 //             let upateInputValueChangeHandler = (newtext: string) => {
-//                 store.dispatch(updateMesTextActionCreator(newtext))
+//                 store.dispatch(updateMesText(newtext))
 //             }
 
 //             return (
@@ -48,8 +48,8 @@ import { DialogArea } from './dialogArea'
  
 let mapDispatchToProps=(dispatch:Dispatch):MapDispatchToPropsType=>{
     return{
-        updateMesText:( newtext: string)=>dispatch(updateMesTextActionCreator(newtext)),
-        addMessage:(message: string)=>dispatch(addMessageActionCreator(message)),
+        updateMesText:( newtext: string)=>dispatch(updateMesText(newtext)),
+        addMessage:(message: string)=>dispatch(addMessage(message)),
     }
 }
 

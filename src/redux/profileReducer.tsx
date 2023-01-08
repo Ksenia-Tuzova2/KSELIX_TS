@@ -59,15 +59,15 @@ type ActionType = {
 }
 
 //креаторы для того, чтобы разбить респонсобилити, как и константы с типами
-export const addPostActionCreator = (newtext: string) => {
+export const addPost = (newtext: string) => {
     return { type: ADD_POST, newtext }
 }
 
-export const updateNewPostTextActionCreator = (newtext: string) => {
+export const updateNewPostText = (newtext: string) => {
     return { type: UPDATE_NEW_POST_TEXT, newtext }
 }
 
-export const deletePostActionCreator = (id: string) => {
+export const deletePost = (id: string) => {
     return { type: DELETE_POST, id }
 }
 

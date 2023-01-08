@@ -1,7 +1,7 @@
 import ProfileStyle from './profile.module.scss'
 import React from 'react'
 import { Posts } from './posts/posts'
-import { UserInfo } from './userInfo/userInfo-list'
+import {UserInfoContainerC} from '././userInfo/userInfoContainerC'
 
 
 type ProfileType = {
@@ -15,7 +15,7 @@ export const Profile: React.FC<ProfileType> = ({
 
     return (
         <div >
-            <UserInfo />
+            <UserInfoContainerC />
             <Posts
             // messageData={messageData}
             //     newPostText={newPostText}

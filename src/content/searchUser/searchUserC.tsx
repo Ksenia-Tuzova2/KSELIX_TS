@@ -3,6 +3,7 @@ import style from './searchUser.module.scss'
 import { PhotosType } from '../../redux/searchUserReduser'
 import defaultPhoto from '../menu-bar/icons-menu-bar/codicon_account.svg'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 type SearchUserType = {
   followUser: (id: number) => void,
@@ -27,6 +28,7 @@ export class SearchUserC extends React.Component<SearchUserType>{
   render() {
     return (
       <div className={box.box}>
+        <Link to={'/Profile/'+this.props.id}>
         <div className={style.flex}>
           {this.props.photos.large == null && this.props.photos.small == null ? 
           <img src={defaultPhoto} alt=''></img> :
@@ -39,6 +41,7 @@ export class SearchUserC extends React.Component<SearchUserType>{
             }
           </div>
         </div>
+        </Link>
       </div>
 
     )

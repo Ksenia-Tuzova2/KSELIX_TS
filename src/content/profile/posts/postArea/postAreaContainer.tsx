@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux'
-import { addPostActionCreator, deletePostActionCreator, MessageDataType, updateNewPostTextActionCreator } from '../../../../redux/profileReducer'
+import { addPost, deletePost, MessageDataType, updateNewPostText } from '../../../../redux/profileReducer'
 import { PostArea } from './postArea'
 import { connect } from 'react-redux'
 import { RootState } from '../../../../redux/store-redux'
@@ -19,8 +19,8 @@ import { RootState } from '../../../../redux/store-redux'
 //                 let state=store.getState()
 
 //                 const makeNewPost = () => state.profileReducer.messageData.map((m: MType, pos: number,) => <NewPostsContainer key={v1()} message={m.message} pos={pos} dispatch={store.dispatch} id={m.id} />)
-//                 const addPostHandler = (newtext: string) => {store.dispatch(addPostActionCreator(newtext))}
-//                 const updateNewPostTextHandler = (text: string) => { store.dispatch(updateNewPostTextActionCreator(text))}
+//                 const addPostHandler = (newtext: string) => {store.dispatch(addPost(newtext))}
+//                 const updateNewPostTextHandler = (text: string) => { store.dispatch(updateNewPostText(text))}
 //                 return (
 //                 <PostArea newPostText={state.profileReducer.newPostText} addPost={addPostHandler} updateNewPostText={updateNewPostTextHandler} makeNewPost={makeNewPost} />
 //                 )
@@ -59,9 +59,9 @@ let mapStateToProps = (state: RootState): MapStateToPropsType => {
 
 let mapDisatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
-        addPost: (newtext: string) => dispatch(addPostActionCreator(newtext)),
-        updateNewPostText: (text: string) => dispatch(updateNewPostTextActionCreator(text)),
-        deletePost: (id: string) => dispatch(deletePostActionCreator(id))
+        addPost: (newtext: string) => dispatch(addPost(newtext)),
+        updateNewPostText: (text: string) => dispatch(updateNewPostText(text)),
+        deletePost: (id: string) => dispatch(deletePost(id))
 
     }
 }

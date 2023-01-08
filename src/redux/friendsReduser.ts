@@ -44,10 +44,10 @@ export const friendsReduser = (state: FriendsInitStateType = friendsInitState, a
 
 }
 
-export const showFriendProfileActionCreator = (message: string) => {
+export const showFriendProfile = (message: string) => {
 	return { type: SHOW_FRIEND_PROFILE, }
 }
 
-export const updateMesTextActionCreator = (newtext: string) => {
+export const updateMesText = (newtext: string) => {
 	return { type: OPEN_CHAT_WITH_FRIEND, }
 }

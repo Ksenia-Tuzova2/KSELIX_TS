@@ -2,16 +2,18 @@
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import {
-  followUserActionCreator,
+  followUser,
   SearchUserInitStateType,
-  setCurrentPageActionCreator,
-  setTotalCountActionCreator,
-  setUserActionCreator,
-  unfollowUserActionCreator,
+  setCurrentPage,
+  setFetch,
+  setTotalCount,
+  setUser,
+  unfollowUser,
   UserType
 } from '../../redux/searchUserReduser'
 import { RootState } from '../../redux/store-redux'
 import { SearchUserApiC } from './SearchUserApiC'
+
 
 
 type MapStateToPropsType = SearchUserInitStateType
@@ -21,8 +23,10 @@ type MapDispatchToPropsType = {
   followUser: (id: number) => void,
   unfollowUser: (id: number) => void,
   setUser: (items: SearchUserInitStateType) => void,
-  setCurrentPage: (currentPage: number) => void
-  setTotalCount: (totalCount: number) => void
+  setCurrentPage: (currentPage: number) => void,
+  setTotalCount: (totalCount: number) => void,
+  setFetching: (isFetching: boolean) => void,
+
 }
 
 
@@ -30,26 +34,40 @@ export type searchUserMapWindowContainerType = MapDispatchToPropsType & MapState
 
 
 let mapStateToProps = (state: RootState): MapStateToPropsType => {
+  // console.log(state.searchUserReduser.totalCount);
+
   return ({
     items: state.searchUserReduser.items,
     pageSize: state.searchUserReduser.pageSize,
     totalCount: state.searchUserReduser.totalCount,
-    currentPage: state.searchUserReduser.currentPage
+    currentPage: state.searchUserReduser.currentPage,
+    isFetching: state.searchUserReduser.isFetching,
   }
   )
+
 }
 
 
-let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
-  return {
-    followUser: (id: number) => dispatch(followUserActionCreator(id)),
-    unfollowUser: (id: number) => dispatch(unfollowUserActionCreator(id)),
-    setUser: (items: SearchUserInitStateType) => dispatch(setUserActionCreator(items)),
-    setCurrentPage: (currentPage: number) => dispatch(setCurrentPageActionCreator(currentPage)),
-    setTotalCount: (totalCount: number) => dispatch(setTotalCountActionCreator(totalCount))
+// let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+//   return {
+//     followUser: (id: number) => dispatch(followUser(id)),
+//     unfollowUser: (id: number) => dispatch(unfollowUser(id)),
+//     setUser: (items: SearchUserInitStateType) => dispatch(setUser(items)),
+//     setCurrentPage: (currentPage: number) => dispatch(setCurrentPage(currentPage)),
+//     setTotalCount: (totalCount: number) => dispatch(setTotalCount(totalCount)),
+//     setFetching: (isFetching: boolean) => dispatch(setFetch(isFetching)),
+//   }
+// }
+
+
+export const SearchUserContainer = connect(mapStateToProps,
+  {
+    followUser:followUser,
+    unfollowUser: unfollowUser,
+    setUser:setUser,
+    setCurrentPage: setCurrentPage,
+    setTotalCount: setTotalCount,
+    setFetching:setFetch,
   }
-}
-
-
-export const SearchUserContainer = connect(mapStateToProps, mapDispatchToProps)(SearchUserApiC)
+)(SearchUserApiC)
 

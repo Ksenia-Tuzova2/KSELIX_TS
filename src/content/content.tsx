@@ -37,6 +37,9 @@ export const Content: React.FC<ContentPropsType> = ({
 				<Route path='/SearchUserContainer/*'
 					element={<SearchUserContainer/>	}
 				/>
+				<Route path={'/Profile'}
+					element={<Profile/>	}
+				/>
 			</Routes>
 			
 		</div>
