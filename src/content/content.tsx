@@ -34,7 +34,7 @@ export const Content: React.FC<ContentPropsType> = ({
 					// messageData={appState.profileReducer.messageData} dispatch={dispatch}
 					/>}
 				/>
-				<Route path='/SearchUserContainer/*'
+				<Route path='/SearchUserContainer/:userId'
 					element={<SearchUserContainer/>	}
 				/>
 				<Route path={'/Profile'}

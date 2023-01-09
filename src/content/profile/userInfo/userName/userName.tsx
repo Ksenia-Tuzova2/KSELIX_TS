@@ -3,13 +3,12 @@ import React from 'react'
 
 
 type UserNameType={
-  frstName:string;
-  scndName:string
+  fullName:string|null|undefined;
 }
-const UserName:React.FC<UserNameType>=({frstName,scndName})=>{
+const UserName:React.FC<UserNameType>=({fullName})=>{
     return(
       <div className={UserNameStyle.UserName}>
-   {frstName} {scndName}</div>
+   {fullName}</div>
     )
 }
 

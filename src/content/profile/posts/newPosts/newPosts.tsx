@@ -26,7 +26,7 @@ const NewPosts:React.FC<NewPostsType>=({message,pos,id,deletePost})=>{
                 <Avatar/>
                 <div className="Name-time-text">
                     <div className="box">              
-                <UserName frstName='Tanya' scndName='Tuzova'/>
+                <UserName fullName='Tanya' />
                 <Time/>
                 <button onClick={()=>deletePostHandler(id)}>x</button>
                 </div> 
