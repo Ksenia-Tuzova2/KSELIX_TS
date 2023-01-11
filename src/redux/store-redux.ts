@@ -13,6 +13,7 @@ const redusersPack = combineReducers({
 
 export type RootState = ReturnType<typeof redusersPack>
 
+//создаем стор при помощи редакса
 export let store: Store<RootState> = createStore(redusersPack, applyMiddleware(thunk))
 
 //@ts-ignore
