@@ -29,7 +29,7 @@ export type ContactsType= {
 
 export type ProfileTrueType={
     
-        aboutMe: string,
+        aboutMe: string|null,
         contacts:ContactsType,
         lookingForAJob: boolean,
         lookingForAJobDescription:  string|null,

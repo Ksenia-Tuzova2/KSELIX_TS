@@ -1,5 +1,5 @@
-import UserInfoCity from "./userInfoCityEducation/userInfoCity"
-import UserInfoEducation from "./userInfoCityEducation/userInfoEducation"
+import UserInfoContacts from "./userInfoCityEducation/userInfoCity"
+import UserInfoJob from "./userInfoCityEducation/userInfoEducation"
 import UserPhoto from "./userPhoto/userPhoto"
 import ProfileStyle from '../profile.module.scss'
 import UserName from "./userName/userName"
@@ -10,17 +10,21 @@ import { UserInfoContainerType } from "./userInfoContainerC"
 
 
 export const UserInfo=({setUserProfile,profile}:UserInfoContainerType)=>{
+
+
+
     return(
       
       <div>
          <div className={ProfileStyle.Profile+' '+box.box}>
-           <UserPhoto/>
+           <UserPhoto photo={profile?.photos}/>
               <div className={ProfileStyle.Profile__userInfo}>
               <UserName fullName={profile?.fullName} />
-              <UserStatus/>
+              <UserStatus status={profile?.aboutMe} />
                   <ul className="userInfo-list">
-                  <UserInfoCity  city={''}/>
-                  <UserInfoEducation nameOfOrg='' ></UserInfoEducation>
+                  <UserInfoContacts  contacts={profile?.contacts}/>
+               
+                  <UserInfoJob job={profile?.lookingForAJobDescription} ></UserInfoJob>
                   </ul>
               </div>
             
