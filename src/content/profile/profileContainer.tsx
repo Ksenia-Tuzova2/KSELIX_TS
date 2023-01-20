@@ -2,7 +2,6 @@
 import { connect } from 'react-redux'
 import {
     setUserProfile
-
 } from '../../redux/profileReducer'
 import { RootState } from '../../redux/store-redux'
 import { ProfileApiC } from './profileApiC'

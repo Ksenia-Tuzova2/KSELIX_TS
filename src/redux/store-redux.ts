@@ -1,6 +1,7 @@
 import { legacy_createStore as createStore, combineReducers, Store } from 'redux'
 import { applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
+import { authReduser } from './authReduser'
 import { messegeReducer } from './messegeReduser'
 import { profileReducer } from './profileReducer'
 import { searchUserReduser } from './searchUserReduser'
@@ -9,6 +10,7 @@ const redusersPack = combineReducers({
   messegeReducer,
   profileReducer,
   searchUserReduser,
+  authReduser,
 })
 
 export type RootState = ReturnType<typeof redusersPack>
