@@ -28,7 +28,7 @@ const App: React.FC<AppPropsType> = () => {
     </div>
   );
 }
-   лчлялв
+
 
 export default App;
 
