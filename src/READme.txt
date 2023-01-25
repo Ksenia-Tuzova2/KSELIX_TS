@@ -1,11 +1,5 @@
- задачи
+current tasks 
 
-иконки background-img в css к нав бару, или  html img
-
-счетчик лайков 
-
-почитать статью как не надо делать- конспект
-
-разобраться с аватарками
-
-...
+make likes counter - how can i redact data on data base 
+make avatars for users
+repeat redux concepts for review
