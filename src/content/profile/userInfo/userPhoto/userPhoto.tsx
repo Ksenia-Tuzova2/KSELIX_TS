@@ -1,9 +1,23 @@
 import PhotoStyle from './userPhoto.module.scss'
-import userPhoto from '../../../../img/myphoto.jpg'
 import React from 'react'
-const UserPhoto:React.FC=({})=>{
+
+type UserPhotoType={
+    photo: {
+        small: any;
+        large: any;
+    } | undefined
+}
+const UserPhoto:React.FC<UserPhotoType>=({photo})=>{
     return(
-        <div className={PhotoStyle.content__userPhoto}><a href="#"><img className={PhotoStyle.img} src={userPhoto} alt="" /></a></div>
+        <div className={PhotoStyle.content__userPhoto}>
+            <a href="#">
+                {photo!==undefined||null?
+                <img className={PhotoStyle.img}
+                 src={photo?.large} 
+                 alt="" />:<></>}
+                
+            </a>
+            </div>
     )
 }
 export default UserPhoto

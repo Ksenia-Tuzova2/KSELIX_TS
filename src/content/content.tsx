@@ -2,10 +2,10 @@ import { Routes, Route } from 'react-router-dom'
 import contentStyle from './content.module.scss'
 import MenuBar from './menu-bar/menu-bar';
 import { Dialogs } from './dialogs/dialogs'
-import { Profile } from './profile/profile'
 import { Friends } from './friends/friends'
 import { NewsFeedContainer } from './newsfeed/newsfeedContainer';
 import { SearchUserContainer } from './searchUser/searchUserContainer';
+import { ProfileContainer } from './profile/profileContainer';
 
 
 
@@ -25,7 +25,7 @@ export const Content: React.FC<ContentPropsType> = ({
 				<Route path='/dialogs/*' element={<Dialogs
 				//  Massage={appState.messegeReducer} dispatch={dispatch}
 				/>} />
-				<Route path='/profile/*' element={<Profile
+				<Route path='/profile' element={<ProfileContainer
 				// messageData={appState.profileReducer.messageData} newPostText={appState.profileReducer.newPostText}   dispatch={dispatch}
 				/>} />
 				<Route path='/friends/*' element={<Friends />} />
@@ -34,11 +34,12 @@ export const Content: React.FC<ContentPropsType> = ({
 					// messageData={appState.profileReducer.messageData} dispatch={dispatch}
 					/>}
 				/>
-				<Route path='/SearchUserContainer/:userId'
+				<Route path='SearchUserContainer'
 					element={<SearchUserContainer/>	}
 				/>
-				<Route path={'/Profile'}
-					element={<Profile/>	}
+				{/* как сюда передать айди и все необходимое для отрисовки нового профиля? */}
+				<Route path={'/profile/:userId'}
+					element={<ProfileContainer/>	}
 				/>
 			</Routes>
 			

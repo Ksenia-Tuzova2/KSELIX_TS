@@ -1,4 +1,4 @@
-import dialogItemStyle from './dialogItem.module.scss'
+import dialogItemStyle from './DialogItem.module.scss'
 import box from '../../../box.module.scss'
 
 type DialogItemPropsType={

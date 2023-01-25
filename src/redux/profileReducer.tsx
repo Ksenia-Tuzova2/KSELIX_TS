@@ -4,7 +4,7 @@ import { v1 } from "uuid"
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const DELETE_POST = 'DELETE-POST'
-const SET_PROFILE='SET_PROFILE'
+const SET_PROFILE = 'SET_PROFILE'
 
 
 //редьюс значит уменьшить- мы уменьшаем нагрузку на диспатч, не громоздя условное ветвление
@@ -16,38 +16,38 @@ export type MessageDataType = {
 
 export type NewPostTextType = string
 
-export type ContactsType= {
-    facebook:  string|null,
-    website:  string|null,
-    vk:  string|null,
-    twitter: string|null,
-    instagram:  string|null,
-    youtube:  string|null,
-    github: string|null,
-    mainLink:  string|null
-  }
+export type ContactsType = {
+    facebook: string | null,
+    website: string | null,
+    vk: string | null,
+    twitter: string | null,
+    instagram: string | null,
+    youtube: string | null,
+    github: string | null,
+    mainLink: string | null
+}
 
-export type ProfileTrueType={
-    
-        aboutMe: string,
-        contacts:ContactsType,
-        lookingForAJob: boolean,
-        lookingForAJobDescription:  string|null,
-        fullName:  string|null,
-        userId: number,
-        photos: {
-          small:  string|null,
-          large:  string|null
-        }
+export type ProfileTrueType = {
+
+    aboutMe: string | null,
+    contacts: ContactsType,
+    lookingForAJob: boolean,
+    lookingForAJobDescription: string | null,
+    fullName: string | null,
+    userId: number,
+    photos: {
+        small: string | null,
+        large: string | null
     }
+}
 
-  export  type ProfileType=ProfileTrueType|null
+export type ProfileType = ProfileTrueType | null
 
 
 export type ProfileInitStateType = {
     newPostText: NewPostTextType,
     messageData: MessageDataType[],
-    profile:ProfileType|null,
+    profile: ProfileType | null,
 }
 
 export const profileInitialState: ProfileInitStateType = {
@@ -78,14 +78,14 @@ export const profileInitialState: ProfileInitStateType = {
             message: ' Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed illo blanditiis accusamus eius, laborum aliquam deserunt atque fuga tempore ad nemo quibusdam perspiciatis recusandae quas illum maxime laudantium aspernatur. Deleniti?',
         },
     ] as Array<MessageDataType>,
-    profile:null,
+    profile: null,
 }
 
 type ActionType = {
     type: string,
     newtext: string,
     id: string,
-    profile:ProfileTrueType,
+    profile: ProfileTrueType,
 }
 
 //я переименовала креаторы в имена функций ,которые они делают, чтобы это было чуть короче и понятнее 
@@ -113,26 +113,24 @@ export const profileReducer = (state: ProfileInitStateType = profileInitialState
 
     switch (action.type) {
         case DELETE_POST: {
-            // stateCopy.messageData.filter((t) => {
-            //     return t.id !== action.id
-            // })
-
-            return { ...state, messageData: [...state.messageData.filter((t) => {
+            return {
+                ...state, messageData: [...state.messageData.filter((t) => {
                     return t.id !== action.id
-             })] };
+                })]
+            };
         }
 
         case UPDATE_NEW_POST_TEXT: {
-            return {...state, newPostText:action.newtext};
+            return { ...state, newPostText: action.newtext };
         }
 
         case ADD_POST: {
             // добавляем новый обЪект в фигурных скобках
-            return {...state,newPostText:'', messageData:[ {id:v1(), message:action.newtext},...state.messageData]};
+            return { ...state, newPostText: '', messageData: [{ id: v1(), message: action.newtext }, ...state.messageData] };
         }
 
         case SET_PROFILE: {
-            return {...state, profile: action.profile};
+            return { ...state, profile: action.profile };
         }
 
         default: {

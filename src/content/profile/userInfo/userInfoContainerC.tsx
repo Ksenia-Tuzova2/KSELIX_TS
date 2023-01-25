@@ -39,11 +39,12 @@ let mapStateToProps=(state:RootState)=>({
         })
     }
 
-    //если это контейнер почему мы не делаем это через коннект? не понятно
     render() {
+        console.log({...this.props});
         
         return (
              <UserInfo {...this.props}/>
+             
              )
     }
 }
@@ -55,11 +56,12 @@ export  const UserInfoContainerCforContainer=connect(mapStateToProps,{setUserPro
 
 
 // wrapper to use react router's v6 hooks in class component(to use HOC pattern, like in router v5)
-function withRouter(Component:any) {
+export function withRouter(Component:any) {
     function ComponentWithRouterProp(props:any) {
         let location = useLocation();
         let navigate = useNavigate();
         let params = useParams();
+        console.log(params)
         return (
             <Component
                 {...props}

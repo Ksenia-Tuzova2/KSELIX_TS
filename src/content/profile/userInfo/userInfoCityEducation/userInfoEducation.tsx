@@ -2,14 +2,14 @@ import React from 'react'
 
 
 type UserInfoEducationType={
-    nameOfOrg:string
+    job:any
 }
 
-const UserInfoEducation:React.FC<UserInfoEducationType>=({nameOfOrg})=>{
+const UserInfoJob:React.FC<UserInfoEducationType>=({job})=>{
    
     return( 
-              <li>Education:{nameOfOrg}</li>   
+              <li>Job:{job}</li>   
     )
 }
 
-export default UserInfoEducation
+export default UserInfoJob

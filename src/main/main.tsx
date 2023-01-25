@@ -1,14 +1,12 @@
 import { Routes, Route } from 'react-router-dom'
 import MainStyle from './main.module.scss'
 import { Content } from '../content/content'; 
-import { Login} from '../login/login'
   import React from 'react';
-import { RootState } from '../redux/store-redux';
+import { LoginContainer } from '../login/loginContainer';
+import { RegistrationForm } from '../content/autorization/registration/registrationForm';
 
 
 export type MainType={
-  // appState:RootState, 
-  //  dispatch:(action:any)=>any
 }
 
 export const Main:React.FC<MainType>= ({ 
@@ -29,12 +27,13 @@ export const Main:React.FC<MainType>= ({
           // updateMesText={updateMesText} 
           
           />}/>
-          <Route path='/exit' element={<Login 
-          // appState={appState} 
-          // dispatch={dispatch}
-            />}/>
 
-			
+          <Route path='/auth/*' element={<LoginContainer/>}/>
+
+{/* 			
+          <Route path='/autorization/*' element={<Authorization />} /> */}
+				<Route path='/main/*' element={<Main />} />
+				<Route path='/registrationForm/*' element={<RegistrationForm />} />
 				</Routes>
           <div className={MainStyle.Margin}></div>
         </div>

@@ -118,6 +118,7 @@ export const setUser = (items: SearchUserInitStateType) => {
   return { type: SET_USER, items }
 }
 
+
 export const setCurrentPage = (currentPage: number) => {
   return { type: SET_CURRENT_PAGE, currentPage }
 }

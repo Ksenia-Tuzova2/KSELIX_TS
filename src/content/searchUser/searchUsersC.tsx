@@ -1,6 +1,7 @@
 import style from './searchUser.module.scss'
 import { v1 } from 'uuid'
 import { SearchUserC } from './searchUserC'
+import { Link } from 'react-router-dom'
 
 type SearchUserType = {
   pageButtonOnClickHandler:(currentPage:number)=>void
@@ -22,14 +23,18 @@ export let SearchUsersC =({
   currentPage}:SearchUserType)=>{
 
   let mapUsersForList = items.map((u: any) => {
-    return <div key={u.id}><SearchUserC
+    return <div key={u.id}>
+      <Link to={`/profile/${u.id}`}>
+      <SearchUserC
       id={u.id}
       name={u.name}
       followed={u.followed}
       followUser={followUser}
       unfollowUser={unfollowUser}
       status={null}
-      photos={u.photos} /></div>
+      photos={u.photos} />
+      </Link>
+      </div>
   })
 
  let  showMoreButtonOnClickHandler = () => {

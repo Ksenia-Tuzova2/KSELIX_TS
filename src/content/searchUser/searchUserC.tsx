@@ -28,7 +28,7 @@ export class SearchUserC extends React.Component<SearchUserType>{
   render() {
     return (
       <div className={box.box}>
-        <Link to={'/Profile/'+this.props.id}>
+        <Link to={`/content/profile/${this.props.id}`}>
         <div className={style.flex}>
           {this.props.photos.large == null && this.props.photos.small == null ? 
           <img src={defaultPhoto} alt=''></img> :

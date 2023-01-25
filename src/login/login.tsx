@@ -2,23 +2,36 @@ import { Routes, Route } from 'react-router-dom'
 import { RegistrationForm } from '../content/autorization/registration/registrationForm'
 import { Authorization } from '../content/autorization/autorization';
 import { Main } from '../main/main';
-import { MainType } from '../main/main';
 import React from 'react';
+import { LoginMapContainerType } from './loginContainer';
 
 
 
-export const Login:React.FC<MainType>= ({
-	//  appState,
-	//  dispatch
+export const Login: React.FC<LoginMapContainerType> = (
+	{
+		id,
+		email,
+		login,
+		isFetching,
+		isAuth,
+		setFetch,
+		setUserData,
+
 	}) => {
 	// debugger
+	let props={
+		id,
+		email,
+		login,
+		isFetching,
+		isAuth,
+		setFetch,
+		setUserData,
+
+	}
 	return (
 		<>
-				<Routes>
-				<Route path='/autorization/*' element={<Authorization />} />
-				<Route path='/main/*' element={<Main />} />
-				<Route path='/registrationForm/*' element={<RegistrationForm />} />
-				</Routes>
+		<Authorization props={props}/>
 		</>
 
 	);

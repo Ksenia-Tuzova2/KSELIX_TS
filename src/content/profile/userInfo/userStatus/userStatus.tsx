@@ -1,9 +1,12 @@
 import userStatusStyle from './userStatus.module.scss'
 import React from 'react'
 
-const UserStatus:React.FC=()=>{
+type UserStatusType={
+    status:any
+}
+const UserStatus:React.FC<UserStatusType>=({status})=>{
     return(
-              <div className={userStatusStyle.UserStatus}>Gentle flower</div>
+              <div className={userStatusStyle.UserStatus}>{status}</div>
         
     )
 }
