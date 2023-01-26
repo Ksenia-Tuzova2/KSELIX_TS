@@ -26,42 +26,44 @@ export type DataType={
   login: string,
 }
 
-type ActionType = {
-  data: DataType
-  type:string
-  id: number,
-  email: string,
-  login: string,
-  isFetching:boolean,
-  isAuth:boolean,
-}
+// type ActionType = {
+//   data: DataType
+//   type:string
+//   id: number,
+//   email: string,
+//   login: string,
+//   isFetching:boolean,
+//   isAuth:boolean,
+// }
 
-export const authReduser = (state: AuthInitStateType = SearchUserInitState, action: ActionType): AuthInitStateType => {
+export const authReduser = (state: AuthInitStateType = SearchUserInitState, action: AuthAciontsType): AuthInitStateType => {
   switch (action.type) {
    
   
     case SET_USER_DATA: {
       //мы перезатираем копию инишал стейта новым значением дата - там тоже есть логин айди и все что нужно стейту
+      
       return { ...state, ...action.data , isAuth:true,};
     }
     case SET_FETCH: {
+    
       return { ...state, isFetching:action.isFetching };
     }
     default: {
       return state
     }
   }
-
-
 }
 
+type AuthAciontsType = ReturnType<typeof setUserData> | ReturnType<typeof setFetch>
+
 export const setUserData = ({id, email, login}:DataType) => {
-  let data
-  return { type: SET_FETCH, data:{id, email, login} }
+
+  return { type: SET_USER_DATA, data:{id, email, login}} as const
 }
 
 
 export const setFetch = (isFetching: boolean) => {
-  return { type: SET_USER_DATA, isFetching }
+  return { type: SET_FETCH, isFetching } as const
 }
 

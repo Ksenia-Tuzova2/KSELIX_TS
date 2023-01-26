@@ -26,10 +26,7 @@ let mapStateToProps = (state: RootState): MapStateToPropsType => {
     profile: state.profileReducer.profile
   }
   )
-
 }
-
-
 
 
 export const ProfileContainer = connect(mapStateToProps,

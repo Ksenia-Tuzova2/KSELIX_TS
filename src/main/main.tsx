@@ -4,6 +4,7 @@ import { Content } from '../content/content';
   import React from 'react';
 import { LoginContainer } from '../login/loginContainer';
 import { RegistrationForm } from '../content/autorization/registration/registrationForm';
+import { ProfileContainer } from '../content/profile/profileContainer';
 
 
 export type MainType={
@@ -28,7 +29,7 @@ export const Main:React.FC<MainType>= ({
           
           />}/>
 
-          <Route path='/auth/*' element={<LoginContainer/>}/>
+          <Route path='/auth' element={<LoginContainer/>}/>
 
 {/* 			
           <Route path='/autorization/*' element={<Authorization />} /> */}

@@ -3,23 +3,13 @@ import React from 'react'
 import { Posts } from './posts/posts'
 import { UserInfoContainerCforContainer, UserInfoContainerCforContainerForContainer } from './userInfo/userInfoContainerC'
 
-type ProfileType = {
-    // messageData: Array<MType>,
-    // newPostText: string,
-    // dispatch: (action: any) => any
-}
-export const Profile: React.FC<ProfileType> = ({
-    //  dispatch, messageData, newPostText
-}) => {
+type ProfileType = {}
+export const Profile: React.FC<ProfileType> = () => {
 
     return (
         <div >
             <UserInfoContainerCforContainerForContainer/>
-            <Posts
-            // messageData={messageData}
-            //     newPostText={newPostText}
-            //     dispatch={dispatch}
-            />
+            <Posts/>
         </div>
     )
 }

@@ -14,7 +14,7 @@ export const Authorization = ({props}:any) => {
             <form action="get">
                 <input type='text' placeholder='login' />
                 <input type='password' placeholder='password' />
-                <Link to='/auth'>come in</Link>
+                <Link to='/content'>come in</Link>
                  </form>
             <div>or</div>
             <Link className={btnStyle.btn} to='/registrationForm/'>registration</Link>

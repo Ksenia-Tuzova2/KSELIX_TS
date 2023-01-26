@@ -40,7 +40,6 @@ let mapStateToProps=(state:RootState)=>({
     }
 
     render() {
-        console.log({...this.props});
         
         return (
              <UserInfo {...this.props}/>

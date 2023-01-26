@@ -10,16 +10,23 @@ import NewsIcon from './icons-menu-bar/icon_news.svg'
 import MusicIcon from './icons-menu-bar/icon_music.svg'
 import SettingIcon from './icons-menu-bar/cil_settings.svg'
 import {  Link } from 'react-router-dom'
+import { RootState } from '../../redux/store-redux'
+import { useSelector } from 'react-redux'
 
 
 
 
 const MenuBar:React.FC= () => {
+
+    const meId = useSelector<RootState,number>(state => state.authReduser.id as number)
+
+
+
     return (
             <nav className={styleMenuBar.menubar__wrapper+' '+box.box}>
                 <ul className={styleMenuBar.menuBar__list}>
                     <li className={styleMenuBar.firstchild}>
-                        <Link to='profile'>
+                        <Link to={'profile/'+meId}>
                             <img src={ProfileIcon} alt='a'></img>
                         <p>Profile</p>
                         </Link>
