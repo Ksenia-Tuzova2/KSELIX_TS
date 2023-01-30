@@ -4,11 +4,15 @@ import React from 'react'
 type UserStatusType={
     status:any
 }
-const UserStatus:React.FC<UserStatusType>=({status})=>{
+
+
+const UserStatusMemo:React.FC<UserStatusType>=({status})=>{
+    console.log('status');
+    
     return(
               <div className={userStatusStyle.UserStatus}>{status}</div>
         
     )
 }
 
-export default UserStatus
+export const UserStatus=React.memo(UserStatusMemo)

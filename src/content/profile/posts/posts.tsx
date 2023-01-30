@@ -15,8 +15,6 @@ export const Posts = ({
     return (
         <div className="content__post">
             <PostAreaContainer 
-            // messageData={messageData} newPostText={newPostText} 
-            // dispatch={dispatch}
             />
         
         </div>

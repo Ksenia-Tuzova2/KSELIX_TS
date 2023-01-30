@@ -19,8 +19,12 @@ type Props = {
     // makeNewPost:()=>any
     // dispatch: (action: any) => any
 }
-export const PostArea = ({newPostText, messageData,addPost ,updateNewPostText ,deletePost}: postAreaContainerType) => {
-    // debugger
+export const PostArea =React.memo(({newPostText, messageData,addPost ,updateNewPostText ,deletePost}: postAreaContainerType) => {
+    console.log('postarea render');
+    
+
+    //посоветоваться - сделать ли обертку для ньюпост компоненты - она должна брать на себя ответственность по удаленю именно здесь?
+    //это не экологично с точкри зрения трафика - перерисовывается и поле в котором пишутся посты, из-за того, что я передаю туда  функцию делит пост
     const makeNewPost = () => messageData.map((m: MType, pos: number,) => <NewPosts  key={v1()}
     deletePost={deletePost}
     message={m.message} pos={pos}id={m.id} />)
@@ -58,7 +62,7 @@ export const PostArea = ({newPostText, messageData,addPost ,updateNewPostText ,d
         </div>
     )
 
-}
+})
        //если написать алерт без стрелочной функции, то мы уже вызываем уже готовую функцию , которой нет, а значит она андефайнд
 
        //есть виртуал дом и просто дом - пользователь взаимодействует только с виртуал домом

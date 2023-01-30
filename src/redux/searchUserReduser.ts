@@ -42,16 +42,9 @@ const SearchUserInitState: SearchUserInitStateType = {
 
 }
 
-type ActionType = {
-  type: string,
-  id: number,
-  items: SearchUserInitStateType,
-  currentPage: number,
-  totalCount:number,
-  isFetching:boolean,
-}
+type SearchUsersActionType = ReturnType<typeof setFetch>|ReturnType<typeof followUser>|ReturnType<typeof unfollowUser>|ReturnType<typeof searchUser>|ReturnType<typeof setUser>|ReturnType<typeof setTotalCount>|ReturnType<typeof setCurrentPage>
 
-export const searchUserReduser = (state: SearchUserInitStateType = SearchUserInitState, action: ActionType): SearchUserInitStateType => {
+export const searchUserReduser = (state: SearchUserInitStateType = SearchUserInitState, action: SearchUsersActionType): SearchUserInitStateType => {
   switch (action.type) {
     case FOLLOW: {
       let followUser = state.items.map((u) => {
@@ -100,29 +93,29 @@ export const searchUserReduser = (state: SearchUserInitStateType = SearchUserIni
 }
 
 export const setFetch = (isFetching: boolean) => {
-  return { type: SET_FETCH, isFetching }
+  return { type: SET_FETCH, isFetching } as const
 }
 
 export const followUser = (id: number) => {
-  return { type: FOLLOW, id }
+  return { type: FOLLOW, id } as const
 }
 
 export const unfollowUser = (id: number) => {
-  return { type: UNFOLLOW, id }
+  return { type: UNFOLLOW, id } as const
 }
 export const searchUser = (id: number) => {
-  return { type: UNFOLLOW, id }
+  return { type: SEARCH_USER, id } as const
 }
 
 export const setUser = (items: SearchUserInitStateType) => {
-  return { type: SET_USER, items }
+  return { type: SET_USER, items } as const
 }
 
 
 export const setCurrentPage = (currentPage: number) => {
-  return { type: SET_CURRENT_PAGE, currentPage }
+  return { type: SET_CURRENT_PAGE, currentPage } as const
 }
 
 export const setTotalCount = (totalCount: number) => {
-  return { type: SET_TOTAL_COUNT, totalCount }
+  return { type: SET_TOTAL_COUNT, totalCount } as const
 }

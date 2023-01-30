@@ -81,32 +81,30 @@ export const profileInitialState: ProfileInitStateType = {
     profile: null,
 }
 
-type ActionType = {
-    type: string,
-    newtext: string,
-    id: string,
-    profile: ProfileTrueType,
-}
 
 //я переименовала креаторы в имена функций ,которые они делают, чтобы это было чуть короче и понятнее 
 //креаторы для того, чтобы разбить респонсобилити, как и константы с типами
 export const addPost = (newtext: string) => {
-    return { type: ADD_POST, newtext }
+    return { type: ADD_POST, newtext } as const
 }
 
 export const updateNewPostText = (newtext: string) => {
-    return { type: UPDATE_NEW_POST_TEXT, newtext }
+    return { type: UPDATE_NEW_POST_TEXT, newtext } as const
 }
 
 export const deletePost = (id: string) => {
-    return { type: DELETE_POST, id }
+    return { type: DELETE_POST, id }  as const
 }
 
 export const setUserProfile = (profile: ProfileTrueType) => {
-    return { type: SET_PROFILE, profile }
+    return { type: SET_PROFILE, profile } as const
 }
 
-export const profileReducer = (state: ProfileInitStateType = profileInitialState, action: ActionType): ProfileInitStateType => {
+type ProfileActionType=ReturnType<typeof setUserProfile>| ReturnType<typeof deletePost>| ReturnType<typeof updateNewPostText>| ReturnType<typeof addPost>
+
+export const profileReducer = (state: ProfileInitStateType = profileInitialState, action: ProfileActionType): ProfileInitStateType => {
+
+    //ЗАДАТЬ ВОПРОС
     // почему мы не можем создавать при каждом вызове редьюсера эту переменную и отдавать ее разным кейсом, ведь эта переменная нужна всм кейсам
     // let stateCopy = { ...state, messageData: [...state.messageData] }
 

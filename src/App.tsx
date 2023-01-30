@@ -1,17 +1,16 @@
 import './null.css'
 import style from './App.module.scss';
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Header } from './header/header'
 import Footer from './footer/footer';
 import { Main } from './main/main';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setUserData } from './redux/authReduser';
+import  { useState } from 'react'
+import ReactDOM from 'react-dom'
 
-export type AppPropsType = {
-  // _appState: RootState, 
-  // dispatch:(action:any)=>any
-}
+export type AppPropsType = {}
 
 const App: React.FC<AppPropsType> = () => {
   // debugger
@@ -29,6 +28,7 @@ const App: React.FC<AppPropsType> = () => {
     axios.defaults.withCredentials = true;
     axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
     
+    //это позволяет нам делать кроссдоменный запрос и собирать куку - текстовый файл с данными  - креденшлс значит - с разрешением, с правами, с регалиями, мы разрешаем отослать свой запрос и получить его
         withCredentials: true
       
     })
@@ -55,11 +55,9 @@ const App: React.FC<AppPropsType> = () => {
       <Header />
       <Main/>
       <Footer />
+   
     </div>
   );
 }
 
-
-export default App;
-
-//check
+export default App

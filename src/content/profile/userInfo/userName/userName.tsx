@@ -5,11 +5,18 @@ import React from 'react'
 type UserNameType={
   fullName:string|null|undefined;
 }
-const UserName:React.FC<UserNameType>=({fullName})=>{
+
+
+
+const UserNameMemo:React.FC<UserNameType>=({fullName})=>{
+
+  console.log('username');
+
     return(
       <div className={UserNameStyle.UserName}>
    {fullName}</div>
     )
 }
+const UserName=React.memo(UserNameMemo)
 
 export default UserName

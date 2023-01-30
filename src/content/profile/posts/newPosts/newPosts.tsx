@@ -1,11 +1,12 @@
 import stylePost from './newPosts.module.scss'
 import Avatar from "../../../../header/avatar/avatar"
-import Time from './time'
+import {Time} from './time'
 import Like from './like/like'
 import Dislike from './dislike/dislike'
 import UserName from '../../userInfo/userName/userName'
 import { ReactElement } from 'react'
 import { deletePost } from '../../../../redux/profileReducer'
+import { LikeContainer } from './like/likeContainer'
 
 
     
@@ -17,6 +18,8 @@ type NewPostsType={
 
 const NewPosts:React.FC<NewPostsType>=({message,pos,id,deletePost})=>{
 
+    
+    
     const deletePostHandler=(id:string)=>{
         deletePost(id)
     }
@@ -32,7 +35,7 @@ const NewPosts:React.FC<NewPostsType>=({message,pos,id,deletePost})=>{
                 </div> 
                 <div className="message">{message}</div>
                 <div className={stylePost.newPost__likeDislikeWrapper}>
-                    <Like></Like>
+               < Like/>
                 <div className={stylePost.flexGrow}></div>
                 <Dislike counter=''/>
                 </div>

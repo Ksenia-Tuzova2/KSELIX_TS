@@ -1,7 +1,16 @@
-const Time=()=>{
-    return(
-                <div className="Time">14:58</div>
-    )
+
+let today=()=>{
+    return new Date()
 }
 
-export default Time
+console.log(today());
+
+let time=today()
+
+export const Time=()=>{
+    return(
+                <div className="Time">
+                  12:55
+                    </div>
+    )
+    }

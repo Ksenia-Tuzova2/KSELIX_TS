@@ -7,6 +7,10 @@ import { LoginMapContainerType } from './loginContainer'
 
 export class LoginApiC extends React.Component<LoginMapContainerType>{
 
+
+  //ПЕРЕНЕСЛИ ЭТО В АПП ПРИ ПОМОЩИ ЮЗЭФФЕКТ
+
+
   // componentDidMount(): void {
 
   //   //withCredentials говорит серверу о том, что хотим отправить на сервер гет запрос с кукой

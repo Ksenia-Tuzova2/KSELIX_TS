@@ -3,7 +3,7 @@ import UserInfoJob from "./userInfoCityEducation/userInfoEducation"
 import UserPhoto from "./userPhoto/userPhoto"
 import ProfileStyle from '../profile.module.scss'
 import UserName from "./userName/userName"
-import UserStatus from "./userStatus/userStatus"
+import {UserStatus }from "./userStatus/userStatus"
 import box from '../../../box.module.scss'
 import { UserInfoContainerType } from "./userInfoContainerC"
 
