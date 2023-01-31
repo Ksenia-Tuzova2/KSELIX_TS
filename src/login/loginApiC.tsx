@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React from 'react'
 import { LoadingSpiner } from '../loadingSpiner/loadingSpiner'
 import { Login } from './login'

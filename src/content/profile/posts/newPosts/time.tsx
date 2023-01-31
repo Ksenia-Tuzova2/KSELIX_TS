@@ -1,16 +1,27 @@
+import { useState } from "react";
+import React, { useEffect } from 'react'
 
-let today=()=>{
-    return new Date()
-}
+export const Time: React.FC = () => {
 
-console.log(today());
 
-let time=today()
+  let [clock, setClock] = useState(new Date)
 
-export const Time=()=>{
-    return(
-                <div className="Time">
-                  12:55
-                    </div>
-    )
-    }
+  useEffect(() => {
+    setInterval(() => setClock(new Date), 1000)
+
+  }, [])
+
+  function letNull(number: number) {
+    if (number < 10) {
+      return '0' + number
+    } else return number
+  }
+
+ 
+
+  return (
+
+    <>{letNull(clock.getHours())}:{letNull(clock.getMinutes())}:{letNull(clock.getSeconds())}</>
+  );
+};
+

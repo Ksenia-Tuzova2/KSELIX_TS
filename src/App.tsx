@@ -1,14 +1,12 @@
 import './null.css'
 import style from './App.module.scss';
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { Header } from './header/header'
 import Footer from './footer/footer';
 import { Main } from './main/main';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setUserData } from './redux/authReduser';
-import  { useState } from 'react'
-import ReactDOM from 'react-dom'
 
 export type AppPropsType = {}
 

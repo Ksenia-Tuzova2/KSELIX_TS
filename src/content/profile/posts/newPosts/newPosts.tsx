@@ -4,10 +4,6 @@ import {Time} from './time'
 import Like from './like/like'
 import Dislike from './dislike/dislike'
 import UserName from '../../userInfo/userName/userName'
-import { ReactElement } from 'react'
-import { deletePost } from '../../../../redux/profileReducer'
-import { LikeContainer } from './like/likeContainer'
-
 
     
 type NewPostsType={
@@ -30,7 +26,7 @@ const NewPosts:React.FC<NewPostsType>=({message,pos,id,deletePost})=>{
                 <div className="Name-time-text">
                     <div className="box">              
                 <UserName fullName='Tanya' />
-                <Time/>
+                
                 <button onClick={()=>deletePostHandler(id)}>x</button>
                 </div> 
                 <div className="message">{message}</div>

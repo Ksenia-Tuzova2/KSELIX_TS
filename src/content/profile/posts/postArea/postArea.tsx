@@ -1,4 +1,4 @@
-import React, { LegacyRef, RefObject, useState } from 'react'
+import React, { LegacyRef, RefObject, useCallback, useEffect, useState } from 'react'
 import PostAreaStyle from './postArea.module.scss'
 import box from '../../../../box.module.scss'
 import btnStyle from '../../../../btn.module.scss'
@@ -11,58 +11,79 @@ type MType = {
     id: string,
     message: string,
 }
-type Props = {
- 
-    // newPostText: string ;
-    // addPost:(newtext:string)=>void
-    // updateNewPostText:(newtext:string)=>void
-    // makeNewPost:()=>any
-    // dispatch: (action: any) => any
-}
-export const PostArea =React.memo(({newPostText, messageData,addPost ,updateNewPostText ,deletePost}: postAreaContainerType) => {
-    console.log('postarea render');
-    
 
-    //посоветоваться - сделать ли обертку для ньюпост компоненты - она должна брать на себя ответственность по удаленю именно здесь?
-    //это не экологично с точкри зрения трафика - перерисовывается и поле в котором пишутся посты, из-за того, что я передаю туда  функцию делит пост
-    const makeNewPost = () => messageData.map((m: MType, pos: number,) => <NewPosts  key={v1()}
-    deletePost={deletePost}
-    message={m.message} pos={pos}id={m.id} />)
-    
 
-    let newPostElement:LegacyRef<HTMLTextAreaElement> | undefined = React.createRef()
 
-    const addPostHandler = (newtext: string) => {
-        addPost (newtext)
+export class PostArea extends React.Component<postAreaContainerType>{
+
+    componentDidUpdate(
+        prevProps: Readonly<postAreaContainerType>,
+        prevState: Readonly<{}>,
+        snapshot?: any): void {
+
+        console.log('postarea render');
     }
 
-    const updateNewPostTextHandler = (text: string) => {
-        updateNewPostText(text)
-    }
+    render(): any {
 
-  
-    return (
-        <div>
-            <div className={PostAreaStyle.FormWrapper}>
-                <textarea className={PostAreaStyle.Input + " " + box.box}
-                    placeholder='What`s news?'
-                    value={newPostText}
-                    ref={newPostElement}
-                    onChange={(e) => updateNewPostTextHandler(e.currentTarget.value)}
+
+
+        //посоветоваться - сделать ли обертку для ньюпост компоненты - она должна брать на себя ответственность по удаленю именно здесь?
+        //это не экологично с точкри зрения трафика - перерисовывается и поле в котором пишутся посты, из-за того, что я передаю туда  функцию делит пост
+
+
+        let newPostElement: LegacyRef<HTMLTextAreaElement> | undefined = React.createRef()
+
+        const addPostHandler = (newtext: string) => {
+            this.props.addPost(newtext)
+        }
+
+        const updateNewPostTextHandler = (text: string) => {
+            this.props.updateNewPostText(text)
+        }
+
+
+        return (
+            <div>
+                <div className={PostAreaStyle.FormWrapper}>
+                    <textarea className={PostAreaStyle.Input + " " + box.box}
+                        placeholder='What`s news?'
+                        value={this.props.newPostText}
+                        ref={newPostElement}
+                        onChange={(e) => updateNewPostTextHandler(e.currentTarget.value)}
+                    />
+
+
+                    <button className={btnStyle.btn}
+                        onClick={() => addPostHandler(this.props.newPostText)}
+                    >post</button>
+                    {/* <button onClick={showRef}>a</button> */}
+
+                </div>
+                <Posts
+                    deletePost={this.props.deletePost}
+                    messageData={this.props.messageData}
                 />
-
-
-                <button className={btnStyle.btn}
-                    onClick={() => addPostHandler(newPostText)}
-                >post</button>
-                {/* <button onClick={showRef}>a</button> */}
-
             </div>
-          {makeNewPost()}
-        </div>
-    )
+        )
+    }
 
+
+}
+
+const Posts = (props: any) => {
+
+useEffect(()=>{console.log('posts render');
 })
+
+    const makePost = useCallback(() => props.messageData.map((m: MType, pos: number,) => <NewPosts key={v1()}
+        deletePost={props.deletePost}
+        message={m.message} pos={pos} id={m.id} />), [props.messageData])
+
+    return (<>{makePost()}</>)
+}
+
+// )
        //если написать алерт без стрелочной функции, то мы уже вызываем уже готовую функцию , которой нет, а значит она андефайнд
 
        //есть виртуал дом и просто дом - пользователь взаимодействует только с виртуал домом

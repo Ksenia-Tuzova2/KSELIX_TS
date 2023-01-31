@@ -9,14 +9,12 @@ type PropsType={
 export const Posts = ({ 
     // messageData, newPostText,  dispatch
 }:PropsType) => {
-// debugger
+
 
 
     return (
         <div className="content__post">
-            <PostAreaContainer 
-            />
-        
+            <PostAreaContainer   />
         </div>
 
     )

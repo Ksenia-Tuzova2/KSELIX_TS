@@ -18,11 +18,11 @@ import { RootState } from '../../../../redux/store-redux'
 //             {(store:Store<RootState>)=>{
 //                 let state=store.getState()
 
-//                 const makeNewPost = () => state.profileReducer.messageData.map((m: MType, pos: number,) => <NewPostsContainer key={v1()} message={m.message} pos={pos} dispatch={store.dispatch} id={m.id} />)
+//                 const makePost = () => state.profileReducer.messageData.map((m: MType, pos: number,) => <NewPostsContainer key={v1()} message={m.message} pos={pos} dispatch={store.dispatch} id={m.id} />)
 //                 const addPostHandler = (newtext: string) => {store.dispatch(addPost(newtext))}
 //                 const updateNewPostTextHandler = (text: string) => { store.dispatch(updateNewPostText(text))}
 //                 return (
-//                 <PostArea newPostText={state.profileReducer.newPostText} addPost={addPostHandler} updateNewPostText={updateNewPostTextHandler} makeNewPost={makeNewPost} />
+//                 <PostArea newPostText={state.profileReducer.newPostText} addPost={addPostHandler} updateNewPostText={updateNewPostTextHandler} makePost={makePost} />
 //                 )
 //             }
 //         }
