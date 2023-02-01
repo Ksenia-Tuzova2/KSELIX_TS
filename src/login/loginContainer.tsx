@@ -5,8 +5,8 @@ import {
   setFetch,
   setUserData
 } from '../redux/authReduser'
-import { withRouter } from '../content/profile/userInfo/userInfoContainerC'
 import { LoginApiC } from './loginApiC'
+import { withRouter } from '../withRouter/withRouter'
 
 type MapStateToPropsType = {
   id: number | null,
@@ -21,7 +21,7 @@ type MapDispatchToPropsType = {
   setUserData: ({id, email, login}:DataType)=>void,
 }
 
-export type LoginMapContainerType = MapStateToPropsType&MapDispatchToPropsType
+export type LoginMapContainerType = MapStateToPropsType&MapDispatchToPropsType&any
 
 let mapStateToProps = (state: RootState): MapStateToPropsType => {
   return ({

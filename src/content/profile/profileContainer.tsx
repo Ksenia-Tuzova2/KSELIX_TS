@@ -4,9 +4,8 @@ import {
     setUserProfile
 } from '../../redux/profileReducer'
 import { RootState } from '../../redux/store-redux'
+import { withRouter } from '../../withRouter/withRouter'
 import { ProfileApiC } from './profileApiC'
-import { withRouter } from './userInfo/userInfoContainerC'
-
 
 type MapStateToPropsType = any
 

@@ -4,39 +4,39 @@ import React, { useEffect } from 'react';
 import { Header } from './header/header'
 import Footer from './footer/footer';
 import { Main } from './main/main';
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setUserData } from './redux/authReduser';
+import { authApi } from './api/authApi';
 
 export type AppPropsType = {}
 
 const App: React.FC<AppPropsType> = () => {
   // debugger
 
-  //чтобы получить свои данные и прокинуть их потом в профайл мы делаем запрос через юзэффект, который заменяет componentDidMount()
+  //чтобы получить свои данные и прокинуть их потом в профайл
+  // мы делаем запрос через юзэффект, который заменяет componentDidMount()
   //так же мы юзаем диспатч из реакт-редакса 
-  //диспатч позволяет нам использовать редьюсеры , которые используются только в комбанредьюсере, чтобы далее передать в стор эти функции. Но тут мы можем не вызывать стор(который прокинули через провайдер), используем диспатч- он пробежится по всем редьюсерам и найдет нужный экшн тайп, выполнит его
-
+  //диспатч позволяет нам использовать редьюсеры , 
+  //которые используются только в комбанредьюсере, 
+  //чтобы далее передать в стор эти функции. 
+  //Но тут мы можем не вызывать стор(который прокинули через провайдер),
+  // используем диспатч- он пробежится по всем редьюсерам
+  // и найдет нужный экшн тайп, выполнит его
   //потом мы распутали функции в профайлредьюсере, чтобы все работало,
 
 
   const dispatch = useDispatch()
 
   useEffect(() => {
-    axios.defaults.withCredentials = true;
-    axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
     
-    //это позволяет нам делать кроссдоменный запрос и собирать куку - текстовый файл с данными  - креденшлс значит - с разрешением, с правами, с регалиями, мы разрешаем отослать свой запрос и получить его
-        withCredentials: true
-      
-    })
-      .then((Response: any) => {
+   
+    authApi.authRequest().then((data: any) => {
         // debugger
         //смотри документацию апишки- 0 значит, что все хорошо -
         //resultCode: required(number)
         // (0 if opearation completed successfullt, other numbers - some error occured)
-        if (Response.data.resultCode === 0) {
-          let { id, email, login } = Response.data.data
+        if (data.resultCode === 0) {
+          let { id, email, login } = data.data
           dispatch(setUserData({ id, email, login })) 
                }
       }).catch((error) => {

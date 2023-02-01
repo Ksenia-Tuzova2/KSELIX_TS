@@ -24,7 +24,7 @@ export let SearchUsersC =({
 
   let mapUsersForList = items.map((u: any) => {
     return <div key={u.id}>
-      <Link to={`/profile/${u.id}`}>
+      
       <SearchUserC
       id={u.id}
       name={u.name}
@@ -33,7 +33,7 @@ export let SearchUsersC =({
       unfollowUser={unfollowUser}
       status={null}
       photos={u.photos} />
-      </Link>
+   
       </div>
   })
 
