@@ -1,10 +1,12 @@
+
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SEARCH_USER = 'SEARCH_USER'
 const SET_USER = 'SET_USER'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
-const SET_TOTAL_COUNT='SET_TOTAL_COUNT'
-const SET_FETCH='SET_FETCH'
+const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT'
+const SET_FETCH = 'SET_FETCH'
+const SET_FETCH_FOLLOW_USER = 'SET_FETCH_FOLLOW_USER'
 
 //не использовать расширение жсх для редьюсеров - могут быть баги
 
@@ -29,8 +31,15 @@ export type SearchUserInitStateType = {
   totalCount: number,
   pageSize: number,
   currentPage: number,
-  isFetching:boolean,
+  isFetching: boolean,
+  followingInProgress: Array<
+    FollowingInProgressType
+  >
+}
 
+export type FollowingInProgressType = {
+  userId: number,
+  isFetching: boolean
 }
 
 const SearchUserInitState: SearchUserInitStateType = {
@@ -38,11 +47,13 @@ const SearchUserInitState: SearchUserInitStateType = {
   pageSize: 5,
   totalCount: 0,
   currentPage: 3,
-  isFetching:false,
-
+  isFetching: false,
+  followingInProgress: [
+    { isFetching: false, userId: 0 }],
 }
 
-type SearchUsersActionType = ReturnType<typeof setFetch>|ReturnType<typeof followUser>|ReturnType<typeof unfollowUser>|ReturnType<typeof searchUser>|ReturnType<typeof setUser>|ReturnType<typeof setTotalCount>|ReturnType<typeof setCurrentPage>
+
+type SearchUsersActionType = ReturnType<typeof setFetch> | ReturnType<typeof followUser> | ReturnType<typeof unfollowUser> | ReturnType<typeof searchUser> | ReturnType<typeof setUser> | ReturnType<typeof setTotalCount> | ReturnType<typeof setCurrentPage> | ReturnType<typeof setFetchForFollowUser>
 
 export const searchUserReduser = (state: SearchUserInitStateType = SearchUserInitState, action: SearchUsersActionType): SearchUserInitStateType => {
   switch (action.type) {
@@ -79,10 +90,19 @@ export const searchUserReduser = (state: SearchUserInitStateType = SearchUserIni
       return { ...state, currentPage: action.currentPage }
     }
     case SET_TOTAL_COUNT: {
-      return { ...state, totalCount:action.totalCount}
+      return { ...state, totalCount: action.totalCount }
     }
     case SET_FETCH: {
-      return { ...state, isFetching:action.isFetching };
+      return { ...state, isFetching: action.isFetching };
+    }
+    case SET_FETCH_FOLLOW_USER: {
+
+
+      return {
+        ...state,
+        followingInProgress: action.isFetching ? [...state.followingInProgress, {...action}] : state.followingInProgress.filter((el) => el.userId !== action.userId)
+      }
+
     }
     default: {
       return state
@@ -90,7 +110,16 @@ export const searchUserReduser = (state: SearchUserInitStateType = SearchUserIni
   }
 
 
+
+
 }
+
+export const setFetchForFollowUser = (isFetching: boolean, userId: number) => {
+  console.log({ isFetching, userId });
+
+  return { type: SET_FETCH_FOLLOW_USER, isFetching, userId } as const
+}
+
 
 export const setFetch = (isFetching: boolean) => {
   return { type: SET_FETCH, isFetching } as const
@@ -119,3 +148,5 @@ export const setCurrentPage = (currentPage: number) => {
 export const setTotalCount = (totalCount: number) => {
   return { type: SET_TOTAL_COUNT, totalCount } as const
 }
+
+//поменять на массив получаемое значение

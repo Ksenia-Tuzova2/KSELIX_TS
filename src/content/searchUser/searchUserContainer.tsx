@@ -1,11 +1,11 @@
 
 import { connect } from 'react-redux'
-import { Dispatch } from 'redux'
 import {
   followUser,
   SearchUserInitStateType,
   setCurrentPage,
   setFetch,
+  setFetchForFollowUser,
   setTotalCount,
   setUser,
   unfollowUser,
@@ -26,7 +26,8 @@ type MapDispatchToPropsType = {
   setCurrentPage: (currentPage: number) => void,
   setTotalCount: (totalCount: number) => void,
   setFetching: (isFetching: boolean) => void,
-
+  setFetchForFollowUser: (isFetching: boolean, userId:number) => void,
+ 
 }
 
 
@@ -42,32 +43,24 @@ let mapStateToProps = (state: RootState): MapStateToPropsType => {
     totalCount: state.searchUserReduser.totalCount,
     currentPage: state.searchUserReduser.currentPage,
     isFetching: state.searchUserReduser.isFetching,
+    followingInProgress: state.searchUserReduser.followingInProgress,
   }
   )
 
 }
 
 
-// let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
-//   return {
-//     followUser: (id: number) => dispatch(followUser(id)),
-//     unfollowUser: (id: number) => dispatch(unfollowUser(id)),
-//     setUser: (items: SearchUserInitStateType) => dispatch(setUser(items)),
-//     setCurrentPage: (currentPage: number) => dispatch(setCurrentPage(currentPage)),
-//     setTotalCount: (totalCount: number) => dispatch(setTotalCount(totalCount)),
-//     setFetching: (isFetching: boolean) => dispatch(setFetch(isFetching)),
-//   }
-// }
 
 
 export const SearchUserContainer = connect(mapStateToProps,
   {
-    followUser:followUser,
+    followUser: followUser,
     unfollowUser: unfollowUser,
-    setUser:setUser,
+    setUser: setUser,
     setCurrentPage: setCurrentPage,
     setTotalCount: setTotalCount,
-    setFetching:setFetch,
+    setFetching: setFetch,
+    setFetchForFollowUser: setFetchForFollowUser
   }
 )(SearchUserApiC)
 
