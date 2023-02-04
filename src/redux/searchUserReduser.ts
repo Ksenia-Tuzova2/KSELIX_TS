@@ -1,3 +1,5 @@
+import { ThunkAction } from "redux-thunk"
+import { searchUserApi } from "../api/searchUserApi"
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -100,7 +102,7 @@ export const searchUserReduser = (state: SearchUserInitStateType = SearchUserIni
 
       return {
         ...state,
-        followingInProgress: action.isFetching ? [...state.followingInProgress, {...action}] : state.followingInProgress.filter((el) => el.userId !== action.userId)
+        followingInProgress: action.isFetching ? [...state.followingInProgress, { ...action }] : state.followingInProgress.filter((el) => el.userId !== action.userId)
       }
 
     }
@@ -115,8 +117,6 @@ export const searchUserReduser = (state: SearchUserInitStateType = SearchUserIni
 }
 
 export const setFetchForFollowUser = (isFetching: boolean, userId: number) => {
-  console.log({ isFetching, userId });
-
   return { type: SET_FETCH_FOLLOW_USER, isFetching, userId } as const
 }
 
@@ -150,3 +150,65 @@ export const setTotalCount = (totalCount: number) => {
 }
 
 //поменять на массив получаемое значение
+
+//работает как надо
+export const getUsersThunkCreator = (pageSize: number, currentPage: number): ThunkAction<void, {}, {}, any> => {
+  return function (dispatch: any): void {
+    setFetch(true)
+    
+    searchUserApi.getUsersRequest(pageSize, currentPage).then((data: any) => {
+
+      dispatch(setFetch(false))
+      dispatch(setCurrentPage(currentPage))
+      dispatch(setUser(data))
+      dispatch(setTotalCount(data.totalCount))
+
+    }).catch((error) => {
+      // handle error
+      console.log(error);
+    }
+    )
+  }
+}
+
+//работает как надо
+export const unfollowUserThunkCreator = (id:number): ThunkAction<void, {}, {}, any> => {
+  return function (dispatch: any): void {
+  
+   setFetchForFollowUser(true, id)
+    //вынесли запрос в папку апи
+    searchUserApi.unfollowUserRequest(id).then((data: any) => {
+      if (data.resultCode === 0) {
+        dispatch(unfollowUser(id))
+        
+      }
+      dispatch(setFetchForFollowUser(false, id))
+    }).catch(
+      (error: string) => {
+        // handle error
+        console.log(error);
+      }
+    )
+
+  }
+}
+
+export const followUserThunkCreator = (id:number): ThunkAction<void, {}, {}, any> => {
+  return function (dispatch: any): void {
+  
+    setFetchForFollowUser(true,id)
+    searchUserApi.followUserRequest(id).then((data: any) => {
+      if (data.resultCode === 0) {
+        dispatch(followUser(id))
+      }
+
+      dispatch(setFetchForFollowUser(false,id))
+    }).catch(
+      (error: string) => {
+        // handle error
+        console.log(error);
+      }
+    )
+
+  }
+}

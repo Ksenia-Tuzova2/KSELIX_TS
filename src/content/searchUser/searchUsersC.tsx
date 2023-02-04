@@ -10,10 +10,7 @@ type SearchUserType = {
   unfollowUser: any,
   totalCount: number,
   pageSize: number,
-  //followingInProgress: Array<number>,
   currentPage: number,
-  setFetchForFollowUser: (isFetching: boolean, userId:number) => void,
-  isFetching:boolean,
   followingInProgress: FollowingInProgressType[],
 }
 
@@ -25,17 +22,10 @@ export let SearchUsersC = ({
   totalCount,
   pageSize,
   currentPage,
-  setFetchForFollowUser,
-  isFetching,
   followingInProgress,
 }: SearchUserType) => {
 
   let mapUsersForList = items.map((u: any) => {
-
-    let setFetchForFollowUserCallBack=(bool:boolean)=>{
-      setFetchForFollowUser(bool, u.id)
-    }
-
 
     
     return <div key={u.id}>
@@ -49,8 +39,6 @@ export let SearchUsersC = ({
         unfollowUser={unfollowUser}
         status={null}
         photos={u.photos}
-        setFetchForFollowUserCallBack={setFetchForFollowUserCallBack}
-        isFetching={ isFetching}
       />
     </div>
   })
@@ -82,7 +70,7 @@ export let SearchUsersC = ({
       key={v1()}
       onClick={() => pageButtonOnClickHandler(el)}
       className={currentPage === el ? style.selected : ''}>
-      {el}
+       <> {el} </>
     </span>
   }
 

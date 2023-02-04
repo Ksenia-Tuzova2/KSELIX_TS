@@ -1,15 +1,15 @@
 
 import { connect } from 'react-redux'
 import {
-  followUser,
   SearchUserInitStateType,
   setCurrentPage,
   setFetch,
   setFetchForFollowUser,
   setTotalCount,
   setUser,
-  unfollowUser,
-  UserType
+  getUsersThunkCreator,
+  unfollowUserThunkCreator,
+  followUserThunkCreator
 } from '../../redux/searchUserReduser'
 import { RootState } from '../../redux/store-redux'
 import { SearchUserApiC } from './SearchUserApiC'
@@ -17,6 +17,7 @@ import { SearchUserApiC } from './SearchUserApiC'
 
 
 type MapStateToPropsType = SearchUserInitStateType
+
 
 
 type MapDispatchToPropsType = {
@@ -27,7 +28,7 @@ type MapDispatchToPropsType = {
   setTotalCount: (totalCount: number) => void,
   setFetching: (isFetching: boolean) => void,
   setFetchForFollowUser: (isFetching: boolean, userId:number) => void,
- 
+  getUsersThunkCreator: (pageSize: number, currentPage: number) => void,
 }
 
 
@@ -54,13 +55,14 @@ let mapStateToProps = (state: RootState): MapStateToPropsType => {
 
 export const SearchUserContainer = connect(mapStateToProps,
   {
-    followUser: followUser,
-    unfollowUser: unfollowUser,
+    followUser: followUserThunkCreator,
+    unfollowUser: unfollowUserThunkCreator,
     setUser: setUser,
     setCurrentPage: setCurrentPage,
     setTotalCount: setTotalCount,
     setFetching: setFetch,
-    setFetchForFollowUser: setFetchForFollowUser
+    setFetchForFollowUser: setFetchForFollowUser,
+    getUsersThunkCreator:getUsersThunkCreator,
   }
 )(SearchUserApiC)
 

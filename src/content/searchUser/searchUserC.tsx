@@ -4,7 +4,6 @@ import { FollowingInProgressType, PhotosType } from '../../redux/searchUserRedus
 import defaultPhoto from '../menu-bar/icons-menu-bar/codicon_account.svg'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { searchUserApi } from '../../api/searchUserApi'
 
 type SearchUserType = {
   followUser: (id: number) => void,
@@ -12,11 +11,9 @@ type SearchUserType = {
   id: number,
   name: string,
   status: null,
-  followed: boolean
-  photos: PhotosType
-  setFetchForFollowUserCallBack: (bool: boolean) => void,
-  isFetching: boolean
-  followingInProgress:FollowingInProgressType
+  followed: boolean,
+  photos: PhotosType,
+  followingInProgress: FollowingInProgressType
 }
 export class SearchUserC extends React.Component<SearchUserType>{
 
@@ -46,47 +43,16 @@ export class SearchUserC extends React.Component<SearchUserType>{
             {this.props.followed ?
 
               <button disabled={this.props.followingInProgress.isFetching} onClick={() => {
-
-                this.props.setFetchForFollowUserCallBack(true)
-                //вынесли запрос в папку апи
-                searchUserApi.unfollowUserRequest(this.props.id).then((data: any) => {
-                  console.log(data);
-
-                  if (data.resultCode === 0) {
-                    this.onClickUnFollowHandler(this.props.id)
-                  }
-                  this.props.setFetchForFollowUserCallBack(false)
-                }).catch(
-                  (error: string) => {
-                    // handle error
-                    console.log(error);
-                  }
-                )
-
-
+                //вся громоздкая логика теперь лежит в редьюсере
+                this.props.unfollowUser(this.props.id)
               }
               }>unfollow</button>
               :
               <button
                 disabled={this.props.followingInProgress.isFetching}
                 onClick={() => {
-
-                  this.props.setFetchForFollowUserCallBack(true)
-                  searchUserApi.followUserRequest(this.props.id).then((data: any) => {
-                    // debugger
-                    //респонс является датой, так как мы отдаем в апи функции респонс.дата
-
-                    if (data.resultCode === 0) {
-                      this.onClickFollowHandler(this.props.id)
-                    }
-
-                    this.props.setFetchForFollowUserCallBack(false)
-                  }).catch(
-                    (error: string) => {
-                      // handle error
-                      console.log(error);
-                    }
-                  )
+                  //вся громоздкая логика теперь лежит в редьюсере
+                  this.props.followUser(this.props.id)
                 }
                 }>follow</button>
             }

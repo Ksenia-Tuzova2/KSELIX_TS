@@ -8,7 +8,6 @@ export const ProfileApiC :React.FC<ProfileMapWindowContainerType>=(props)=>{
 
     useEffect(
       ()=>{
-    console.log('useEffect im profile api');
       
       let userId=props.router.params.userId
   
@@ -17,6 +16,7 @@ export const ProfileApiC :React.FC<ProfileMapWindowContainerType>=(props)=>{
         
        
         profileApi.profileDataRequest(userId).then((data: any) => {
+          //запихиваем в пропсы для профиля реквест дату, которые пришли с сервера
           props.setUserProfile(data)
         }).catch((error) => {
           // handle error
