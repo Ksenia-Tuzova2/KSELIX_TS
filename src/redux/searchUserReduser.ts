@@ -149,9 +149,23 @@ export const setTotalCount = (totalCount: number) => {
   return { type: SET_TOTAL_COUNT, totalCount } as const
 }
 
-//поменять на массив получаемое значение
 
-//работает как надо
+//БЫЛО в коллбеке
+
+   //обратные кавычки для того чтобы записать квери параметр с переменной
+    //квери параметры идут после вопросительного знака и записываются после амперсанта
+    // this.props.setFetching(true)
+
+    // searchUserApi.getUsersRequest(this.props.pageSize, this.props.currentPage).then((data: any) => {
+    //   this.props.setFetching(false)
+    //   this.props.setUser(data)
+    // }).catch((error) => {
+    //   // handle error
+    //   console.log(error);
+    // }
+    // )
+
+    //стало тут
 export const getUsersThunkCreator = (pageSize: number, currentPage: number): ThunkAction<void, {}, {}, any> => {
   return function (dispatch: any): void {
     setFetch(true)

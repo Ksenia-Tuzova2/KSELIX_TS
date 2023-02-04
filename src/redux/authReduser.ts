@@ -76,21 +76,18 @@ export const setFetch = (isFetching: boolean) => {
   //Но тут мы можем не вызывать стор(который прокинули через провайдер),
   // используем диспатч- он пробежится по всем редьюсерам
   // и найдет нужный экшн тайп, выполнит его
-  //потом мы распутали функции в профайлредьюсере, чтобы все работало,
-
 
 export const authUserDataRequest=():ThunkAction<void,{},{}, any>=>{
   return function (dispatch:any):void{
     authApi.authRequest().then((data: any) => {
+    console.log(data);
     
       // (0 if opearation completed successfullt, other numbers - some error occured)
       if (data.resultCode === 0) {
-        console.log('auth');
-        
         let { id, email, login } = data.data
         dispatch(setUserData({ id, email, login })) 
              }
-    }).catch((error) => {
+    }).catch((error:string) => {
       // handle error
       console.log(error);
     }

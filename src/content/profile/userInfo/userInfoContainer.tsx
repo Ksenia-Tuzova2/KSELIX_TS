@@ -1,11 +1,9 @@
-import React  from 'react'
+import React, { useEffect }  from 'react'
 import { connect } from 'react-redux'
-import { profileApi } from '../../../api/profileApi'
-import { ProfileTrueType, ProfileType, setUserProfile } from '../../../redux/profileReducer'
-import { RootState } from '../../../redux/store-redux'
+import { getUserData, ProfileTrueType, ProfileType, setUserProfile } from '../../../redux/profileReducer'
+import { RootState, useAppDispatch } from '../../../redux/store-redux'
 import { withRouter } from '../../../withRouter/withRouter'
 import { UserInfo } from './userInfo'
-
 
 
 type mapStateToPropsType={
@@ -16,33 +14,27 @@ type mapStateToPropsType={
 type mapDispatchToPropsType={
     setUserProfile:(profile: ProfileTrueType)=>void
 }
+
 export type UserInfoContainerType = mapStateToPropsType & mapDispatchToPropsType
 
 let mapStateToProps=(state:RootState)=>({
    profile: state.profileReducer.profile,
 })
 
+ export const UserInfoContainerC : React.FC<UserInfoContainerType>=(props:any)=>{
 
-
- export class UserInfoContainerC extends React.Component<UserInfoContainerType>{
-
-
+    const dispatch = useAppDispatch();
     
-    componentDidMount(): void {
-        let userId = this.props.router.params.userId;
-        
-        profileApi.profileDataRequest(userId).then((data:any)=>{
-            setUserProfile(data)
-        })
-    }
-
-    render() {
+    useEffect(()=>{
+        let userId = props.router.params.userId;
+        dispatch(getUserData(userId))},[]
+    )
         
         return (
-             <UserInfo {...this.props}/>
+             <UserInfo {...props}/>
              
              )
-    }
+    
 }
 
 

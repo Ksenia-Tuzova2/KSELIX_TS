@@ -1,11 +1,11 @@
 
 import { connect } from 'react-redux'
 import {
-    setUserProfile
+  getUserData,
 } from '../../redux/profileReducer'
 import { RootState } from '../../redux/store-redux'
 import { withRouter } from '../../withRouter/withRouter'
-import { ProfileApiC } from './profileApiC'
+import { ProfileApiC } from './profileApi'
 
 type MapStateToPropsType = any
 
@@ -15,12 +15,10 @@ type MapDispatchToPropsType = {
 }
 
 
-export type ProfileMapWindowContainerType = MapDispatchToPropsType & MapStateToPropsType
+export type ProfileContainerType = MapDispatchToPropsType & MapStateToPropsType
 
 
 let mapStateToProps = (state: RootState): MapStateToPropsType => {
-  // console.log(state.searchUserReduser.totalCount);
-
   return ({
     profile: state.profileReducer.profile
   }
@@ -30,7 +28,7 @@ let mapStateToProps = (state: RootState): MapStateToPropsType => {
 
 export const ProfileContainer = connect(mapStateToProps,
   {
-   setUserProfile:setUserProfile
+   setUserProfile:getUserData
   }
 )(withRouter(ProfileApiC) )
 

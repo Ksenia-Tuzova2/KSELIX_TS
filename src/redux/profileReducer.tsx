@@ -1,3 +1,4 @@
+import { ThunkAction } from "redux-thunk"
 import { v1 } from "uuid"
 import { profileApi } from "../api/profileApi"
 
@@ -137,19 +138,23 @@ export const profileReducer = (state: ProfileInitStateType = profileInitialState
     }
 }
 
-// export const getUserData=(dispatch:any)=>{
-//     let userId=props.router.params.userId
-  
-//     //обратные кавычки для того чтобы записать квери параметр с переменной
-//     //квери параметры идут после вопросительного знака и записываются после амперсанта
+export const getUserData=(userId:number):ThunkAction<void,{},{},any>=>{
+    return function (dispatch:any):void{
     
-  
-//     profileApi.profileDataRequest(userId).then((data: any) => {
-//       //запихиваем в пропсы для профиля реквест дату, которые пришли с сервера
-//       setUserProfile(data)
-//     }).catch((error: any) => {
-//       // handle error
-//       console.log(error);
-//     }
-//     )
-// }
+        //обратные кавычки для того чтобы записать квери параметр с переменной
+        //квери параметры идут после вопросительного знака и записываются после амперсанта
+        
+      
+        profileApi.profileDataRequest(userId).then((data: any) => {
+          //запихиваем в пропсы для профиля реквест дату, которые пришли с сервера
+          dispatch(setUserProfile(data))
+        }).catch((error: any) => {
+          // handle error
+          console.log(error);
+        }
+        )
+    }
+   
+}
+
+

@@ -8,8 +8,6 @@ export const LoginApiC :React.FC<LoginMapContainerType>=(props)=>{
 
   //ПЕРЕНЕСЛИ гет запрос на аутентификацию  В АПП ПРИ ПОМОЩИ ЮЗЭФФЕКТ
 
-
-
     const showDownload = () => {
       if (props.isFetching === true) {
         return <LoadingSpiner />
