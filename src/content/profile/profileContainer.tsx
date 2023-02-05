@@ -4,14 +4,22 @@ import {
   getUserData,
 } from '../../redux/profileReducer'
 import { RootState } from '../../redux/store-redux'
-import { withRouter } from '../../withRouter/withRouter'
+import { withRouter } from '../../HOC/withRouter'
 import { ProfileApiC } from './profileApi'
+import { withAuthRedirect } from '../../HOC/withAuthRedirect'
+import {compose} from 'redux'
 
 type MapStateToPropsType = any
+// {
+//   // profile: any
+//   //   isAuth: boolean
+//   //   isFetching:boolean
+//   any
+// }
 
 
 type MapDispatchToPropsType = {
-  setProfile: (id: number) => void,
+  setUserProfile: (id: number) => void,
 }
 
 
@@ -20,15 +28,19 @@ export type ProfileContainerType = MapDispatchToPropsType & MapStateToPropsType
 
 let mapStateToProps = (state: RootState): MapStateToPropsType => {
   return ({
-    profile: state.profileReducer.profile
+    profile: state.profileReducer.profile,
+    isAuth: state.authReduser.isAuth,
   }
   )
 }
 
 
-export const ProfileContainer = connect(mapStateToProps,
-  {
-   setUserProfile:getUserData
-  }
-)(withRouter(ProfileApiC) )
 
+
+export default compose<React.ComponentType>(
+  withAuthRedirect,
+  connect(mapStateToProps,
+    { setUserProfile:getUserData }
+  ),
+  withRouter
+)(ProfileApiC)

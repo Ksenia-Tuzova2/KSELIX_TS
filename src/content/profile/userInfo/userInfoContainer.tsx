@@ -2,7 +2,7 @@ import React, { useEffect }  from 'react'
 import { connect } from 'react-redux'
 import { getUserData, ProfileTrueType, ProfileType, setUserProfile } from '../../../redux/profileReducer'
 import { RootState, useAppDispatch } from '../../../redux/store-redux'
-import { withRouter } from '../../../withRouter/withRouter'
+import { withRouter } from '../../../HOC/withRouter'
 import { UserInfo } from './userInfo'
 
 

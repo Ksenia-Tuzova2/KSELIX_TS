@@ -4,7 +4,6 @@ import { Content } from '../content/content';
   import React from 'react';
 import { LoginContainer } from '../login/loginContainer';
 import { RegistrationForm } from '../content/autorization/registration/registrationForm';
-import { ProfileContainer } from '../content/profile/profileContainer';
 
 
 export type MainType={

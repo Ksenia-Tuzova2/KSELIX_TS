@@ -6,7 +6,7 @@ import {
   setUserData
 } from '../redux/authReduser'
 import { LoginApiC } from './loginApiC'
-import { withRouter } from '../withRouter/withRouter'
+import { withRouter } from '../HOC/withRouter'
 
 type MapStateToPropsType = {
   id: number | null,

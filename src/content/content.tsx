@@ -5,7 +5,7 @@ import { Dialogs } from './dialogs/dialogs'
 import { Friends } from './friends/friends'
 import { NewsFeedContainer } from './newsfeed/newsfeedContainer';
 import { SearchUserContainer } from './searchUser/searchUserContainer';
-import { ProfileContainer } from './profile/profileContainer';
+import  ProfileContainer  from './profile/profileContainer';
 
 
 

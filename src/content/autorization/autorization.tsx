@@ -1,9 +1,7 @@
-import React from 'react'
 import box from '../../box.module.scss'
 import btnStyle from '../../btn.module.scss'
 // import RegistrationForm from './registration/registrationForm'
-import { Link, Routes, Route } from 'react-router-dom'
-import { LoginMapContainerType } from '../../login/loginContainer'
+import { Link, } from 'react-router-dom'
 
 
 

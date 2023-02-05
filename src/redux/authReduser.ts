@@ -80,7 +80,6 @@ export const setFetch = (isFetching: boolean) => {
 export const authUserDataRequest=():ThunkAction<void,{},{}, any>=>{
   return function (dispatch:any):void{
     authApi.authRequest().then((data: any) => {
-    console.log(data);
     
       // (0 if opearation completed successfullt, other numbers - some error occured)
       if (data.resultCode === 0) {
