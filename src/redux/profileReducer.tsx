@@ -145,7 +145,7 @@ export const getUserData=(userId:number):ThunkAction<void,{},{},any>=>{
         //квери параметры идут после вопросительного знака и записываются после амперсанта
         
       
-        profileApi.profileDataRequest(userId).then((data: any) => {
+        profileApi.dataRequest(userId).then((data: any) => {
           //запихиваем в пропсы для профиля реквест дату, которые пришли с сервера
           dispatch(setUserProfile(data))
         }).catch((error: any) => {

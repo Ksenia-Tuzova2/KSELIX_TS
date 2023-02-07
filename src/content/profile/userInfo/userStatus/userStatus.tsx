@@ -29,7 +29,12 @@ const UserStatusMemo: React.FC<UserStatusType> = ({ status }) => {
           {!state.editMode&&  <span onDoubleClick={ onDoubleClickHandler}>{value}</span>}
 
           { state.editMode&& 
-           <input type='text' className="" value={value} onChange={(e) => updateTextHandler(e.currentTarget.value)} onBlur={onBlurHandler}/>}
+           <input type='text'
+            className="" 
+            value={value} 
+            autoFocus={true}
+            onChange={(e) => updateTextHandler(e.currentTarget.value)} 
+            onBlur={onBlurHandler}/>}
         </div>
 
     )

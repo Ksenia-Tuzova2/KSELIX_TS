@@ -27,7 +27,6 @@ export class SearchUserC extends React.Component<SearchUserType>{
   }
 
   render() {
-    console.log(this.props.followingInProgress);
 
     return (
       <div className={box.box}>

@@ -166,8 +166,10 @@ export const setTotalCount = (totalCount: number) => {
     // )
 
     //стало тут
+    
 export const getUsersThunkCreator = (pageSize: number, currentPage: number): ThunkAction<void, {}, {}, any> => {
   return function (dispatch: any): void {
+    
     setFetch(true)
     
     searchUserApi.getUsersRequest(pageSize, currentPage).then((data: any) => {
