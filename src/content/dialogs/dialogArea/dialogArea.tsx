@@ -15,8 +15,7 @@ export const DialogArea = ({ updateMesText, addMessage, newMesText, MyMessage }:
 
     let mapMyMes = () => MyMessage.map((el: MyMessageType) => <MyMesItem key={v1()} message={el.message}
     />)
-
-    //         //сделать страничку диалогов чтобы через диспатч вызывать метод в стейте чтобы функция добавления сообщения отправляла строку в хранилище
+   
     let addMessageHandler = (message: string) => {
         addMessage(message)
     }
@@ -31,13 +30,17 @@ export const DialogArea = ({ updateMesText, addMessage, newMesText, MyMessage }:
                 {mapMyMes()}
             </div>
             <div className={dialogAreaStyle.form}>
-                <textarea className={dialogAreaStyle.textInput + " " + box.box}
-                    placeholder='Type your message...' value={newMesText}
+                <textarea
+                    className={dialogAreaStyle.textInput + " " + box.box}
+                    placeholder='Type your message...'
+                    value={newMesText}
                     onChange={(e) => upateInputValueChangeHandler(e.currentTarget.value)}>
                 </textarea>
-                <input type="file"
-                 className={dialogAreaStyle.fileInput} />
-                <button onClick={() => addMessageHandler(newMesText)}
+                <input
+                    type="file"
+                    className={dialogAreaStyle.fileInput} />
+                <button
+                    onClick={() => addMessageHandler(newMesText)}
                     className={btnStyle.btn}>send
                 </button>
             </div>

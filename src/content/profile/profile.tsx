@@ -2,11 +2,11 @@ import ProfileStyle from './profile.module.scss'
 import React from 'react'
 import { Posts } from './posts/posts'
 import { UserInfoContainerCforContainerForContainer } from './userInfo/userInfoContainer'
-import { Navigate } from 'react-router-dom'
 
 type ProfileType = {
     profile: any
     isAuth: boolean
+    status:string
 }
 export const Profile: React.FC<ProfileType> = (props:ProfileType) => {
 
@@ -15,7 +15,7 @@ export const Profile: React.FC<ProfileType> = (props:ProfileType) => {
    
         return (
         <div >
-            <UserInfoContainerCforContainerForContainer/>
+            <UserInfoContainerCforContainerForContainer status={props.status}/>
             <Posts/>
         </div>
     )

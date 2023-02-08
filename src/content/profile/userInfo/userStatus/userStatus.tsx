@@ -2,7 +2,7 @@ import userStatusStyle from './userStatus.module.scss'
 import React, { useState } from 'react'
 
 type UserStatusType = {
-    status: any
+    status: string|undefined|null
 }
 
 
@@ -26,7 +26,7 @@ const UserStatusMemo: React.FC<UserStatusType> = ({ status }) => {
     return (
         <div className={userStatusStyle.UserStatus}>
 
-          {!state.editMode&&  <span onDoubleClick={ onDoubleClickHandler}>{value}</span>}
+          {!state.editMode&&  <span onDoubleClick={ onDoubleClickHandler}>z{status}</span>}
 
           { state.editMode&& 
            <input type='text'

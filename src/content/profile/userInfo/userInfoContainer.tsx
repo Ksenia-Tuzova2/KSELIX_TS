@@ -8,7 +8,8 @@ import { UserInfo } from './userInfo'
 
 type mapStateToPropsType={
     profile: ProfileType,
-    router:any
+    router:any,
+    status:string
 }
 
 type mapDispatchToPropsType={
@@ -31,7 +32,7 @@ let mapStateToProps=(state:RootState)=>({
     )
         
         return (
-             <UserInfo {...props}/>
+             <UserInfo {...props} status={props.status}/>
              
              )
     

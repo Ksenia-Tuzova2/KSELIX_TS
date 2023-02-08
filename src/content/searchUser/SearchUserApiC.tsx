@@ -10,6 +10,7 @@ export class SearchUserApiC extends React.Component<searchUserMapWindowContainer
   
 componentDidMount(): void {
     this.props.getUsersThunkCreator(this.props.pageSize, this.props.currentPage)
+    
   }
 
 

@@ -9,9 +9,13 @@ export const RegistrationForm=()=>{
               <input type="text" tabIndex={2}  placeholder="Second Name"/>
 
               <input type='radio' tabIndex={3} name="gender" value="male"/><span>Male</span>
-              <input type='radio'tabIndex={3}  name="gender" value="female"/><span>Female</span>
+              <input type='radio'
+              tabIndex={3} 
+               name="gender" value="female"/><span>Female</span>
              
-              <input type="text" tabIndex={4}   placeholder="City"/>
+              <input type="text" 
+              tabIndex={4}  
+               placeholder="City"/>
               <input type="text"  tabIndex={5} placeholder="Education"/>
               <input type='tel' tabIndex={6} placeholder="Telephone number"/>
               <input type="password"  tabIndex={7}

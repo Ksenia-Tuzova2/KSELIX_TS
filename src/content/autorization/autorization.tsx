@@ -10,12 +10,14 @@ export const Authorization = ({props}:any) => {
     return (
         <div className={box.box}>
             <form action="get">
-                <input type='text' placeholder='login' />
-                <input type='password' placeholder='password' />
-                <Link to='/content'>come in</Link>
+                <input type='text' 
+                placeholder='login' />
+                <input type='password'
+                 placeholder='password' />
+                <Link className={btnStyle.btn}  to='/content'>come in</Link>
                  </form>
             <div>or</div>
-            <Link className={btnStyle.btn} to='/registrationForm/'>registration</Link>
+            <Link  to='/registrationForm/'>registration</Link>
 
         </div>
     )

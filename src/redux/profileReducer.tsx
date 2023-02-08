@@ -6,6 +6,8 @@ const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const DELETE_POST = 'DELETE-POST'
 const SET_PROFILE = 'SET_PROFILE'
+const UPDATE_STATUS = 'UPDATE_STATUS'
+const SET_STATUS = "SET_STATUS"
 
 
 //редьюс значит уменьшить- мы уменьшаем нагрузку на диспатч, не громоздя условное ветвление
@@ -49,6 +51,7 @@ export type ProfileInitStateType = {
     newPostText: NewPostTextType,
     messageData: MessageDataType[],
     profile: ProfileType | null,
+    status: string
 }
 
 export const profileInitialState: ProfileInitStateType = {
@@ -80,6 +83,7 @@ export const profileInitialState: ProfileInitStateType = {
         },
     ] as Array<MessageDataType>,
     profile: null,
+    status: 'z',
 }
 
 
@@ -89,19 +93,27 @@ export const addPost = (newtext: string) => {
     return { type: ADD_POST, newtext } as const
 }
 
+export const setStatus = (status: string) => {
+    return { type: SET_STATUS, status } as const
+}
+
+export const updateStatus = (status: string) => {
+    return { type: UPDATE_STATUS, status } as const
+}
+
 export const updateNewPostText = (newtext: string) => {
     return { type: UPDATE_NEW_POST_TEXT, newtext } as const
 }
 
 export const deletePost = (id: string) => {
-    return { type: DELETE_POST, id }  as const
+    return { type: DELETE_POST, id } as const
 }
 
 export const setUserProfile = (profile: ProfileTrueType) => {
     return { type: SET_PROFILE, profile } as const
 }
 
-type ProfileActionType=ReturnType<typeof setUserProfile>| ReturnType<typeof deletePost>| ReturnType<typeof updateNewPostText>| ReturnType<typeof addPost>
+type ProfileActionType = ReturnType<typeof setUserProfile> | ReturnType<typeof deletePost> | ReturnType<typeof updateNewPostText> | ReturnType<typeof addPost> | ReturnType<typeof setStatus> | ReturnType<typeof updateStatus>
 
 export const profileReducer = (state: ProfileInitStateType = profileInitialState, action: ProfileActionType): ProfileInitStateType => {
 
@@ -132,29 +144,74 @@ export const profileReducer = (state: ProfileInitStateType = profileInitialState
             return { ...state, profile: action.profile };
         }
 
+        case SET_STATUS: {
+            return { ...state };
+        }
+
+        case UPDATE_STATUS: {
+            return { ...state, status: action.status };
+        }
+
         default: {
             return state
         }
     }
 }
 
-export const getUserData=(userId:number):ThunkAction<void,{},{},any>=>{
-    return function (dispatch:any):void{
-    
+export const getUserData = (userId: number): ThunkAction<void, {}, {}, any> => {
+    return function (dispatch: any): void {
+
         //обратные кавычки для того чтобы записать квери параметр с переменной
         //квери параметры идут после вопросительного знака и записываются после амперсанта
-        
-      
+
+
         profileApi.dataRequest(userId).then((data: any) => {
-          //запихиваем в пропсы для профиля реквест дату, которые пришли с сервера
-          dispatch(setUserProfile(data))
+            //запихиваем в пропсы для профиля реквест дату, которые пришли с сервера
+            dispatch(setUserProfile(data))
         }).catch((error: any) => {
-          // handle error
-          console.log(error);
+            // handle error
+            console.log(error);
         }
         )
     }
-   
+
 }
 
+export const updateStatusThunk = (status: string): ThunkAction<void, {}, {}, any> => {
+    return function (dispatch: any): void {
+
+
+        profileApi.updateStatusRequest(status).then((data: any) => {
+
+            if (data.resultCode === 0) {
+                dispatch(updateStatus(data))
+            }
+
+        }).catch((error: any) => {
+            // handle error
+            console.log(error);
+        }
+        )
+    }
+
+}
+
+export const getStatusThunk = (id: number): ThunkAction<void, {}, {}, any> => {
+    return function (dispatch: any): void {
+
+
+        profileApi.getStatusRequest(id).then((data: any) => {
+
+            if (data.resultCode === 0) {
+            dispatch(setStatus(data))
+            }
+
+        }).catch((error: any) => {
+            // handle error
+            console.log(error);
+        }
+        )
+    }
+
+}
 

@@ -9,7 +9,7 @@ import { UserInfoContainerType } from "./userInfoContainer"
 
 
 
-export const UserInfo=({setUserProfile,profile}:UserInfoContainerType)=>{
+export const UserInfo=({setUserProfile,profile, status}:UserInfoContainerType)=>{
 
 
 
@@ -20,7 +20,7 @@ export const UserInfo=({setUserProfile,profile}:UserInfoContainerType)=>{
            <UserPhoto photo={profile?.photos}/>
               <div className={ProfileStyle.Profile__userInfo}>
               <UserName fullName={profile?.fullName} />
-              <UserStatus status={profile?.aboutMe} />
+              <UserStatus status={status} />
                   <ul className="userInfo-list">
                   <UserInfoContacts  contacts={profile?.contacts}/>
                
