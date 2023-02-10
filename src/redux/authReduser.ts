@@ -1,5 +1,4 @@
 import { ThunkAction } from "redux-thunk"
-import { VoidExpression } from "typescript"
 import { authApi } from "../api/authApi"
 
 const SET_USER_DATA='SET_USER_DATA'

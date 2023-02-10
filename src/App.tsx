@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { Header } from './header/header'
 import Footer from './footer/footer';
 import { Main } from './main/main';
-import { authUserDataRequest, setUserData } from './redux/authReduser';
+import { authUserDataRequest } from './redux/authReduser';
 import { useAppDispatch } from './redux/store-redux';
 
 export type AppPropsType = {}
