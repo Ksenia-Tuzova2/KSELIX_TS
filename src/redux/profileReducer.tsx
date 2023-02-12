@@ -145,7 +145,7 @@ export const profileReducer = (state: ProfileInitStateType = profileInitialState
         }
 
         case SET_STATUS: {
-            return { ...state };
+            return { ...state, status:action.status };
         }
 
         case UPDATE_STATUS: {
@@ -182,7 +182,6 @@ export const updateStatusThunk = (status: string): ThunkAction<void, {}, {}, any
 
 
         profileApi.updateStatusRequest(status).then((data: any) => {
-
             if (data.resultCode === 0) {
                 dispatch(updateStatus(data))
             }
@@ -195,6 +194,8 @@ export const updateStatusThunk = (status: string): ThunkAction<void, {}, {}, any
     }
 
 }
+
+
 
 export const getStatusThunk = (id: number): ThunkAction<void, {}, {}, any> => {
     return function (dispatch: any): void {

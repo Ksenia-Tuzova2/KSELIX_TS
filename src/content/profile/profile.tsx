@@ -1,25 +1,30 @@
 import ProfileStyle from './profile.module.scss'
 import React from 'react'
 import { Posts } from './posts/posts'
-import { UserInfoContainerCforContainerForContainer } from './userInfo/userInfoContainer'
+import { UserInfoContainer } from './userInfo/userInfoContainer'
+
 
 type ProfileType = {
     profile: any
     isAuth: boolean
-    status:string
+    status: string
+    updateStatus: (status: string) => void,
+    userId: number,
 }
-export const Profile: React.FC<ProfileType> = (props:ProfileType) => {
+export const Profile: React.FC<ProfileType> = (props: ProfileType) => {
 
 
-    //навигейт делает редирект - отправляет нас на страничку логинизациии  если мы не залогинены
-   
-        return (
+    return (
         <div >
-            <UserInfoContainerCforContainerForContainer status={props.status}/>
-            <Posts/>
+            <UserInfoContainer
+                status={props.status}
+                updateStatus={props.updateStatus}
+                id={props.userId}
+            />
+            <Posts />
         </div>
     )
 
-    
+
 }
 

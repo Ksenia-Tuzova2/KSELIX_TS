@@ -4,7 +4,6 @@ import {
   
   getStatusThunk,
   getUserData,
-  updateStatus,
   updateStatusThunk,
 } from '../../redux/profileReducer'
 import { RootState } from '../../redux/store-redux'
