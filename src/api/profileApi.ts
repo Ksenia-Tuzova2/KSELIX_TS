@@ -21,7 +21,7 @@ export const profileApi={
 },
 
 updateStatusRequest(status:string){
-    return ( instance.post(`/profile/status`,{status:status}
+    return ( instance.put(`/profile/status`,{status:status}
     ).then((Response)=> {return (Response.data)})
  )
 },

@@ -5,7 +5,7 @@ type UserPhotoType={
     photo: {
         small: any;
         large: any;
-    } | undefined
+    } 
 }
 const UserPhoto:React.FC<UserPhotoType>=({photo})=>{
     return(
@@ -13,8 +13,8 @@ const UserPhoto:React.FC<UserPhotoType>=({photo})=>{
             <a href="#">
                 {photo!==undefined||null?
                 <img className={PhotoStyle.img}
-                 src={photo?.large} 
-                 alt="" />:<></>}
+                 src={photo.large} 
+                 alt="z" />:<></>}
                 
             </a>
             </div>

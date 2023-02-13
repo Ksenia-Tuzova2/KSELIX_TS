@@ -30,27 +30,27 @@ export type ContactsType = {
     mainLink: string | null
 }
 
-export type ProfileTrueType = {
+export type ProfileType = {
 
-    aboutMe: string | null,
+    aboutMe: string ,
     contacts: ContactsType,
     lookingForAJob: boolean,
-    lookingForAJobDescription: string | null,
-    fullName: string | null,
+    lookingForAJobDescription: string ,
+    fullName: string ,
     userId: number,
     photos: {
-        small: string | null,
-        large: string | null
+        small: string 
+        large: string 
     }
 }
 
-export type ProfileType = ProfileTrueType | null
+
 
 
 export type ProfileInitStateType = {
     newPostText: NewPostTextType,
     messageData: MessageDataType[],
-    profile: ProfileType | null,
+    profile: ProfileType | object,
     status: string
 }
 
@@ -82,8 +82,8 @@ export const profileInitialState: ProfileInitStateType = {
             message: ' Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed illo blanditiis accusamus eius, laborum aliquam deserunt atque fuga tempore ad nemo quibusdam perspiciatis recusandae quas illum maxime laudantium aspernatur. Deleniti?',
         },
     ] as Array<MessageDataType>,
-    profile: null,
-    status: 'z',
+    profile:{},
+    status: '',
 }
 
 
@@ -109,7 +109,7 @@ export const deletePost = (id: string) => {
     return { type: DELETE_POST, id } as const
 }
 
-export const setUserProfile = (profile: ProfileTrueType) => {
+export const setUserProfile = (profile: ProfileType) => {
     return { type: SET_PROFILE, profile } as const
 }
 
@@ -145,6 +145,8 @@ export const profileReducer = (state: ProfileInitStateType = profileInitialState
         }
 
         case SET_STATUS: {
+    
+        
             return { ...state, status:action.status };
         }
 
@@ -183,7 +185,7 @@ export const updateStatusThunk = (status: string): ThunkAction<void, {}, {}, any
 
         profileApi.updateStatusRequest(status).then((data: any) => {
             if (data.resultCode === 0) {
-                dispatch(updateStatus(data))
+                dispatch(updateStatus(status))
             }
 
         }).catch((error: any) => {
@@ -202,6 +204,7 @@ export const getStatusThunk = (id: number): ThunkAction<void, {}, {}, any> => {
 
 
         profileApi.getStatusRequest(id).then((data: any) => {
+
 
             if (data.resultCode === 0) {
             dispatch(setStatus(data))

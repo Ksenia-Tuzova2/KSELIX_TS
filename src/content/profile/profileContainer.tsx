@@ -18,6 +18,7 @@ type MapStateToPropsType = {
   status:string,
 }
 
+//нужен тут айди
 
 type MapDispatchToPropsType = {
   setUserProfile: (id: number) => void,
@@ -40,7 +41,7 @@ let mapStateToProps = (state: RootState): MapStateToPropsType => {
 
 
 
-
+//после componentType можно написать доп дженерик и повесить туда еще один тип, чтобы ловить пропсы из других компонент
 export default compose<React.ComponentType>(
   withAuthRedirect,
   connect(mapStateToProps,

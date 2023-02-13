@@ -1,25 +1,25 @@
 import ProfileStyle from './profile.module.scss'
 import React from 'react'
 import { Posts } from './posts/posts'
-import { UserInfoContainer } from './userInfo/userInfoContainer'
+import { UserInfo } from './userInfo/userInfo'
+import { ProfileType } from '../../redux/profileReducer'
 
 
-type ProfileType = {
-    profile: any
-    isAuth: boolean
+export type ProfileTypes = {
+    profile: ProfileType
     status: string
     updateStatus: (status: string) => void,
-    userId: number,
+
 }
-export const Profile: React.FC<ProfileType> = (props: ProfileType) => {
+export const Profile: React.FC<ProfileTypes> = (props: ProfileTypes) => {
 
 
     return (
         <div >
-            <UserInfoContainer
+            <UserInfo
+            profile={props.profile}
                 status={props.status}
                 updateStatus={props.updateStatus}
-                id={props.userId}
             />
             <Posts />
         </div>

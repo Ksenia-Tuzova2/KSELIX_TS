@@ -35,7 +35,7 @@ export class SearchUserC extends React.Component<SearchUserType>{
           <Link to={`/content/profile/${this.props.id}`}>
             {this.props.photos.large == null && this.props.photos.small == null ?
               <img src={defaultPhoto} alt=''></img> :
-              <img src='' alt=''></img>}
+              <img src={this.props.photos.large!==null?this.props.photos.large:''} alt=''></img>}
           </Link>
           <div className={''}>
             {this.props.name}

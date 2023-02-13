@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import { LoadingSpiner } from '../../loadingSpiner/loadingSpiner'
+import { getUserData } from '../../redux/profileReducer'
+import { useAppDispatch } from '../../redux/store-redux'
 import { Profile } from './profile'
 import { ProfileContainerType } from './profileContainer'
 
@@ -8,8 +10,11 @@ export const ProfileApiContainer: React.FC<ProfileContainerType> = (props) => {
 //должно сработать замыкание , но я не уверена
 let userId
 
+const dispatch = useAppDispatch();
 
   useEffect(() => {
+
+   
      userId = props.router.params.userId
     //не засовываем в диспатч, так как есть контейнерная компонента
 
@@ -19,6 +24,8 @@ let userId
 
     props.getStatus(userId)
 
+
+    dispatch(getUserData(userId))
     //я не уверна что мне это необходимо здесь
     // props.getStatus(userId)
   }, [])

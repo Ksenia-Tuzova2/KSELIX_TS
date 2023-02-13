@@ -5,22 +5,27 @@ import ProfileStyle from '../profile.module.scss'
 import UserName from "./userName/userName"
 import {UserStatus }from "./userStatus/userStatus"
 import box from '../../../box.module.scss'
-import { UserInfoContainerType } from "./userInfoContainer"
+import { ProfileTypes } from "../profile"
 
 
 
-export const UserInfo=({setUserProfile,profile, status}:UserInfoContainerType)=>{
+export const UserInfo:React.FC<ProfileTypes>=({profile, status, updateStatus})=>{
 
 
 
     return(
       
       <div>
+        
+        {profile!==null?<>{profile.fullName}</>:<></>
+        }
+        
          <div className={ProfileStyle.Profile+' '+box.box}>
            <UserPhoto photo={profile?.photos}/>
               <div className={ProfileStyle.Profile__userInfo}>
               <UserName fullName={profile?.fullName} />
-              <UserStatus status={status} />
+              <UserStatus status={status} 
+              updateStatus={updateStatus}/>
                   <ul className="userInfo-list">
                   <UserInfoContacts  contacts={profile?.contacts}/>
                

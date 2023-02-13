@@ -2,11 +2,12 @@ import userStatusStyle from './userStatus.module.scss'
 import React, { useState } from 'react'
 
 type UserStatusType = {
-    status: string|undefined|null
+    updateStatus:(status:string)=>void,
+    status:string
 }
 
 
-const UserStatusMemo: React.FC<UserStatusType> = ({ status }) => {
+const UserStatusMemo: React.FC<UserStatusType> = ({updateStatus , status}) => {
 
 
     let [state,setState ]=useState({editMode: false})
@@ -20,13 +21,16 @@ const UserStatusMemo: React.FC<UserStatusType> = ({ status }) => {
         setValue(text)
     }
 
-    let onBlurHandler=()=>{
+    let onBlurHandler=(value:string)=>{
+        console.log(value);
+        
         setState({editMode:false})
+        updateStatus(value)
     }
     return (
         <div className={userStatusStyle.UserStatus}>
 
-          {!state.editMode&&  <span onDoubleClick={ onDoubleClickHandler}>z{status}</span>}
+          {!state.editMode&&<span onDoubleClick={ onDoubleClickHandler}>{status}___</span>}
 
           { state.editMode&& 
            <input type='text'
@@ -34,7 +38,7 @@ const UserStatusMemo: React.FC<UserStatusType> = ({ status }) => {
             value={value} 
             autoFocus={true}
             onChange={(e) => updateTextHandler(e.currentTarget.value)} 
-            onBlur={onBlurHandler}/>}
+            onBlur={()=>onBlurHandler(value)}/>}
         </div>
 
     )
