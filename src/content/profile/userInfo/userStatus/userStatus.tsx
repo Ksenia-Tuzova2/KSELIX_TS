@@ -11,7 +11,7 @@ const UserStatusMemo: React.FC<UserStatusType> = ({updateStatus , status}) => {
 
 
     let [state,setState ]=useState({editMode: false})
-    let [value,setValue]=useState('hi')
+    let [value,setValue]=useState('')
 
     let onDoubleClickHandler=()=>{
       setState({editMode:true})
@@ -30,10 +30,11 @@ const UserStatusMemo: React.FC<UserStatusType> = ({updateStatus , status}) => {
     return (
         <div className={userStatusStyle.UserStatus}>
 
-          {!state.editMode&&<span onDoubleClick={ onDoubleClickHandler}>{status}___</span>}
+          {!state.editMode&&<span onDoubleClick={ onDoubleClickHandler}>{status===''?'status: ':status}</span>}
 
           { state.editMode&& 
            <input type='text'
+           placeholder='status'
             className="" 
             value={value} 
             autoFocus={true}

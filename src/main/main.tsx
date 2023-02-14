@@ -3,7 +3,7 @@ import MainStyle from './main.module.scss'
 import { Content } from '../content/content'; 
   import React from 'react';
 import { LoginContainer } from '../login/loginContainer';
-import { RegistrationForm } from '../content/autorization/registration/registrationForm';
+import { RegistrationFormRedux } from '../content/autorization/registration/registrationForm';
 
 
 export type MainType={
@@ -12,7 +12,12 @@ export type MainType={
 export const Main:React.FC<MainType>= ({ 
   // appState, dispatch,
   }) => {
-// debugger
+
+   const onSubmit=(formData:any)=>{
+console.log(formData);
+
+   }
+
   return (
       <main className={MainStyle.Main} >
         <div className={MainStyle.Flexbox}>
@@ -33,7 +38,7 @@ export const Main:React.FC<MainType>= ({
 {/* 			
           <Route path='/autorization/*' element={<Authorization />} /> */}
 				<Route path='/main/*' element={<Main />} />
-				<Route path='/registrationForm/*' element={<RegistrationForm />} />
+				<Route path='/registrationForm/*' element={<RegistrationFormRedux onSubmit={onSubmit}/>} />
 				</Routes>
           <div className={MainStyle.Margin}></div>
         </div>

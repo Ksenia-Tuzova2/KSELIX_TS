@@ -73,12 +73,17 @@ export class PostArea extends React.Component<postAreaContainerType>{
 
 const Posts = (props: any) => {
 
-useEffect(()=>{console.log('posts render');
-})
+    useEffect(() => {
+        console.log('posts render');
 
-    const makePost = useCallback(() => props.messageData.map((m: MType, pos: number,) => <NewPosts key={v1()}
+    },)
+
+    const makePost = useCallback(() => props.messageData.map((m: MType, pos: number,) => <NewPosts
+        key={v1()}
         deletePost={props.deletePost}
-        message={m.message} pos={pos} id={m.id} />), [props.messageData])
+        message={m.message}
+        pos={pos}
+        id={m.id} />), [props])
 
     return (<>{makePost()}</>)
 }

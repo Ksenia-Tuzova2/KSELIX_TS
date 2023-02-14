@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { legacy_createStore as createStore, combineReducers, Store } from 'redux'
 import { applyMiddleware } from 'redux'
+import { reducer } from 'redux-form'
 import thunk from 'redux-thunk'
 import { authReduser } from './authReduser'
 import { messegeReducer } from './messegeReduser'
@@ -12,6 +13,7 @@ const redusersPack = combineReducers({
   profileReducer,
   searchUserReduser,
   authReduser,
+  form:reducer
 })
 
 export type RootState = ReturnType<typeof redusersPack>

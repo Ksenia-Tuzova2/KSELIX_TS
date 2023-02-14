@@ -1,5 +1,4 @@
 import HeaderStyle from './header.module.scss'
-import React, { useEffect, useState } from 'react'
 import Logo from './logo/logo'
 import Avatar from './avatar/avatar'
 import btnStyle from '../btn.module.scss'
