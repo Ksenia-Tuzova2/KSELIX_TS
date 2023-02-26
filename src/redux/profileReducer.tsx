@@ -145,8 +145,6 @@ export const profileReducer = (state: ProfileInitStateType = profileInitialState
         }
 
         case SET_STATUS: {
-    
-        
             return { ...state, status:action.status };
         }
 

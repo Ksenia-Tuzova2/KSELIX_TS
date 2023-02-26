@@ -24,14 +24,7 @@ console.log(formData);
           <div className={MainStyle.Margin}></div>
 				<Routes>
          
-          <Route path='/content/*' element={<Content 
-          // appState={appState} 
-          // addMassage={addMassage}
-          // dispatch={dispatch}
-          //  updateNewPostText={updateNewPostText} 
-          // updateMesText={updateMesText} 
-          
-          />}/>
+          <Route path='/content/*' element={<Content/>}/>
 
           <Route path='/auth' element={<LoginContainer/>}/>
 

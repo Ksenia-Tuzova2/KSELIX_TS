@@ -16,6 +16,7 @@ type MType = {
 
 export class PostArea extends React.Component<postAreaContainerType>{
 
+    //что это такое???
     componentDidUpdate(
         prevProps: Readonly<postAreaContainerType>,
         prevState: Readonly<{}>,

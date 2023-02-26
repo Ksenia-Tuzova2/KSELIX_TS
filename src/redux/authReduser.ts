@@ -77,7 +77,9 @@ export const setFetch = (isFetching: boolean) => {
   // и найдет нужный экшн тайп, выполнит его
 
 export const authUserDataRequest=():ThunkAction<void,{},{}, any>=>{
+  
   return function (dispatch:any):void{
+
     authApi.authRequest().then((data: any) => {
     
       // (0 if opearation completed successfullt, other numbers - some error occured)

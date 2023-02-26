@@ -22,11 +22,6 @@ let mapStateToProps = (state: RootState): MapStateToPropsType => {
   }
 }
 
-// let MapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
-//   return {
-//     deletePost: (id: string) => dispatch(deletePost(id))
-//   }
-// }
 
 
 export const NewsFeedContainer = connect(mapStateToProps, {deletePost:deletePost})(NewsFeed)
