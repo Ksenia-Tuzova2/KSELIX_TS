@@ -6,7 +6,6 @@ import { LoadingSpiner } from "../../loadingSpiner/loadingSpiner"
 
 export class SearchUserApiC extends React.Component<searchUserMapWindowContainerType>{
 
-// const {getUsersThunkCreator} = this.props
   
 componentDidMount(): void {
     this.props.getUsersThunkCreator(this.props.pageSize, this.props.currentPage)
