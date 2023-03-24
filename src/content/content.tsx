@@ -9,30 +9,18 @@ import  ProfileContainer  from './profile/profileContainer';
 
 
 
-type ContentPropsType = {
-	// appState: RootState, 
-	// dispatch:(action:any)=>any
-}
 
-export const Content: React.FC<ContentPropsType> = ({
-	//  appState, dispatch
-}) => {
+export const Content: React.FC = () => {
 	// debugger
 	return (
 		<div className={contentStyle.wrapper}>
 			<MenuBar />
 			<Routes>
-				<Route path='/dialogs/*' element={<Dialogs
-				//  Massage={appState.messegeReducer} dispatch={dispatch}
-				/>} />
-				<Route path='/profile' element={<ProfileContainer
-				// messageData={appState.profileReducer.messageData} newPostText={appState.profileReducer.newPostText}   dispatch={dispatch}
-				/>} />
+				<Route path='/dialogs/*' element={<Dialogs/>} />
+				<Route path='/profile' element={<ProfileContainer/>} />
 				<Route path='/friends/*' element={<Friends />} />
 				<Route path='/news/*'
-					element={<NewsFeedContainer
-					// messageData={appState.profileReducer.messageData} dispatch={dispatch}
-					/>}
+					element={<NewsFeedContainer/>}
 				/>
 				<Route path='SearchUserContainer'
 					element={<SearchUserContainer/>	}

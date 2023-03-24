@@ -3,10 +3,6 @@ import React from "react"
 
 //не использовать расширение жсх для редьюсеров - могут быть баги
 
-const ADD_MESSAGE = 'ADD-MESSAGE'
-const UPDATE_MES_TEXT = 'UPDATE-MES-TEXT'
-
-
 export type MyMessageType = {
 	message: string;
 }
@@ -44,21 +40,18 @@ const messageInitState: MessageInitStateType = {
   ],
 }
 
-type ActionType={
-  type:string,
-  newtext:string,
-  message:string,
-}
+type ActionType=ReturnType<typeof addMessage>|
+ReturnType<typeof updateMesText>
 
 export const messegeReducer = (state: MessageInitStateType = messageInitState, action: ActionType):MessageInitStateType => {
   
   // не надо здесь делать переменные, потому что при каждом действии диспач в тандеме с экшн креэйтером залезает в редьюсер и использует лишнюю помять для создания переменных
   
   switch (action.type) {
-      case UPDATE_MES_TEXT:{
+      case ('UPDATE_MES_TEXT'):{
         return {...state, newMesText:action.newtext}; 
       }
-      case ADD_MESSAGE:{
+      case ('ADD_MESSAGE'):{
           return {...state,newMesText:'', MyMessage:[...state.MyMessage,{message:action.message}]}
       }
   
@@ -66,14 +59,12 @@ export const messegeReducer = (state: MessageInitStateType = messageInitState, a
         return state
       }
     } 
- 
-
 }
 
 export const addMessage = (message: string) => {
-	return { type: ADD_MESSAGE, message }
+	return { type: 'ADD_MESSAGE', message } as const
 }
 
 export const updateMesText = (newtext: string) => {
-	return { type: UPDATE_MES_TEXT, newtext }
+	return { type: 'UPDATE_MES_TEXT', newtext } as const
 }

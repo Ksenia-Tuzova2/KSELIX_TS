@@ -4,34 +4,7 @@ import { PostArea } from './postArea'
 import { connect } from 'react-redux'
 import { RootState } from '../../../../redux/store-redux'
 
-// type MType = {
-//     id: string,
-//     message: string,
-// }
-// type Props = {
-//     // messageData: Array<MType>;
-//     // newPostText: string;
-//     // dispatch: (action: any) => any
-// }
-// export const PostAreaContainer = ( ) => {
-//     return ( <StoreContext.Consumer>
-//             {(store:Store<RootState>)=>{
-//                 let state=store.getState()
 
-//                 const makePost = () => state.profileReducer.messageData.map((m: MType, pos: number,) => <NewPostsContainer key={v1()} message={m.message} pos={pos} dispatch={store.dispatch} id={m.id} />)
-//                 const addPostHandler = (newtext: string) => {store.dispatch(addPost(newtext))}
-//                 const updateNewPostTextHandler = (text: string) => { store.dispatch(updateNewPostText(text))}
-//                 return (
-//                 <PostArea newPostText={state.profileReducer.newPostText} addPost={addPostHandler} updateNewPostText={updateNewPostTextHandler} makePost={makePost} />
-//                 )
-//             }
-//         }
-//        </StoreContext.Consumer>
-//     )
-
-// }
-
-//повторить создание коннекта в других контейнерных компонентах,
 export type NewPostTextType = {
     newPostText: string
     messageData: MessageDataType[]
@@ -69,4 +42,4 @@ let mapDisatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
 
 
 
-export const PostAreaContainer = connect(mapStateToProps, mapDisatchToProps)(PostArea)
+export const Posts = connect(mapStateToProps, mapDisatchToProps)(PostArea)

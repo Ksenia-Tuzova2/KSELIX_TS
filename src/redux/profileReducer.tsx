@@ -2,12 +2,6 @@ import { ThunkAction } from "redux-thunk"
 import { v1 } from "uuid"
 import { profileApi } from "../api/profileApi"
 
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-const DELETE_POST = 'DELETE-POST'
-const SET_PROFILE = 'SET_PROFILE'
-const UPDATE_STATUS = 'UPDATE_STATUS'
-const SET_STATUS = "SET_STATUS"
 
 
 //редьюс значит уменьшить- мы уменьшаем нагрузку на диспатч, не громоздя условное ветвление
@@ -90,40 +84,36 @@ export const profileInitialState: ProfileInitStateType = {
 //я переименовала креаторы в имена функций ,которые они делают, чтобы это было чуть короче и понятнее 
 //креаторы для того, чтобы разбить респонсобилити, как и константы с типами
 export const addPost = (newtext: string) => {
-    return { type: ADD_POST, newtext } as const
+    return { type: "ADD_POST", newtext } as const
 }
 
 export const setStatus = (status: string) => {
-    return { type: SET_STATUS, status } as const
+    return { type: "SET_STATUS", status } as const
 }
 
 export const updateStatus = (status: string) => {
-    return { type: UPDATE_STATUS, status } as const
+    return { type: "UPDATE_STATUS" as const, status } as const
 }
 
 export const updateNewPostText = (newtext: string) => {
-    return { type: UPDATE_NEW_POST_TEXT, newtext } as const
+    return { type: "UPDATE_NEW_POST_TEXT", newtext } as const
 }
 
 export const deletePost = (id: string) => {
-    return { type: DELETE_POST, id } as const
+    return { type: "DELETE_POST", id } as const
 }
 
 export const setUserProfile = (profile: ProfileType) => {
-    return { type: SET_PROFILE, profile } as const
+    return { type: "SET_PROFILE", profile } as const
 }
 
 type ProfileActionType = ReturnType<typeof setUserProfile> | ReturnType<typeof deletePost> | ReturnType<typeof updateNewPostText> | ReturnType<typeof addPost> | ReturnType<typeof setStatus> | ReturnType<typeof updateStatus>
 
 export const profileReducer = (state: ProfileInitStateType = profileInitialState, action: ProfileActionType): ProfileInitStateType => {
 
-    //ЗАДАТЬ ВОПРОС
-    // почему мы не можем создавать при каждом вызове редьюсера эту переменную и отдавать ее разным кейсом, ведь эта переменная нужна всм кейсам
-    // let stateCopy = { ...state, messageData: [...state.messageData] }
-
 
     switch (action.type) {
-        case DELETE_POST: {
+        case "DELETE_POST": {
             return {
                 ...state, messageData: [...state.messageData.filter((t) => {
                     return t.id !== action.id
@@ -131,24 +121,24 @@ export const profileReducer = (state: ProfileInitStateType = profileInitialState
             };
         }
 
-        case UPDATE_NEW_POST_TEXT: {
+        case "UPDATE_NEW_POST_TEXT": {
             return { ...state, newPostText: action.newtext };
         }
 
-        case ADD_POST: {
+        case "ADD_POST": {
             // добавляем новый обЪект в фигурных скобках
             return { ...state, newPostText: '', messageData: [{ id: v1(), message: action.newtext }, ...state.messageData] };
         }
 
-        case SET_PROFILE: {
+        case "SET_PROFILE": {
             return { ...state, profile: action.profile };
         }
 
-        case SET_STATUS: {
+        case "SET_STATUS": {
             return { ...state, status:action.status };
         }
 
-        case UPDATE_STATUS: {
+        case "UPDATE_STATUS": {
             return { ...state, status: action.status };
         }
 
@@ -196,14 +186,11 @@ export const updateStatusThunk = (status: string): ThunkAction<void, {}, {}, any
 }
 
 
-
 export const getStatusThunk = (id: number): ThunkAction<void, {}, {}, any> => {
     return function (dispatch: any): void {
 
 
         profileApi.getStatusRequest(id).then((data: any) => {
-
-
             if (data.resultCode === 0) {
             dispatch(setStatus(data))
             }

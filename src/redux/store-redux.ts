@@ -16,14 +16,15 @@ const redusersPack = combineReducers({
   form:reducer
 })
 
+//типизируем редьюсеры
 export type RootState = ReturnType<typeof redusersPack>
 
 
 //создаем стор при помощи редакса
 export let store: Store<RootState> = createStore(redusersPack, applyMiddleware(thunk))
 
-
-export type AppDispatch = typeof store.dispatch;
+// тип для диспатча
+export type AppDispatchType = typeof store.dispatch;
 
 //делаем юзаппдиспатч, чтобы была возможность прокидывать 
 //через диспатч санку, которая затем уже делает запрос 

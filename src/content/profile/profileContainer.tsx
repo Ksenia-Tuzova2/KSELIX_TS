@@ -1,7 +1,5 @@
-
 import { connect } from 'react-redux'
 import {
-  
   getStatusThunk,
   getUserData,
   updateStatusThunk,
@@ -18,7 +16,7 @@ type MapStateToPropsType = {
   status:string,
 }
 
-//нужен тут айди
+//избавится от контейнерных компонент, использовать юзселектор и провайдер
 
 type MapDispatchToPropsType = {
   setUserProfile: (id: number) => void,

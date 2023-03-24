@@ -27,7 +27,6 @@ export type UserType = {
 }
 
 
-
 export type SearchUserInitStateType = {
   items: Array<UserType>,
   totalCount: number,
@@ -55,7 +54,14 @@ const SearchUserInitState: SearchUserInitStateType = {
 }
 
 
-type SearchUsersActionType = ReturnType<typeof setFetch> | ReturnType<typeof followUser> | ReturnType<typeof unfollowUser> | ReturnType<typeof searchUser> | ReturnType<typeof setUser> | ReturnType<typeof setTotalCount> | ReturnType<typeof setCurrentPage> | ReturnType<typeof setFetchForFollowUser>
+type SearchUsersActionType = ReturnType<typeof setFetch> |
+ ReturnType<typeof followUser> |
+  ReturnType<typeof unfollowUser> |
+   ReturnType<typeof searchUser> | 
+   ReturnType<typeof setUser> |
+    ReturnType<typeof setTotalCount> | 
+    ReturnType<typeof setCurrentPage> |
+     ReturnType<typeof setFetchForFollowUser>
 
 export const searchUserReduser = (state: SearchUserInitStateType = SearchUserInitState, action: SearchUsersActionType): SearchUserInitStateType => {
   switch (action.type) {
@@ -63,14 +69,14 @@ export const searchUserReduser = (state: SearchUserInitStateType = SearchUserIni
       let followUser = state.items.map((u) => {
 
         if (u.id === action.id) {
-          // здесь даже не делаем копию, так как мап выплевывает новый массив
+          // здесь не делаем копию, 
+          //так как мап выплевывает новый массив
           return { ...u, followed: true }
         } else { return { ...u } }
       })
-      console.log('followed');
-
       return { ...state, items: followUser };
     }
+
     case UNFOLLOW: {
       const unfollowUser = state.items.map((u) => {
         if (u.id === action.id) {
@@ -82,24 +88,28 @@ export const searchUserReduser = (state: SearchUserInitStateType = SearchUserIni
         items: unfollowUser
       }
     }
+
     case SEARCH_USER: {
       return { ...state };
     }
+
     case SET_USER: {
       return { ...state, items: action.items.items, totalCount: action.items.totalCount };
     }
+
     case SET_CURRENT_PAGE: {
       return { ...state, currentPage: action.currentPage }
     }
+
     case SET_TOTAL_COUNT: {
       return { ...state, totalCount: action.totalCount }
     }
+
     case SET_FETCH: {
       return { ...state, isFetching: action.isFetching };
     }
+
     case SET_FETCH_FOLLOW_USER: {
-
-
       return {
         ...state,
         followingInProgress: action.isFetching ? [...state.followingInProgress, { ...action }] : state.followingInProgress.filter((el) => el.userId !== action.userId)
@@ -110,10 +120,6 @@ export const searchUserReduser = (state: SearchUserInitStateType = SearchUserIni
       return state
     }
   }
-
-
-
-
 }
 
 export const setFetchForFollowUser = (isFetching: boolean, userId: number) => {
@@ -149,23 +155,6 @@ export const setTotalCount = (totalCount: number) => {
   return { type: SET_TOTAL_COUNT, totalCount } as const
 }
 
-
-//БЫЛО в коллбеке
-
-   //обратные кавычки для того чтобы записать квери параметр с переменной
-    //квери параметры идут после вопросительного знака и записываются после амперсанта
-    // this.props.setFetching(true)
-
-    // searchUserApi.getUsersRequest(this.props.pageSize, this.props.currentPage).then((data: any) => {
-    //   this.props.setFetching(false)
-    //   this.props.setUser(data)
-    // }).catch((error) => {
-    //   // handle error
-    //   console.log(error);
-    // }
-    // )
-
-    //стало тут
     
 export const getUsersThunkCreator = (pageSize: number, currentPage: number): ThunkAction<void, {}, {}, any> => {
   return function (dispatch: any): void {
