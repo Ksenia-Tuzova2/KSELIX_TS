@@ -50,7 +50,7 @@ export const messegeReducer = (state: MessageInitStateType = messageInitState, a
   switch (action.type) {
       case ('UPDATE_MES_TEXT'):{
         return {...state, newMesText:action.newtext}; 
-      }
+      } 
       case ('ADD_MESSAGE'):{
           return {...state,newMesText:'', MyMessage:[...state.MyMessage,{message:action.message}]}
       }

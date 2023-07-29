@@ -41,7 +41,8 @@ export class SearchUserC extends React.Component<SearchUserType>{
             {this.props.name}
             {this.props.followed ?
 
-              <button disabled={this.props.followingInProgress.isFetching} onClick={() => {
+              <button disabled={this.props.followingInProgress.isFetching}
+               onClick={() => {
                 //вся громоздкая логика теперь лежит в редьюсере
                 this.props.unfollowUser(this.props.id)
               }

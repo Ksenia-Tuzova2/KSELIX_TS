@@ -11,7 +11,9 @@ type MyMessageType = {
 }
 
 
-export const DialogArea = ({ updateMesText, addMessage, newMesText, MyMessage }: DialogAreaContainerPropsType) => {
+export const DialogArea = ({ 
+    updateMesText, addMessage, 
+    newMesText, MyMessage }: DialogAreaContainerPropsType) => {
 
     let mapMyMes = () => MyMessage.map((el: MyMessageType) => <MyMesItem key={v1()} message={el.message}
     />)
@@ -58,6 +60,7 @@ export const MyMesItem: React.FC<MyMessageType> = ({ message }: MyMessageType) =
 
     )
 }
+
 
 export const YourMasItem: React.FC<MyMessageType> = ({ message }: MyMessageType) => {
     return (

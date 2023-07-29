@@ -1,6 +1,6 @@
 import './null.css'
 import style from './App.module.scss';
-import React, { useEffect } from 'react';
+import React, { n, useEffect } from 'react';
 import { Header } from './header/header'
 import Footer from './footer/footer';
 import { Main } from './main/main';
@@ -33,3 +33,9 @@ const App: React.FC<AppPropsType> = () => {
 }
 
 export default App
+
+const AppNew: React.FC<AppPropsType>=()=>{
+  return(
+    <App/>
+  )
+}

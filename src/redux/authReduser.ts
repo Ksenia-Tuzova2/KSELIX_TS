@@ -80,7 +80,7 @@ export const authUserDataRequest=():ThunkAction<void,{},{}, any>=>{
 
     authApi.authRequest().then((data: any) => {
     
-      // (0 if opearation completed successfullt, other numbers - some error occured)
+      // (0 if opearation completed successfull, other numbers - some error occured)
       if (data.resultCode === 0) {
         let { id, email, login } = data.data
         dispatch(setUserData({ id, email, login })) 
